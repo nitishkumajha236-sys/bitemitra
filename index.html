@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>BiteMitra - Food & Drinks Delivery</title>
 
 <style>
@@ -11,57 +10,65 @@
   box-sizing:border-box;
   margin:0;
   padding:0;
-  font-family:Arial,sans-serif;
 }
 
 body{
+  font-family:Arial,Helvetica,sans-serif;
   background:#f7f7f7;
   color:#222;
 }
 
 header{
-  background:white;
+  background:#ffffff;
   padding:15px 6%;
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
   position:sticky;
   top:0;
-  z-index:100;
-  box-shadow:0 2px 10px #ddd;
+  z-index:1000;
+  box-shadow:0 2px 10px rgba(0,0,0,.08);
 }
 
 .logo{
-  font-size:28px;
+  font-size:27px;
   font-weight:bold;
-  color:#e63946;
+  color:#e23744;
 }
 
-.location{
-  background:#fff3f3;
-  padding:10px 15px;
-  border-radius:20px;
+.logo span{
+  color:#222;
+}
+
+.nav{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.nav button{
+  border:none;
+  background:#fff;
+  padding:10px 14px;
   cursor:pointer;
-  max-width:250px;
-  overflow:hidden;
-  white-space:nowrap;
-  text-overflow:ellipsis;
+  font-size:14px;
+  border-radius:8px;
+}
+
+.nav button:hover{
+  background:#f3f3f3;
 }
 
 .cart-btn{
-  background:#e63946;
-  color:white;
-  border:0;
-  padding:11px 18px;
-  border-radius:20px;
-  cursor:pointer;
+  background:#e23744 !important;
+  color:white !important;
   font-weight:bold;
 }
 
 .hero{
+  background:linear-gradient(135deg,#fff1f2,#ffe5e8);
   padding:55px 6%;
   text-align:center;
-  background:linear-gradient(135deg,#fff0f0,#fff);
 }
 
 .hero h1{
@@ -70,78 +77,93 @@ header{
 }
 
 .hero h1 span{
-  color:#e63946;
+  color:#e23744;
 }
 
 .hero p{
-  color:#666;
+  font-size:18px;
+  color:#555;
   margin-bottom:25px;
 }
 
 .search-box{
-  max-width:700px;
+  max-width:650px;
   margin:auto;
   display:flex;
   background:white;
-  border-radius:30px;
-  overflow:hidden;
-  box-shadow:0 3px 15px #ddd;
+  border-radius:12px;
+  padding:7px;
+  box-shadow:0 4px 15px rgba(0,0,0,.1);
 }
 
 .search-box input{
   flex:1;
-  border:0;
-  padding:16px 20px;
+  border:none;
   outline:none;
+  padding:13px;
   font-size:16px;
 }
 
 .search-box button{
-  border:0;
-  background:#e63946;
+  border:none;
+  background:#e23744;
   color:white;
-  padding:0 25px;
+  padding:0 20px;
+  border-radius:8px;
   cursor:pointer;
+}
+
+.location{
+  margin-top:18px;
+  display:inline-block;
+  background:white;
+  padding:10px 18px;
+  border-radius:20px;
+  cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
 
 .container{
   width:88%;
   max-width:1200px;
-  margin:30px auto;
+  margin:35px auto;
 }
 
-h2{
-  margin-bottom:18px;
+.section-title{
+  font-size:28px;
+  margin-bottom:20px;
 }
 
 .categories{
   display:flex;
   gap:10px;
   overflow-x:auto;
-  padding-bottom:12px;
+  padding-bottom:10px;
 }
 
-.categories button{
-  border:1px solid #ddd;
+.category{
+  border:none;
   background:white;
-  padding:11px 18px;
-  border-radius:22px;
+  padding:12px 18px;
+  border-radius:25px;
   cursor:pointer;
   white-space:nowrap;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
+  font-size:14px;
 }
 
-.categories button:hover{
-  background:#e63946;
+.category:hover,
+.category.active{
+  background:#e23744;
   color:white;
 }
 
 .offer{
-  margin:25px 0;
-  background:#e63946;
+  margin:30px 0;
+  background:linear-gradient(135deg,#e23744,#ff6b75);
   color:white;
-  padding:25px;
-  border-radius:15px;
-  text-align:center;
+  padding:28px;
+  border-radius:16px;
 }
 
 .offer h2{
@@ -150,7 +172,7 @@ h2{
 
 .food-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:20px;
 }
 
@@ -158,7 +180,7 @@ h2{
   background:white;
   border-radius:15px;
   overflow:hidden;
-  box-shadow:0 3px 12px #ddd;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
   transition:.2s;
 }
 
@@ -166,67 +188,85 @@ h2{
   transform:translateY(-4px);
 }
 
-.food-card img{
-  width:100%;
-  height:175px;
-  object-fit:cover;
+.food-image{
+  height:155px;
+  background:#fff0f1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:75px;
 }
 
 .food-info{
-  padding:15px;
+  padding:16px;
 }
 
 .food-info h3{
-  margin-bottom:6px;
+  margin-bottom:7px;
 }
 
 .restaurant{
   color:#777;
-  font-size:14px;
+  font-size:13px;
   margin-bottom:8px;
 }
 
 .rating{
-  color:#e6a400;
-  margin-bottom:8px;
+  color:#087f23;
+  font-weight:bold;
+  font-size:14px;
 }
 
 .price{
   font-size:18px;
   font-weight:bold;
-  margin-bottom:12px;
+  margin:10px 0;
 }
 
 .add-btn{
   width:100%;
-  border:0;
-  background:#e63946;
+  padding:10px;
+  border:none;
+  background:#e23744;
   color:white;
-  padding:11px;
   border-radius:8px;
   cursor:pointer;
   font-weight:bold;
 }
 
+.add-btn:hover{
+  background:#c92532;
+}
+
+.empty{
+  text-align:center;
+  padding:35px;
+  color:#777;
+  display:none;
+}
+
 .local{
   margin-top:45px;
   background:white;
-  padding:25px;
-  border-radius:15px;
-  box-shadow:0 3px 12px #ddd;
+  border-radius:16px;
+  padding:30px;
 }
 
 .features{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:15px;
+  gap:18px;
   margin-top:20px;
 }
 
 .feature{
   padding:20px;
-  background:#fff6f6;
+  background:#fafafa;
   border-radius:12px;
+}
+
+.feature h3{
+  margin-bottom:7px;
 }
 
 footer{
@@ -241,11 +281,11 @@ footer{
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.6);
-  z-index:200;
+  background:rgba(0,0,0,.55);
+  z-index:2000;
   align-items:center;
   justify-content:center;
-  padding:20px;
+  padding:15px;
 }
 
 .modal-box{
@@ -254,54 +294,56 @@ footer{
   max-width:500px;
   max-height:90vh;
   overflow:auto;
-  border-radius:15px;
+  border-radius:16px;
   padding:25px;
 }
 
 .modal-header{
   display:flex;
   justify-content:space-between;
+  align-items:center;
   margin-bottom:20px;
 }
 
 .close{
+  border:none;
+  background:#eee;
+  width:32px;
+  height:32px;
+  border-radius:50%;
   cursor:pointer;
-  font-size:25px;
+  font-size:18px;
 }
 
 .cart-item{
   display:flex;
   justify-content:space-between;
-  align-items:center;
-  padding:12px 0;
-  border-bottom:1px solid #eee;
   gap:10px;
+  padding:13px 0;
+  border-bottom:1px solid #eee;
+}
+
+.cart-item-name{
+  font-weight:bold;
 }
 
 .qty{
-  white-space:nowrap;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:7px;
 }
 
 .qty button{
-  border:0;
+  border:none;
   background:#eee;
-  width:28px;
-  height:28px;
-  border-radius:50%;
-  cursor:pointer;
-}
-
-.remove-btn{
-  border:0;
-  background:#ffe5e5;
-  color:#e63946;
-  padding:5px 8px;
+  width:25px;
+  height:25px;
   border-radius:5px;
   cursor:pointer;
-  margin-left:5px;
 }
 
-.total{
+.cart-total{
   font-size:20px;
   font-weight:bold;
   margin:20px 0;
@@ -310,11 +352,11 @@ footer{
 .checkout-btn{
   width:100%;
   padding:13px;
-  border:0;
-  background:#e63946;
+  border:none;
+  background:#e23744;
   color:white;
   border-radius:8px;
-  font-weight:bold;
+  font-size:16px;
   cursor:pointer;
 }
 
@@ -329,24 +371,13 @@ footer{
 }
 
 .form-group input,
-.form-group textarea{
+.form-group textarea,
+.form-group select{
   width:100%;
   padding:12px;
   border:1px solid #ddd;
   border-radius:8px;
   outline:none;
-}
-
-.payment{
-  margin:15px 0;
-}
-
-.payment label{
-  display:block;
-  padding:10px;
-  border:1px solid #ddd;
-  margin-bottom:8px;
-  border-radius:8px;
 }
 
 .success{
@@ -359,14 +390,7 @@ footer{
   margin-bottom:15px;
 }
 
-.empty{
-  text-align:center;
-  padding:30px;
-  color:#777;
-}
-
-@media(max-width:700px){
-
+@media(max-width:600px){
   header{
     padding:12px 4%;
   }
@@ -375,8 +399,8 @@ footer{
     font-size:22px;
   }
 
-  .location{
-    display:none;
+  .nav button{
+    padding:8px;
   }
 
   .hero{
@@ -384,37 +408,12 @@ footer{
   }
 
   .hero h1{
-    font-size:30px;
+    font-size:31px;
   }
 
-  .food-grid{
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
+  .container{
+    width:92%;
   }
-
-  .food-card img{
-    height:130px;
-  }
-
-  .food-info{
-    padding:11px;
-  }
-
-  .food-info h3{
-    font-size:16px;
-  }
-
-  .price{
-    font-size:16px;
-  }
-}
-
-@media(max-width:400px){
-
-  .food-grid{
-    grid-template-columns:1fr;
-  }
-
 }
 </style>
 </head>
@@ -422,210 +421,166 @@ footer{
 <body>
 
 <header>
+  <div class="logo">🍴 Bite<span>Mitra</span></div>
 
-  <div class="logo">
-    🍴 BiteMitra
+  <div class="nav">
+    <button onclick="setLocation()">📍 Location</button>
+    <button class="cart-btn" onclick="openCart()">
+      🛒 Cart (<span id="cartCount">0</span>)
+    </button>
   </div>
-
-  <div class="location" onclick="setLocation()">
-    📍 <span id="locationText">Set Location</span>
-  </div>
-
-  <button class="cart-btn" onclick="openCart()">
-    🛒 Cart (<span id="cartCount">0</span>)
-  </button>
-
 </header>
-
 
 <section class="hero">
 
-  <h1>
-    Food & Drinks,
-    <span>delivered.</span>
-  </h1>
+  <h1>Food delivery made <span>easy</span> 🍴</h1>
 
-  <p>
-    Apna local food, drinks aur favourite items
-    BiteMitra ke saath ❤️
-  </p>
+  <p>Order delicious food & drinks from local restaurants.</p>
 
   <div class="search-box">
-
     <input
       type="text"
       id="searchInput"
-      placeholder="Search biryani, pizza, water, Coke, gulab jamun..."
+      placeholder="Search pizza, biryani, burger, cold drink..."
       oninput="searchFood()"
     >
+    <button onclick="searchFood()">🔍 Search</button>
+  </div>
 
-    <button onclick="searchFood()">
-      🔍 Search
-    </button>
-
+  <div class="location" onclick="setLocation()">
+    📍 <span id="locationText">Set your location</span>
   </div>
 
 </section>
 
-
 <div class="container">
 
-  <h2>🍽️ Explore Categories</h2>
+  <h2 class="section-title">🍽️ Categories</h2>
 
   <div class="categories">
 
-    <button onclick="filterFood('All')">
+    <button class="category active" onclick="filterFood('All',this)">
       All
     </button>
 
-    <button onclick="filterFood('Biryani')">
-      🍚 Biryani
-    </button>
-
-    <button onclick="filterFood('Pizza')">
+    <button class="category" onclick="filterFood('Pizza',this)">
       🍕 Pizza
     </button>
 
-    <button onclick="filterFood('Burger')">
+    <button class="category" onclick="filterFood('Burger',this)">
       🍔 Burger
     </button>
 
-    <button onclick="filterFood('Chicken')">
+    <button class="category" onclick="filterFood('Biryani',this)">
+      🍚 Biryani
+    </button>
+
+    <button class="category" onclick="filterFood('Chicken',this)">
       🍗 Chicken
     </button>
 
-    <button onclick="filterFood('Chinese')">
+    <button class="category" onclick="filterFood('Chinese',this)">
       🥡 Chinese
     </button>
 
-    <button onclick="filterFood('Dessert')">
+    <button class="category" onclick="filterFood('Dessert',this)">
       🍮 Dessert
     </button>
 
-    <button onclick="filterFood('Water')">
+    <button class="category" onclick="filterFood('Water',this)">
       💧 Water
     </button>
 
-    <button onclick="filterFood('Cold Drink')">
-      🥤 Cold Drink
+    <button class="category" onclick="filterFood('Cold Drink',this)">
+      🥤 Cold Drinks
     </button>
 
-    <button onclick="filterFood('Juice')">
+    <button class="category" onclick="filterFood('Juice',this)">
       🧃 Juice
     </button>
 
-    <button onclick="filterFood('Tea Coffee')">
+    <button class="category" onclick="filterFood('Tea',this)">
       ☕ Tea/Coffee
     </button>
 
   </div>
 
-
   <div class="offer">
-
-    <h2>🔥 BiteMitra Special</h2>
-
-    <p>
-      Food + Drinks + Local Restaurants
-      — sab ek jagah!
-    </p>
-
+    <h2>🎉 BiteMitra Special</h2>
+    <p>Delicious food from your local restaurants at your fingertips.</p>
   </div>
 
-
-  <h2>⭐ Popular Food & Drinks</h2>
+  <h2 class="section-title">🔥 Popular Food & Drinks</h2>
 
   <div class="food-grid" id="foodGrid"></div>
 
+  <div class="empty" id="emptyMessage">
+    😔 No food found. Try another search.
+  </div>
 
-  <div class="local">
+  <section class="local">
 
-    <h2>🏠 Local First</h2>
+    <h2>🏪 Local First</h2>
 
-    <p>
-      BiteMitra ka goal hai local restaurants,
-      food aur drinks ko customers tak easily
-      pahunchana.
+    <p style="margin-top:8px;color:#666;">
+      BiteMitra helps local restaurants reach more customers.
     </p>
 
     <div class="features">
 
       <div class="feature">
         <h3>🍴 Local Restaurants</h3>
-        <p>
-          Apne area ke restaurants discover karein.
-        </p>
+        <p>Discover food from restaurants near you.</p>
       </div>
 
       <div class="feature">
         <h3>⚡ Fast Ordering</h3>
-        <p>
-          Simple aur easy ordering experience.
-        </p>
+        <p>Simple and quick food ordering experience.</p>
       </div>
 
       <div class="feature">
-        <h3>💧 Food + Drinks</h3>
-        <p>
-          Food ke saath water, cold drinks aur juices.
-        </p>
+        <h3>💰 Great Offers</h3>
+        <p>Get special offers from local restaurants.</p>
       </div>
 
       <div class="feature">
-        <h3>📍 Delivery</h3>
-        <p>
-          Future version mein live order tracking.
-        </p>
+        <h3>🇮🇳 Made for India</h3>
+        <p>Built with Indian customers and local businesses in mind.</p>
       </div>
 
     </div>
 
-  </div>
+  </section>
 
 </div>
 
-
 <footer>
-
-  <h3>🍴 BiteMitra</h3>
-
-  <p>
-    Local food. Local restaurants. One platform.
+  <h2>🍴 BiteMitra</h2>
+  <p style="margin-top:8px;">Food • Drinks • Local Restaurants</p>
+  <p style="margin-top:15px;font-size:13px;">
+    © 2026 BiteMitra. All rights reserved.
   </p>
-
-  <p style="margin-top:10px;">
-    © 2026 BiteMitra
-  </p>
-
 </footer>
 
 
-<!-- CART -->
+<!-- CART MODAL -->
 
 <div class="modal" id="cartModal">
 
   <div class="modal-box">
 
     <div class="modal-header">
-
       <h2>🛒 Your Cart</h2>
-
-      <span class="close" onclick="closeCart()">
-        ×
-      </span>
-
+      <button class="close" onclick="closeCart()">×</button>
     </div>
 
     <div id="cartItems"></div>
 
-    <div class="total">
+    <div class="cart-total">
       Total: ₹<span id="cartTotal">0</span>
     </div>
 
-    <button
-      class="checkout-btn"
-      onclick="openCheckout()"
-    >
+    <button class="checkout-btn" onclick="openCheckout()">
       Proceed to Checkout
     </button>
 
@@ -634,110 +589,44 @@ footer{
 </div>
 
 
-<!-- CHECKOUT -->
+<!-- CHECKOUT MODAL -->
 
 <div class="modal" id="checkoutModal">
 
   <div class="modal-box">
 
     <div class="modal-header">
-
       <h2>📦 Checkout</h2>
-
-      <span
-        class="close"
-        onclick="closeCheckout()"
-      >
-        ×
-      </span>
-
+      <button class="close" onclick="closeCheckout()">×</button>
     </div>
-
 
     <div class="form-group">
-
-      <label>
-        Name
-      </label>
-
-      <input
-        type="text"
-        id="customerName"
-        placeholder="Enter your name"
-      >
-
+      <label>Your Name</label>
+      <input type="text" id="customerName" placeholder="Enter your name">
     </div>
-
 
     <div class="form-group">
-
-      <label>
-        Mobile Number
-      </label>
-
-      <input
-        type="tel"
-        id="customerPhone"
-        placeholder="Enter mobile number"
-      >
-
+      <label>Mobile Number</label>
+      <input type="tel" id="customerPhone" placeholder="Enter mobile number">
     </div>
-
 
     <div class="form-group">
+      <label>Delivery Address</label>
+      <textarea id="customerAddress" rows="3"
+      placeholder="Enter delivery address"></textarea>
+    </div>
 
-      <label>
-        Delivery Address
-      </label>
+    <div class="form-group">
+      <label>Payment Method</label>
 
-      <textarea
-        id="customerAddress"
-        rows="4"
-        placeholder="Enter complete delivery address"
-      ></textarea>
+      <select id="paymentMethod">
+        <option value="cod">Cash on Delivery</option>
+        <option value="online">Online Payment - Coming Soon</option>
+      </select>
 
     </div>
 
-
-    <div class="payment">
-
-      <h3>
-        💳 Payment Method
-      </h3>
-
-      <label>
-
-        <input
-          type="radio"
-          name="payment"
-          value="COD"
-          checked
-        >
-
-        Cash on Delivery
-
-      </label>
-
-
-      <label>
-
-        <input
-          type="radio"
-          name="payment"
-          value="ONLINE"
-        >
-
-        Online Payment — Coming Soon
-
-      </label>
-
-    </div>
-
-
-    <button
-      class="checkout-btn"
-      onclick="placeOrder()"
-    >
+    <button class="checkout-btn" onclick="placeOrder()">
       Place Order
     </button>
 
@@ -746,30 +635,31 @@ footer{
 </div>
 
 
-<!-- SUCCESS -->
+<!-- SUCCESS MODAL -->
 
 <div class="modal" id="successModal">
 
-  <div class="modal-box success">
+  <div class="modal-box">
 
-    <div class="success-icon">
-      ✅
+    <div class="success">
+
+      <div class="success-icon">✅</div>
+
+      <h2>Order Placed!</h2>
+
+      <p style="margin-top:10px;color:#666;">
+        Your BiteMitra order has been received successfully.
+      </p>
+
+      <button
+        class="checkout-btn"
+        style="margin-top:20px;"
+        onclick="closeSuccess()"
+      >
+        Continue Shopping
+      </button>
+
     </div>
-
-    <h2>
-      Order Placed!
-    </h2>
-
-    <p style="margin:15px 0;">
-      Thank you for ordering from BiteMitra.
-    </p>
-
-    <button
-      class="checkout-btn"
-      onclick="closeSuccess()"
-    >
-      Continue Shopping
-    </button>
 
   </div>
 
@@ -780,264 +670,249 @@ footer{
 
 const foods = [
 
-  /* BIRYANI */
-
   {
+    id:1,
     name:"Chicken Biryani",
     category:"Biryani",
-    restaurant:"Mithila Biryani House",
+    emoji:"🍗",
+    restaurant:"Mithila Biryani",
     price:180,
-    rating:"4.8",
-    image:"https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=800&q=80"
+    rating:4.7
   },
 
   {
+    id:2,
     name:"Veg Biryani",
     category:"Biryani",
+    emoji:"🍚",
     restaurant:"Apna Kitchen",
     price:140,
-    rating:"4.6",
-    image:"https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80"
-  },
-
-
-  /* CHICKEN */
-
-  {
-    name:"Chicken Curry",
-    category:"Chicken",
-    restaurant:"Desi Kitchen",
-    price:200,
-    rating:"4.7",
-    image:"https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=800&q=80"
+    rating:4.5
   },
 
   {
-    name:"Chicken Tikka",
-    category:"Chicken",
-    restaurant:"Food Corner",
-    price:220,
-    rating:"4.7",
-    image:"https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=800&q=80"
-  },
-
-
-  /* PIZZA */
-
-  {
-    name:"Cheese Pizza",
-    category:"Pizza",
-    restaurant:"Bite Pizza House",
-    price:199,
-    rating:"4.7",
-    image:"https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=800&q=80"
-  },
-
-  {
-    name:"Veg Pizza",
-    category:"Pizza",
-    restaurant:"Mithila Pizza",
-    price:179,
-    rating:"4.6",
-    image:"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80"
-  },
-
-
-  /* BURGER */
-
-  {
+    id:3,
     name:"Chicken Burger",
     category:"Burger",
+    emoji:"🍔",
     restaurant:"Bite Burger",
-    price:149,
-    rating:"4.6",
-    image:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80"
+    price:129,
+    rating:4.6
   },
 
   {
-    name:"Veg Burger",
-    category:"Burger",
+    id:4,
+    name:"Cheese Pizza",
+    category:"Pizza",
+    emoji:"🍕",
+    restaurant:"Bite Pizza House",
+    price:199,
+    rating:4.8
+  },
+
+  {
+    id:5,
+    name:"Chicken Curry",
+    category:"Chicken",
+    emoji:"🍛",
+    restaurant:"Desi Kitchen",
+    price:220,
+    rating:4.6
+  },
+
+  {
+    id:6,
+    name:"Chicken Roll",
+    category:"Chicken",
+    emoji:"🌯",
     restaurant:"Food Corner",
-    price:119,
-    rating:"4.5",
-    image:"https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80"
+    price:110,
+    rating:4.4
   },
 
-
-  /* CHINESE */
-
   {
-    name:"Veg Noodles",
+    id:7,
+    name:"Veg Chowmein",
     category:"Chinese",
+    emoji:"🍜",
     restaurant:"Mithila Wok",
-    price:120,
-    rating:"4.5",
-    image:"https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=800&q=80"
+    price:100,
+    rating:4.5
   },
 
   {
-    name:"Fried Rice",
+    id:8,
+    name:"Chicken Manchurian",
     category:"Chinese",
+    emoji:"🥡",
     restaurant:"China Bowl",
-    price:130,
-    rating:"4.5",
-    image:"https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=800&q=80"
+    price:160,
+    rating:4.6
   },
 
-
-  /* DESSERT */
-
   {
+    id:9,
     name:"Gulab Jamun",
     category:"Dessert",
+    emoji:"🍮",
     restaurant:"Sweet House",
-    price:80,
-    rating:"4.9",
-    image:"https://images.unsplash.com/photo-1666190094764-9e6c4f7e7d1b?auto=format&fit=crop&w=800&q=80"
+    price:70,
+    rating:4.8
   },
 
   {
+    id:10,
     name:"Rasgulla",
     category:"Dessert",
+    emoji:"🍡",
     restaurant:"Desi Sweets",
     price:70,
-    rating:"4.8",
-    image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80"
+    rating:4.7
   },
 
-
-  /* WATER */
-
   {
+    id:11,
     name:"Mineral Water 1L",
     category:"Water",
+    emoji:"💧",
     restaurant:"BiteMitra Store",
     price:20,
-    rating:"4.8",
-    image:"https://images.unsplash.com/photo-1564419320461-6870880221ad?auto=format&fit=crop&w=800&q=80"
+    rating:4.5
   },
 
   {
+    id:12,
     name:"Mineral Water 500ml",
     category:"Water",
+    emoji:"💧",
     restaurant:"BiteMitra Store",
     price:10,
-    rating:"4.8",
-    image:"https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=800&q=80"
+    rating:4.5
   },
 
-
-  /* COLD DRINKS */
-
   {
+    id:13,
     name:"Coca-Cola",
     category:"Cold Drink",
+    emoji:"🥤",
     restaurant:"BiteMitra Store",
-    price:40,
-    rating:"4.7",
-    image:"https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=800&q=80"
+    price:45,
+    rating:4.6
   },
 
   {
+    id:14,
     name:"Pepsi",
     category:"Cold Drink",
+    emoji:"🥤",
     restaurant:"BiteMitra Store",
-    price:40,
-    rating:"4.7",
-    image:"https://images.unsplash.com/photo-1629203849820-fdd70d49c38e?auto=format&fit=crop&w=800&q=80"
+    price:45,
+    rating:4.6
   },
 
   {
+    id:15,
     name:"Sprite",
     category:"Cold Drink",
+    emoji:"🥤",
     restaurant:"BiteMitra Store",
-    price:40,
-    rating:"4.7",
-    image:"https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?auto=format&fit=crop&w=800&q=80"
+    price:45,
+    rating:4.5
   },
 
-
-  /* JUICE */
-
   {
+    id:16,
     name:"Mango Juice",
     category:"Juice",
-    restaurant:"Fresh Juice Corner",
-    price:80,
-    rating:"4.6",
-    image:"https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?auto=format&fit=crop&w=800&q=80"
+    emoji:"🧃",
+    restaurant:"Fresh Juice Point",
+    price:60,
+    rating:4.6
   },
 
   {
+    id:17,
     name:"Orange Juice",
     category:"Juice",
-    restaurant:"Fresh Juice Corner",
-    price:80,
-    rating:"4.7",
-    image:"https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=800&q=80"
+    emoji:"🍊",
+    restaurant:"Fresh Juice Point",
+    price:60,
+    rating:4.6
   },
 
-
-  /* TEA COFFEE */
-
   {
+    id:18,
     name:"Masala Tea",
-    category:"Tea Coffee",
+    category:"Tea",
+    emoji:"☕",
     restaurant:"Chai Point",
     price:30,
-    rating:"4.8",
-    image:"https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?auto=format&fit=crop&w=800&q=80"
+    rating:4.7
   },
 
   {
-    name:"Hot Coffee",
-    category:"Tea Coffee",
-    restaurant:"Coffee Corner",
-    price:60,
-    rating:"4.7",
-    image:"https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80"
+    id:19,
+    name:"Cold Coffee",
+    category:"Tea",
+    emoji:"🥛",
+    restaurant:"Cafe Mitra",
+    price:90,
+    rating:4.6
+  },
+
+  {
+    id:20,
+    name:"French Fries",
+    category:"Burger",
+    emoji:"🍟",
+    restaurant:"Bite Burger",
+    price:90,
+    rating:4.5
   }
 
 ];
 
 
-let cart =
-JSON.parse(localStorage.getItem("biteMitraCart")) || [];
+let cart = JSON.parse(localStorage.getItem("bitemitraCart")) || [];
+
+let currentCategory = "All";
 
 
-function displayFoods(list){
+function renderFoods(list){
 
-  const grid =
-  document.getElementById("foodGrid");
+  const grid = document.getElementById("foodGrid");
+  const empty = document.getElementById("emptyMessage");
 
+  grid.innerHTML = "";
 
   if(list.length === 0){
 
-    grid.innerHTML =
-    "<div class='empty' style='grid-column:1/-1'>😔 Food or drink not found</div>";
-
+    empty.style.display = "block";
     return;
+
   }
 
+  empty.style.display = "none";
 
-  grid.innerHTML =
-  list.map(food => `
 
-    <div class="food-card">
+  list.forEach(food => {
 
-      <img
-        src="${food.image}"
-        alt="${food.name}"
-      >
+    const card = document.createElement("div");
+
+    card.className = "food-card";
+
+    card.innerHTML = `
+
+      <div class="food-image">
+        ${food.emoji}
+      </div>
 
       <div class="food-info">
 
-        <h3>
-          ${food.name}
-        </h3>
+        <h3>${food.name}</h3>
 
         <div class="restaurant">
-          ${food.restaurant}
+          🏪 ${food.restaurant}
         </div>
 
         <div class="rating">
@@ -1050,84 +925,93 @@ function displayFoods(list){
 
         <button
           class="add-btn"
-          onclick="addToCart(${foods.indexOf(food)})"
+          onclick="addToCart(${food.id})"
         >
           🛒 Add to Cart
         </button>
 
       </div>
 
-    </div>
+    `;
 
-  `).join("");
+    grid.appendChild(card);
+
+  });
+
 }
 
 
-function filterFood(category){
+function filterFood(category,button){
 
-  if(category === "All"){
+  currentCategory = category;
 
-    displayFoods(foods);
+  document.querySelectorAll(".category").forEach(btn=>{
+    btn.classList.remove("active");
+  });
 
-    return;
+  button.classList.add("active");
+
+  const search =
+    document.getElementById("searchInput").value
+    .toLowerCase();
+
+  let list = foods;
+
+  if(category !== "All"){
+    list = list.filter(food =>
+      food.category === category
+    );
   }
 
+  if(search){
+    list = list.filter(food =>
+      food.name.toLowerCase().includes(search) ||
+      food.restaurant.toLowerCase().includes(search) ||
+      food.category.toLowerCase().includes(search)
+    );
+  }
 
-  displayFoods(
-    foods.filter(
-      food => food.category === category
-    )
-  );
+  renderFoods(list);
+
 }
 
 
 function searchFood(){
 
   const search =
-  document
-  .getElementById("searchInput")
-  .value
-  .toLowerCase()
-  .trim();
+    document.getElementById("searchInput").value
+    .toLowerCase();
 
+  let list = foods;
 
-  const result =
-  foods.filter(food =>
+  if(currentCategory !== "All"){
 
-    food.name
-    .toLowerCase()
-    .includes(search)
+    list = list.filter(food =>
+      food.category === currentCategory
+    );
 
-    ||
+  }
 
-    food.category
-    .toLowerCase()
-    .includes(search)
+  if(search){
 
-    ||
+    list = list.filter(food =>
+      food.name.toLowerCase().includes(search) ||
+      food.restaurant.toLowerCase().includes(search) ||
+      food.category.toLowerCase().includes(search)
+    );
 
-    food.restaurant
-    .toLowerCase()
-    .includes(search)
+  }
 
-  );
+  renderFoods(list);
 
-
-  displayFoods(result);
 }
 
 
-function addToCart(index){
+function addToCart(id){
 
-  const food =
-  foods[index];
+  const food = foods.find(item => item.id === id);
 
-
-  const existing =
-  cart.find(
-    item => item.name === food.name
-  );
-
+  const existing = cart.find(item => item.id === id);
 
   if(existing){
 
@@ -1142,41 +1026,32 @@ function addToCart(index){
 
   }
 
-
   saveCart();
 
+  alert(food.name + " added to cart! 🛒");
 
-  alert(
-    food.name +
-    " added to cart 🛒"
-  );
 }
 
 
 function saveCart(){
 
   localStorage.setItem(
-    "biteMitraCart",
+    "bitemitraCart",
     JSON.stringify(cart)
   );
 
   updateCartCount();
+
 }
 
 
 function updateCartCount(){
 
   const count =
-  cart.reduce(
-    (total,item) =>
-    total + item.qty,
-    0
-  );
+    cart.reduce((total,item) => total + item.qty,0);
 
+  document.getElementById("cartCount").textContent = count;
 
-  document
-  .getElementById("cartCount")
-  .textContent = count;
 }
 
 
@@ -1184,130 +1059,110 @@ function openCart(){
 
   renderCart();
 
-  document
-  .getElementById("cartModal")
-  .style.display = "flex";
+  document.getElementById("cartModal").style.display = "flex";
+
 }
 
 
 function closeCart(){
 
-  document
-  .getElementById("cartModal")
-  .style.display = "none";
+  document.getElementById("cartModal").style.display = "none";
+
 }
 
 
 function renderCart(){
 
-  const box =
-  document.getElementById("cartItems");
+  const container =
+    document.getElementById("cartItems");
 
+  container.innerHTML = "";
 
   if(cart.length === 0){
 
-    box.innerHTML =
-    "<div class='empty'>🛒 Your cart is empty.</div>";
+    container.innerHTML =
+      "<p style='text-align:center;padding:25px;'>Your cart is empty 🛒</p>";
 
-    document
-    .getElementById("cartTotal")
-    .textContent = "0";
+    document.getElementById("cartTotal").textContent = "0";
 
     return;
+
   }
 
 
-  box.innerHTML =
-  cart.map((item,index) => `
+  let total = 0;
 
-    <div class="cart-item">
+
+  cart.forEach(item => {
+
+    total += item.price * item.qty;
+
+    const div = document.createElement("div");
+
+    div.className = "cart-item";
+
+    div.innerHTML = `
 
       <div>
 
-        <strong>
-          ${item.name}
-        </strong>
+        <div class="cart-item-name">
+          ${item.emoji} ${item.name}
+        </div>
 
-        <br>
-
-        <small>
+        <div style="color:#666;margin-top:4px;">
           ₹${item.price} × ${item.qty}
-        </small>
+        </div>
+
+        <div class="qty">
+
+          <button onclick="changeQty(${item.id},-1)">
+            −
+          </button>
+
+          <span>${item.qty}</span>
+
+          <button onclick="changeQty(${item.id},1)">
+            +
+          </button>
+
+        </div>
 
       </div>
 
+      <strong>
+        ₹${item.price * item.qty}
+      </strong>
 
-      <div class="qty">
+    `;
 
-        <button
-          onclick="changeQty(${index},-1)"
-        >
-          −
-        </button>
+    container.appendChild(div);
 
-        <span style="margin:0 7px;">
-          ${item.qty}
-        </span>
-
-        <button
-          onclick="changeQty(${index},1)"
-        >
-          +
-        </button>
-
-        <button
-          class="remove-btn"
-          onclick="removeItem(${index})"
-        >
-          ✕
-        </button>
-
-      </div>
-
-    </div>
-
-  `).join("");
+  });
 
 
-  const total =
-  cart.reduce(
-    (sum,item) =>
-    sum + item.price * item.qty,
-    0
-  );
+  document.getElementById("cartTotal").textContent = total;
 
-
-  document
-  .getElementById("cartTotal")
-  .textContent = total;
 }
 
 
-function changeQty(index,value){
+function changeQty(id,change){
 
-  cart[index].qty += value;
+  const item = cart.find(item => item.id === id);
 
+  if(!item) return;
 
-  if(cart[index].qty <= 0){
+  item.qty += change;
 
-    cart.splice(index,1);
+  if(item.qty <= 0){
+
+    cart = cart.filter(item => item.id !== id);
 
   }
 
-
   saveCart();
 
   renderCart();
-}
 
-
-function removeItem(index){
-
-  cart.splice(index,1);
-
-  saveCart();
-
-  renderCart();
 }
 
 
@@ -1315,42 +1170,116 @@ function openCheckout(){
 
   if(cart.length === 0){
 
-    alert(
-      "Please add some food or drink to your cart first."
-    );
+    alert("Please add food to cart first.");
 
     return;
-  }
 
+  }
 
   closeCart();
 
+  document.getElementById("checkoutModal").style.display = "flex";
 
-  document
-  .getElementById("checkoutModal")
-  .style.display = "flex";
 }
 
 
 function closeCheckout(){
 
-  document
-  .getElementById("checkoutModal")
-  .style.display = "none";
+  document.getElementById("checkoutModal").style.display = "none";
+
 }
 
 
 function placeOrder(){
 
   const name =
-  document
-  .getElementById("customerName")
-  .value
-  .trim();
-
+    document.getElementById("customerName").value.trim();
 
   const phone =
-  document
-  .getElementById("customerPhone")
-  .value
-  .t
+    document.getElementById("customerPhone").value.trim();
+
+  const address =
+    document.getElementById("customerAddress").value.trim();
+
+  const payment =
+    document.getElementById("paymentMethod").value;
+
+
+  if(!name){
+
+    alert("Please enter your name.");
+
+    return;
+
+  }
+
+  if(!phone){
+
+    alert("Please enter your mobile number.");
+
+    return;
+
+  }
+
+  if(!address){
+
+    alert("Please enter delivery address.");
+
+    return;
+
+  }
+
+
+  if(payment === "online"){
+
+    alert("Online payment will be available in the next BiteMitra version. For now, choose Cash on Delivery.");
+
+    return;
+
+  }
+
+
+  cart = [];
+
+  saveCart();
+
+  closeCheckout();
+
+  document.getElementById("successModal").style.display = "flex";
+
+}
+
+
+function closeSuccess(){
+
+  document.getElementById("successModal").style.display = "none";
+
+}
+
+
+function setLocation(){
+
+  const location =
+    prompt(
+      "Enter your delivery location:",
+      document.getElementById("locationText").textContent === "Set your location"
+      ? ""
+      : document.getElementById("locationText").textContent
+    );
+
+  if(location && location.trim()){
+
+    document.getElementById("locationText").textContent =
+      location.trim();
+
+    localStorage.setItem(
+      "bitemitraLocation",
+      location.trim()
+    );
+
+  }
+
+}
+
+
+fun
