@@ -4,27 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>BiteMitra - Food & Drinks Delivery</title>
+<title>BiteMitra — Har Bite Mein Apnapan</title>
 
 <style>
-/* =========================
-   BITEMITRA PREMIUM THEME
-========================= */
-
 :root{
   --orange:#ff6b35;
   --orange2:#ff9f1c;
   --purple:#7c3aed;
   --purple2:#a855f7;
   --navy:#172033;
-  --dark:#101522;
+  --dark:#0f172a;
   --green:#16a34a;
-  --yellow:#f59e0b;
-  --white:#ffffff;
   --light:#f8fafc;
-  --text:#202938;
   --muted:#64748b;
-  --border:#e5e7eb;
+  --white:#fff;
+  --border:#e8edf3;
   --shadow:0 10px 30px rgba(23,32,51,.10);
 }
 
@@ -41,13 +35,11 @@ html{
 body{
   font-family:Arial,Helvetica,sans-serif;
   background:var(--light);
-  color:var(--text);
+  color:var(--navy);
 }
 
 
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 header{
   position:sticky;
@@ -55,15 +47,15 @@ header{
   z-index:1000;
 
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
 
-  padding:14px 6%;
+  padding:13px 6%;
 
   background:rgba(255,255,255,.96);
   backdrop-filter:blur(12px);
 
-  border-bottom:1px solid #eee;
+  border-bottom:1px solid var(--border);
 
   box-shadow:0 4px 20px rgba(0,0,0,.06);
 }
@@ -71,10 +63,11 @@ header{
 .logo{
   display:flex;
   align-items:center;
-  gap:7px;
+  gap:8px;
 
   font-size:27px;
   font-weight:900;
+
   color:var(--orange);
 }
 
@@ -100,18 +93,20 @@ header{
 
   color:white;
 
-  box-shadow:0 6px 15px rgba(124,58,237,.25);
+  box-shadow:0 6px 18px rgba(124,58,237,.25);
 }
 
 .nav{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:9px;
 }
 
 .nav button{
   border:none;
   background:white;
+
+  color:var(--navy);
 
   padding:10px 14px;
 
@@ -119,10 +114,7 @@ header{
 
   cursor:pointer;
 
-  font-size:14px;
-  font-weight:700;
-
-  color:var(--navy);
+  font-weight:bold;
 
   transition:.25s;
 }
@@ -142,13 +134,11 @@ header{
       var(--purple)
     ) !important;
 
-  box-shadow:0 6px 15px rgba(124,58,237,.25);
+  box-shadow:0 6px 16px rgba(124,58,237,.25);
 }
 
 
-/* =========================
-   HERO
-========================= */
+/* HERO */
 
 .hero{
   position:relative;
@@ -160,50 +150,20 @@ header{
 
   background:
     radial-gradient(
-      circle at 10% 20%,
+      circle at 8% 20%,
       rgba(255,107,53,.20),
-      transparent 30%
+      transparent 28%
     ),
     radial-gradient(
-      circle at 90% 20%,
-      rgba(168,85,247,.22),
-      transparent 30%
+      circle at 92% 20%,
+      rgba(168,85,247,.20),
+      transparent 28%
     ),
     linear-gradient(
       135deg,
       #fff7ed,
       #f5f3ff
     );
-}
-
-.hero::before{
-  content:"";
-  position:absolute;
-
-  width:220px;
-  height:220px;
-
-  border-radius:50%;
-
-  background:rgba(255,159,28,.12);
-
-  top:-80px;
-  left:-70px;
-}
-
-.hero::after{
-  content:"";
-  position:absolute;
-
-  width:250px;
-  height:250px;
-
-  border-radius:50%;
-
-  background:rgba(124,58,237,.10);
-
-  bottom:-130px;
-  right:-80px;
 }
 
 .hero-content{
@@ -214,7 +174,7 @@ header{
 .badge{
   display:inline-block;
 
-  padding:8px 15px;
+  padding:8px 16px;
 
   border-radius:30px;
 
@@ -231,11 +191,11 @@ header{
 }
 
 .hero h1{
-  font-size:clamp(34px,6vw,58px);
+  font-size:clamp(36px,6vw,60px);
 
-  line-height:1.1;
+  line-height:1.08;
 
-  margin-bottom:15px;
+  margin-bottom:17px;
 
   color:var(--navy);
 }
@@ -254,21 +214,29 @@ header{
   color:transparent;
 }
 
+.tagline{
+  font-size:23px;
+  font-weight:bold;
+
+  margin-bottom:8px;
+
+  color:var(--navy);
+}
+
 .hero p{
   color:var(--muted);
 
-  font-size:18px;
+  font-size:17px;
 
-  margin-bottom:28px;
+  margin-bottom:27px;
 }
 
 
-/* =========================
-   SEARCH
-========================= */
+/* SEARCH */
 
 .search-box{
-  max-width:700px;
+  max-width:720px;
+
   margin:auto;
 
   display:flex;
@@ -296,8 +264,6 @@ header{
   padding:14px;
 
   font-size:16px;
-
-  color:var(--text);
 }
 
 .search-box button{
@@ -327,19 +293,15 @@ header{
   transform:scale(1.04);
 }
 
-
-/* =========================
-   LOCATION
-========================= */
-
 .location{
   display:inline-flex;
+
   align-items:center;
   gap:7px;
 
   margin-top:18px;
 
-  padding:10px 17px;
+  padding:11px 18px;
 
   border-radius:30px;
 
@@ -361,33 +323,26 @@ header{
 }
 
 
-/* =========================
-   CONTAINER
-========================= */
+/* MAIN */
 
 .container{
   width:88%;
   max-width:1250px;
 
-  margin:40px auto;
+  margin:42px auto;
 }
 
 .section-title{
   font-size:28px;
 
   margin-bottom:20px;
-
-  color:var(--navy);
 }
 
 
-/* =========================
-   CATEGORIES
-========================= */
+/* CATEGORIES */
 
 .categories{
   display:flex;
-
   gap:11px;
 
   overflow-x:auto;
@@ -449,9 +404,7 @@ header{
 }
 
 
-/* =========================
-   OFFER
-========================= */
+/* OFFER */
 
 .offer{
   position:relative;
@@ -459,7 +412,7 @@ header{
 
   margin:35px 0;
 
-  padding:32px;
+  padding:34px;
 
   border-radius:22px;
 
@@ -477,37 +430,33 @@ header{
     0 15px 35px rgba(124,58,237,.20);
 }
 
-.offer::after{
-  content:"🍕";
-
-  position:absolute;
-
-  right:35px;
-  top:20px;
-
-  font-size:80px;
-
-  opacity:.25;
-
-  transform:rotate(15deg);
-}
-
 .offer h2{
-  font-size:26px;
-
-  margin-bottom:8px;
+  font-size:27px;
+  margin-bottom:9px;
 }
 
 .offer p{
-  opacity:.95;
+  max-width:650px;
+  opacity:.96;
+}
 
-  max-width:600px;
+.offer-badge{
+  display:inline-block;
+
+  margin-top:16px;
+
+  padding:8px 13px;
+
+  border-radius:20px;
+
+  background:rgba(255,255,255,.18);
+
+  font-size:13px;
+  font-weight:bold;
 }
 
 
-/* =========================
-   FOOD GRID
-========================= */
+/* FOOD GRID */
 
 .food-grid{
   display:grid;
@@ -526,7 +475,7 @@ header{
 
   background:white;
 
-  border:1px solid #edf0f4;
+  border:1px solid var(--border);
 
   border-radius:18px;
 
@@ -539,13 +488,8 @@ header{
   transform:translateY(-7px);
 
   box-shadow:
-    0 18px 35px rgba(23,32,51,.15);
+    0 18px 38px rgba(23,32,51,.15);
 }
-
-
-/* =========================
-   FOOD IMAGE
-========================= */
 
 .food-image{
   height:165px;
@@ -564,31 +508,6 @@ header{
     );
 
   border-bottom:1px solid #eee;
-
-  position:relative;
-}
-
-.food-image::after{
-  content:"";
-
-  position:absolute;
-
-  width:90px;
-  height:90px;
-
-  border-radius:50%;
-
-  background:rgba(255,255,255,.5);
-
-  z-index:0;
-}
-
-.food-image{
-  isolation:isolate;
-}
-
-.food-image::first-letter{
-  position:relative;
 }
 
 .food-info{
@@ -599,8 +518,6 @@ header{
   font-size:18px;
 
   margin-bottom:7px;
-
-  color:var(--navy);
 }
 
 .restaurant{
@@ -630,8 +547,6 @@ header{
   font-size:19px;
 
   font-weight:900;
-
-  color:var(--navy);
 
   margin:12px 0;
 }
@@ -668,11 +583,6 @@ header{
     0 7px 18px rgba(124,58,237,.25);
 }
 
-
-/* =========================
-   EMPTY
-========================= */
-
 .empty{
   text-align:center;
 
@@ -684,9 +594,7 @@ header{
 }
 
 
-/* =========================
-   LOCAL FIRST
-========================= */
+/* LOCAL FIRST */
 
 .local{
   margin-top:50px;
@@ -699,13 +607,11 @@ header{
 
   box-shadow:var(--shadow);
 
-  border:1px solid #edf0f4;
+  border:1px solid var(--border);
 }
 
 .local h2{
-  color:var(--navy);
-
-  font-size:28px;
+  font-size:29px;
 }
 
 .local-description{
@@ -750,15 +656,13 @@ header{
 }
 
 .feature-icon{
-  font-size:30px;
+  font-size:31px;
 
   margin-bottom:10px;
 }
 
 .feature h3{
   margin-bottom:7px;
-
-  color:var(--navy);
 }
 
 .feature p{
@@ -770,14 +674,12 @@ header{
 }
 
 
-/* =========================
-   FOOTER
-========================= */
+/* FOOTER */
 
 footer{
   margin-top:60px;
 
-  padding:40px 20px;
+  padding:42px 20px;
 
   text-align:center;
 
@@ -792,7 +694,7 @@ footer{
 }
 
 .footer-logo{
-  font-size:28px;
+  font-size:29px;
 
   font-weight:900;
 
@@ -810,9 +712,7 @@ footer p{
 }
 
 
-/* =========================
-   MODAL
-========================= */
+/* MODAL */
 
 .modal{
   display:none;
@@ -828,7 +728,7 @@ footer p{
 
   padding:15px;
 
-  background:rgba(15,23,42,.65);
+  background:rgba(15,23,42,.68);
 
   backdrop-filter:blur(5px);
 }
@@ -891,8 +791,6 @@ footer p{
   cursor:pointer;
 
   font-size:20px;
-
-  color:var(--navy);
 }
 
 .close:hover{
@@ -902,9 +800,7 @@ footer p{
 }
 
 
-/* =========================
-   CART
-========================= */
+/* CART */
 
 .cart-item{
   display:flex;
@@ -920,8 +816,6 @@ footer p{
 
 .cart-item-name{
   font-weight:bold;
-
-  color:var(--navy);
 }
 
 .cart-item-price{
@@ -955,10 +849,6 @@ footer p{
   font-weight:bold;
 }
 
-.qty button:hover{
-  background:#e2e8f0;
-}
-
 .cart-total{
   display:flex;
 
@@ -980,8 +870,6 @@ footer p{
   font-size:20px;
 
   font-weight:900;
-
-  color:var(--navy);
 }
 
 .checkout-btn{
@@ -1013,15 +901,10 @@ footer p{
 
 .checkout-btn:hover{
   transform:translateY(-2px);
-
-  box-shadow:
-    0 8px 20px rgba(124,58,237,.25);
 }
 
 
-/* =========================
-   FORM
-========================= */
+/* FORM */
 
 .form-group{
   margin-bottom:17px;
@@ -1032,11 +915,8 @@ footer p{
 
   margin-bottom:7px;
 
-  color:var(--navy);
-
-  font-weight:bold;
-
   font-size:14px;
+  font-weight:bold;
 }
 
 .form-group input,
@@ -1053,8 +933,6 @@ footer p{
   outline:none;
 
   font-size:15px;
-
-  background:#fff;
 }
 
 .form-group input:focus,
@@ -1067,9 +945,7 @@ footer p{
 }
 
 
-/* =========================
-   SUCCESS
-========================= */
+/* SUCCESS */
 
 .success{
   text-align:center;
@@ -1091,11 +967,13 @@ footer p{
 
   background:#dcfce7;
 
+  color:var(--green);
+
   font-size:42px;
 }
 
 .success h2{
-  color:var(--navy);
+  font-size:27px;
 }
 
 .success p{
@@ -1107,9 +985,7 @@ footer p{
 }
 
 
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media(max-width:650px){
 
@@ -1136,8 +1012,16 @@ footer p{
     padding:55px 5%;
   }
 
+  .hero h1{
+    font-size:38px;
+  }
+
+  .tagline{
+    font-size:19px;
+  }
+
   .hero p{
-    font-size:16px;
+    font-size:15px;
   }
 
   .search-box{
@@ -1156,8 +1040,6 @@ footer p{
 
   .container{
     width:92%;
-
-    margin:30px auto;
   }
 
   .section-title{
@@ -1165,8 +1047,7 @@ footer p{
   }
 
   .food-grid{
-    grid-template-columns:
-      repeat(2,1fr);
+    grid-template-columns:repeat(2,1fr);
 
     gap:12px;
   }
@@ -1201,16 +1082,9 @@ footer p{
     padding:25px;
   }
 
-  .offer::after{
-    font-size:55px;
-
-    right:10px;
-  }
-
   .local{
     padding:25px;
   }
-
 }
 
 @media(max-width:380px){
@@ -1227,9 +1101,7 @@ footer p{
 <body>
 
 
-<!-- =========================
-     HEADER
-========================= -->
+<!-- HEADER -->
 
 <header>
 
@@ -1263,9 +1135,7 @@ footer p{
 
 
 
-<!-- =========================
-     HERO
-========================= -->
+<!-- HERO -->
 
 <section class="hero">
 
@@ -1276,12 +1146,16 @@ footer p{
     </div>
 
     <h1>
-      Your food.<br>
-      Your <span>BiteMitra.</span>
+      Har Bite Mein<br>
+      <span>Apnapan.</span> ❤️
     </h1>
 
+    <div class="tagline">
+      Local Swaad • Local Restaurants
+    </div>
+
     <p>
-      Discover delicious food & drinks from local restaurants.
+      Aapke doorstep tak.
     </p>
 
 
@@ -1290,7 +1164,7 @@ footer p{
       <input
         type="text"
         id="searchInput"
-        placeholder="Search pizza, biryani, burger, drinks..."
+        placeholder="Aaj kya khane ka mann hai?"
         oninput="searchFood()"
       >
 
@@ -1307,7 +1181,7 @@ footer p{
     >
       📍
       <span id="locationText">
-        Set your location
+        Apna location set karein
       </span>
     </div>
 
@@ -1317,9 +1191,7 @@ footer p{
 
 
 
-<!-- =========================
-     MAIN
-========================= -->
+<!-- MAIN -->
 
 <div class="container">
 
@@ -1419,13 +1291,17 @@ footer p{
   <div class="offer">
 
     <h2>
-      🎉 BiteMitra Special
+      🎉 Aaj ka BiteMitra Special
     </h2>
 
     <p>
-      Great food, local restaurants and a simple ordering experience —
-      all in one place.
+      Apne shehar ke favourite food ko discover karo.
+      Local restaurants ka asli swaad, BiteMitra ke saath.
     </p>
+
+    <div class="offer-badge">
+      ❤️ Har Bite Mein Apnapan
+    </div>
 
   </div>
 
@@ -1448,8 +1324,8 @@ footer p{
     class="empty"
     id="emptyMessage"
   >
-    😔 No food found.<br>
-    Try another search or category.
+    😔 Kuch nahi mila.<br>
+    Dusra food ya category try karein.
   </div>
 
 
@@ -1463,8 +1339,7 @@ footer p{
     </h2>
 
     <p class="local-description">
-      BiteMitra is built to help local restaurants and small businesses
-      reach more customers.
+      Apne shehar ke restaurants ko, apne BiteMitra se jodiye.
     </p>
 
 
@@ -1482,7 +1357,7 @@ footer p{
         </h3>
 
         <p>
-          Discover delicious food from restaurants near you.
+          Apne aas-paas ke restaurants ka delicious food discover karein.
         </p>
 
       </div>
@@ -1495,11 +1370,11 @@ footer p{
         </div>
 
         <h3>
-          Fast Ordering
+          Simple Ordering
         </h3>
 
         <p>
-          Find food and add it to your cart quickly.
+          Food search karein, cart mein add karein aur order karein.
         </p>
 
       </div>
@@ -1512,11 +1387,11 @@ footer p{
         </div>
 
         <h3>
-          Great Offers
+          Special Offers
         </h3>
 
         <p>
-          Special offers and deals from local businesses.
+          Local restaurants ke offers aur deals discover karein.
         </p>
 
       </div>
@@ -1533,7 +1408,7 @@ footer p{
         </h3>
 
         <p>
-          A food platform designed with Indian customers in mind.
+          India ke local food businesses ko digital banane ka mission.
         </p>
 
       </div>
@@ -1547,9 +1422,7 @@ footer p{
 
 
 
-<!-- =========================
-     FOOTER
-========================= -->
+<!-- FOOTER -->
 
 <footer>
 
@@ -1558,10 +1431,14 @@ footer p{
   </div>
 
   <p>
+    Har Bite Mein Apnapan. ❤️
+  </p>
+
+  <p style="margin-top:10px;">
     Food • Drinks • Local Restaurants
   </p>
 
-  <p style="margin-top:15px;">
+  <p style="margin-top:18px;font-size:13px;">
     © 2026 BiteMitra. All rights reserved.
   </p>
 
@@ -1569,9 +1446,7 @@ footer p{
 
 
 
-<!-- =========================
-     CART MODAL
-========================= -->
+<!-- CART MODAL -->
 
 <div
   class="modal"
@@ -1579,7 +1454,6 @@ footer p{
 >
 
   <div class="modal-box">
-
 
     <div class="modal-header">
 
@@ -1626,9 +1500,7 @@ footer p{
 
 
 
-<!-- =========================
-     CHECKOUT MODAL
-========================= -->
+<!-- CHECKOUT MODAL -->
 
 <div
   class="modal"
@@ -1636,7 +1508,6 @@ footer p{
 >
 
   <div class="modal-box">
-
 
     <div class="modal-header">
 
@@ -1658,4 +1529,158 @@ footer p{
 
       <label>
         Your Name
-      </l
+      </label>
+
+      <input
+        type="text"
+        id="customerName"
+        placeholder="Enter your name"
+      >
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        Mobile Number
+      </label>
+
+      <input
+        type="tel"
+        id="customerPhone"
+        placeholder="Enter mobile number"
+      >
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        Delivery Address
+      </label>
+
+      <textarea
+        id="customerAddress"
+        rows="3"
+        placeholder="Enter delivery address"
+      ></textarea>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        Payment Method
+      </label>
+
+      <select id="paymentMethod">
+
+        <option value="cod">
+          💵 Cash on Delivery
+        </option>
+
+        <option value="online">
+          💳 Online Payment — Coming Soon
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <button
+      class="checkout-btn"
+      onclick="placeOrder()"
+    >
+      Place Order 🚀
+    </button>
+
+  </div>
+
+</div>
+
+
+
+<!-- SUCCESS -->
+
+<div
+  class="modal"
+  id="successModal"
+>
+
+  <div class="modal-box">
+
+    <div class="success">
+
+      <div class="success-icon">
+        ✓
+      </div>
+
+      <h2>
+        Order Placed!
+      </h2>
+
+      <p>
+        Your BiteMitra order has been received successfully.
+      </p>
+
+      <button
+        class="checkout-btn"
+        style="margin-top:22px;"
+        onclick="closeSuccess()"
+      >
+        Continue Shopping
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<script>
+
+/* FOOD DATA */
+
+const foods = [
+
+  {
+    id:1,
+    name:"Chicken Biryani",
+    category:"Biryani",
+    emoji:"🍗",
+    restaurant:"Mithila Biryani",
+    price:180,
+    rating:4.7
+  },
+
+  {
+    id:2,
+    name:"Veg Biryani",
+    category:"Biryani",
+    emoji:"🍚",
+    restaurant:"Apna Kitchen",
+    price:140,
+    rating:4.5
+  },
+
+  {
+    id:3,
+    name:"Chicken Burger",
+    category:"Burger",
+    emoji:"🍔",
+    restaurant:"Bite Burger",
+    price:129,
+    rating:4.6
+  },
+
+  {
+    id:4,
+    name:"Cheese Pizza",
+    category:"Pizza",
+    emo
