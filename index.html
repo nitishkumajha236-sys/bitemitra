@@ -3,378 +3,426 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>BiteMitra | Food Delivery</title>
+<title>BiteMitra | India's Local Food Network</title>
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-    background:#f7f7f7;
-    color:#222;
+  background:#f7f7f7;
+  color:#222;
 }
 
 header{
-    background:white;
-    height:70px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 7%;
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
-    position:sticky;
-    top:0;
-    z-index:1000;
+  height:72px;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 6%;
+  box-shadow:0 2px 12px #ddd;
+  position:sticky;
+  top:0;
+  z-index:1000;
 }
 
 .logo{
-    font-size:25px;
-    font-weight:bold;
-    color:#e74c3c;
+  font-size:25px;
+  font-weight:800;
+  color:#e64b35;
+}
+
+.logo span{
+  color:#222;
 }
 
 nav a{
-    text-decoration:none;
-    color:#333;
-    margin:0 12px;
-    font-weight:bold;
+  text-decoration:none;
+  color:#333;
+  margin:0 12px;
+  font-weight:600;
 }
 
 nav a:hover{
-    color:#e74c3c;
+  color:#e64b35;
 }
 
-.cart-btn{
-    border:0;
-    background:#e74c3c;
-    color:white;
-    padding:12px 18px;
-    border-radius:8px;
-    cursor:pointer;
-    font-weight:bold;
+.cart{
+  background:#e64b35;
+  color:white;
+  border:0;
+  padding:12px 17px;
+  border-radius:9px;
+  cursor:pointer;
+  font-weight:bold;
 }
 
 .hero{
-    min-height:350px;
-    background:linear-gradient(120deg,#ff512f,#f09819);
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:40px 20px;
-}
-
-.hero-content{
-    max-width:850px;
+  background:linear-gradient(120deg,#ff512f,#f09819);
+  color:white;
+  padding:65px 20px;
+  text-align:center;
 }
 
 .hero h1{
-    font-size:48px;
-    margin-bottom:12px;
+  font-size:48px;
+  margin-bottom:12px;
 }
 
 .hero p{
-    font-size:18px;
-    margin-bottom:25px;
+  font-size:18px;
+  margin-bottom:28px;
 }
 
-.search-box{
-    background:white;
-    border-radius:12px;
-    padding:5px;
-    display:flex;
-    max-width:650px;
-    margin:auto;
+.search{
+  max-width:720px;
+  margin:auto;
+  background:white;
+  border-radius:14px;
+  display:flex;
+  padding:5px;
 }
 
-.search-box input{
-    width:100%;
-    border:0;
-    outline:none;
-    padding:15px;
-    font-size:16px;
-    border-radius:10px;
+.search input{
+  flex:1;
+  border:0;
+  outline:0;
+  padding:16px;
+  font-size:16px;
+  color:#222;
+}
+
+.search button{
+  border:0;
+  background:#e64b35;
+  color:white;
+  padding:0 22px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:bold;
 }
 
 .location{
-    margin:15px auto 0;
-    max-width:650px;
-    background:white;
-    color:#555;
-    padding:15px;
-    border-radius:12px;
-    cursor:pointer;
+  max-width:720px;
+  margin:15px auto 0;
+  background:white;
+  color:#555;
+  padding:15px;
+  border-radius:12px;
+  cursor:pointer;
 }
 
 .container{
-    width:90%;
-    max-width:1200px;
-    margin:40px auto;
+  width:90%;
+  max-width:1200px;
+  margin:38px auto;
 }
 
-.section-title{
-    font-size:30px;
-    margin-bottom:20px;
+.title{
+  font-size:29px;
+  margin-bottom:20px;
 }
 
 .categories{
-    display:flex;
-    gap:12px;
-    flex-wrap:wrap;
-    margin-bottom:30px;
+  display:flex;
+  gap:12px;
+  overflow-x:auto;
+  padding-bottom:10px;
 }
 
 .category{
-    border:1px solid #ddd;
-    background:white;
-    padding:11px 18px;
-    border-radius:25px;
-    cursor:pointer;
-    font-weight:bold;
+  min-width:105px;
+  background:white;
+  border:1px solid #ddd;
+  border-radius:14px;
+  padding:15px 12px;
+  text-align:center;
+  cursor:pointer;
+  font-weight:bold;
 }
 
 .category:hover,
 .category.active{
-    background:#e74c3c;
-    color:white;
+  background:#e64b35;
+  color:white;
 }
 
-.food-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:22px;
+.offer{
+  background:#222;
+  color:white;
+  border-radius:18px;
+  padding:25px;
+  margin-top:25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
 }
 
-.food-card{
-    background:white;
-    border-radius:15px;
-    overflow:hidden;
-    box-shadow:0 3px 15px rgba(0,0,0,.08);
-    transition:.2s;
+.offer h2{
+  margin-bottom:8px;
 }
 
-.food-card:hover{
-    transform:translateY(-4px);
+.offer button{
+  border:0;
+  background:#ffb703;
+  color:#222;
+  padding:12px 20px;
+  border-radius:8px;
+  font-weight:bold;
+  cursor:pointer;
 }
 
-.food-img{
-    height:170px;
-    width:100%;
-    object-fit:cover;
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:22px;
 }
 
-.food-info{
-    padding:17px;
+.card{
+  background:white;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 3px 14px #ddd;
+  transition:.2s;
 }
 
-.food-info h3{
-    margin-bottom:7px;
+.card:hover{
+  transform:translateY(-5px);
 }
 
-.food-info p{
-    color:#666;
-    font-size:14px;
-    min-height:40px;
+.card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
 }
 
-.food-bottom{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-top:15px;
+.card-content{
+  padding:17px;
+}
+
+.card h3{
+  margin-bottom:7px;
+}
+
+.restaurant{
+  color:#777;
+  font-size:14px;
+}
+
+.rating{
+  margin-top:8px;
+  color:#16833a;
+  font-weight:bold;
+}
+
+.card-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:15px;
 }
 
 .price{
-    font-size:19px;
-    font-weight:bold;
+  font-size:19px;
+  font-weight:bold;
 }
 
-.add-btn{
-    background:#e74c3c;
-    color:white;
-    border:0;
-    padding:10px 16px;
-    border-radius:8px;
-    cursor:pointer;
-    font-weight:bold;
+.add{
+  border:0;
+  background:#e64b35;
+  color:white;
+  padding:10px 15px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
 }
 
-.add-btn:hover{
-    background:#c0392b;
+.local{
+  background:white;
+  padding:28px;
+  border-radius:17px;
+  margin-top:35px;
+  box-shadow:0 2px 12px #ddd;
 }
 
-.about{
-    background:white;
-    padding:35px;
-    border-radius:15px;
-    margin-top:50px;
-    line-height:1.7;
+.local h2{
+  margin-bottom:10px;
+}
+
+.local p{
+  color:#666;
+  line-height:1.6;
+}
+
+.features{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:18px;
+  margin-top:25px;
+}
+
+.feature{
+  background:white;
+  padding:22px;
+  border-radius:14px;
+  text-align:center;
+  box-shadow:0 2px 10px #ddd;
+}
+
+.feature h3{
+  margin:10px 0;
+}
+
+.feature p{
+  color:#777;
+  font-size:14px;
 }
 
 footer{
-    background:#222;
-    color:white;
-    text-align:center;
-    padding:30px;
-    margin-top:50px;
+  margin-top:50px;
+  background:#202020;
+  color:white;
+  padding:35px 20px;
+  text-align:center;
 }
+
+footer p{
+  margin:8px;
+  color:#ccc;
+}
+
+/* MODAL */
 
 .modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.6);
-    z-index:2000;
-    padding:20px;
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  z-index:3000;
+  padding:20px;
 }
 
-.modal-box{
-    background:white;
-    width:100%;
-    max-width:600px;
-    max-height:90vh;
-    overflow:auto;
-    margin:30px auto;
-    border-radius:15px;
-    padding:25px;
-    position:relative;
+.box{
+  background:white;
+  max-width:600px;
+  max-height:90vh;
+  overflow:auto;
+  margin:30px auto;
+  border-radius:16px;
+  padding:25px;
+  position:relative;
 }
 
 .close{
-    position:absolute;
-    right:20px;
-    top:15px;
-    font-size:28px;
-    cursor:pointer;
+  position:absolute;
+  right:20px;
+  top:12px;
+  font-size:28px;
+  cursor:pointer;
 }
 
 .cart-item{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-    border-bottom:1px solid #ddd;
-    padding:15px 0;
-}
-
-.cart-item-info{
-    flex:1;
-}
-
-.qty{
-    display:flex;
-    align-items:center;
-    gap:8px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  border-bottom:1px solid #ddd;
+  padding:15px 0;
 }
 
 .qty button{
-    width:30px;
-    height:30px;
-    border:0;
-    border-radius:5px;
-    background:#eee;
-    cursor:pointer;
-    font-weight:bold;
+  width:30px;
+  height:30px;
+  border:0;
+  cursor:pointer;
+  border-radius:5px;
 }
 
 .remove{
-    color:#e74c3c;
-    cursor:pointer;
-    border:0;
-    background:none;
+  color:#e64b35;
+  border:0;
+  background:none;
+  cursor:pointer;
 }
 
 .total{
-    display:flex;
-    justify-content:space-between;
-    font-size:22px;
-    font-weight:bold;
-    padding:20px 0;
+  display:flex;
+  justify-content:space-between;
+  font-size:21px;
+  font-weight:bold;
+  padding:20px 0;
 }
 
-.checkout-btn{
-    width:100%;
-    padding:15px;
-    background:#27ae60;
-    border:0;
-    color:white;
-    border-radius:8px;
-    font-size:17px;
-    font-weight:bold;
-    cursor:pointer;
+.checkout{
+  width:100%;
+  padding:15px;
+  border:0;
+  border-radius:9px;
+  background:#16833a;
+  color:white;
+  font-weight:bold;
+  font-size:16px;
+  cursor:pointer;
 }
 
-.form-group{
-    margin-bottom:15px;
+.form{
+  margin:14px 0;
 }
 
-.form-group label{
-    display:block;
-    margin-bottom:6px;
-    font-weight:bold;
+.form label{
+  display:block;
+  margin-bottom:6px;
+  font-weight:bold;
 }
 
-.form-group input,
-.form-group textarea,
-.form-group select{
-    width:100%;
-    padding:13px;
-    border:1px solid #ccc;
-    border-radius:8px;
-    outline:none;
+.form input,
+.form textarea,
+.form select{
+  width:100%;
+  padding:13px;
+  border:1px solid #ccc;
+  border-radius:8px;
+  outline:none;
 }
 
-.order-success{
-    text-align:center;
-    padding:30px 10px;
+.success{
+  text-align:center;
+  padding:30px 10px;
 }
 
-.order-success h2{
-    color:#27ae60;
-    margin-bottom:10px;
-}
-
-.empty{
-    text-align:center;
-    padding:30px;
-    color:#777;
+.success h2{
+  color:#16833a;
+  margin-bottom:12px;
 }
 
 @media(max-width:700px){
 
-    header{
-        padding:0 4%;
-    }
+  header{
+    padding:0 4%;
+  }
 
-    nav{
-        display:none;
-    }
+  nav{
+    display:none;
+  }
 
-    .hero h1{
-        font-size:34px;
-    }
+  .hero h1{
+    font-size:34px;
+  }
 
-    .hero p{
-        font-size:16px;
-    }
+  .offer{
+    flex-direction:column;
+    text-align:center;
+  }
 
-    .container{
-        width:94%;
-    }
-
-    .food-grid{
-        grid-template-columns:1fr;
-    }
-
-    .cart-item{
-        flex-wrap:wrap;
-    }
+  .grid{
+    grid-template-columns:1fr;
+  }
 }
 </style>
 </head>
@@ -383,267 +431,311 @@ footer{
 
 <header>
 
-    <div class="logo">🍔 BiteMitra</div>
+  <div class="logo">
+    🍔 Bite<span>Mitra</span>
+  </div>
 
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#food">Food</a>
-        <a href="#about">About</a>
-    </nav>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#food">Food</a>
+    <a href="#local">Local</a>
+    <a href="#about">About</a>
+  </nav>
 
-    <button class="cart-btn" onclick="openCart()">
-        🛒 Cart (<span id="cartCount">0</span>)
-    </button>
+  <button class="cart" onclick="openCart()">
+    🛒 Cart (<span id="count">0</span>)
+  </button>
 
 </header>
 
 
 <section class="hero" id="home">
 
-    <div class="hero-content">
+  <h1>Food You Love. Delivered. ❤️</h1>
 
-        <h1>Food You Love. Delivered.</h1>
+  <p>
+    Discover great food from local restaurants near you.
+  </p>
 
-        <p>
-            Discover delicious food from restaurants around you.
-        </p>
+  <div class="search">
 
-        <div class="search-box">
+    <input
+      id="search"
+      type="text"
+      placeholder="Try: pizza, biryani, burger..."
+      oninput="searchFood()"
+    >
 
-            <input
-                type="text"
-                id="searchInput"
-                placeholder="🔍 Search pizza, burger, biryani..."
-                oninput="searchFood()"
-            >
+    <button onclick="searchFood()">
+      Search
+    </button>
 
-        </div>
+  </div>
 
-        <div class="location" onclick="chooseLocation()">
-            📍 Delivery Location —
-            <span id="locationText">Choose your location</span>
-        </div>
+  <div class="location" onclick="setLocation()">
+    📍 <span id="location">Choose your delivery location</span>
+  </div>
 
+</section>
+
+
+<section class="container">
+
+  <h2 class="title">
+    🍽️ What's on your mind?
+  </h2>
+
+  <div class="categories">
+
+    <button class="category active" onclick="filter('All',this)">
+      🍽️ All
+    </button>
+
+    <button class="category" onclick="filter('Pizza',this)">
+      🍕 Pizza
+    </button>
+
+    <button class="category" onclick="filter('Burger',this)">
+      🍔 Burger
+    </button>
+
+    <button class="category" onclick="filter('Biryani',this)">
+      🍛 Biryani
+    </button>
+
+    <button class="category" onclick="filter('Chinese',this)">
+      🍜 Chinese
+    </button>
+
+    <button class="category" onclick="filter('Dessert',this)">
+      🍰 Dessert
+    </button>
+
+  </div>
+
+
+  <div class="offer">
+
+    <div>
+      <h2>🎉 BiteMitra Special</h2>
+      <p>Order from local restaurants and discover something new.</p>
     </div>
+
+    <button onclick="showOffer()">
+      View Offer
+    </button>
+
+  </div>
 
 </section>
 
 
 <section class="container" id="food">
 
-    <h2 class="section-title">What's on your mind? 🍽️</h2>
+  <h2 class="title">
+    🔥 Popular Near You
+  </h2>
 
-    <div class="categories">
+  <div class="grid" id="foodGrid"></div>
 
-        <button class="category active" onclick="filterFood('All',this)">
-            🍽️ All
-        </button>
+</section>
 
-        <button class="category" onclick="filterFood('Pizza',this)">
-            🍕 Pizza
-        </button>
 
-        <button class="category" onclick="filterFood('Burger',this)">
-            🍔 Burger
-        </button>
+<section class="container" id="local">
 
-        <button class="category" onclick="filterFood('Biryani',this)">
-            🍛 Biryani
-        </button>
+  <div class="local">
 
-        <button class="category" onclick="filterFood('Chinese',this)">
-            🍜 Chinese
-        </button>
+    <h2>🇮🇳 Local First. Digital for Everyone.</h2>
 
-        <button class="category" onclick="filterFood('Dessert',this)">
-            🍰 Dessert
-        </button>
+    <p>
+      BiteMitra का goal सिर्फ food delivery करना नहीं है।
+      हमारा aim छोटे local restaurants और food businesses को
+      digital दुनिया से जोड़ना है।
+    </p>
+
+    <div class="features">
+
+      <div class="feature">
+        <div style="font-size:35px">🏪</div>
+        <h3>Local Restaurants</h3>
+        <p>अपने शहर के छोटे restaurants को भी platform पर लाएं।</p>
+      </div>
+
+      <div class="feature">
+        <div style="font-size:35px">⚡</div>
+        <h3>Fast Ordering</h3>
+        <p>Simple और fast food ordering experience.</p>
+      </div>
+
+      <div class="feature">
+        <div style="font-size:35px">🤖</div>
+        <h3>Smart Search</h3>
+        <p>Future में AI-based food recommendations.</p>
+      </div>
+
+      <div class="feature">
+        <div style="font-size:35px">🌐</div>
+        <h3>Made for India</h3>
+        <p>Indian cities और local languages को ध्यान में रखकर।</p>
+      </div>
 
     </div>
 
-
-    <div class="food-grid" id="foodGrid"></div>
+  </div>
 
 </section>
 
 
 <section class="container" id="about">
 
-    <div class="about">
+  <div class="local">
 
-        <h2>About BiteMitra</h2>
+    <h2>About BiteMitra</h2>
 
-        <p>
-            BiteMitra is a food delivery platform concept created
-            to help customers discover and order food from nearby
-            restaurants.
-        </p>
+    <p>
+      BiteMitra is a next-generation Indian food delivery
+      platform concept focused on local restaurants,
+      smart discovery and a simple ordering experience.
+    </p>
 
-        <br>
-
-        <p>
-            Our goal is to make food ordering simple, fast and
-            convenient for everyone.
-        </p>
-
-    </div>
+  </div>
 
 </section>
 
 
 <footer>
 
-    <p>© 2026 BiteMitra. All Rights Reserved.</p>
+  <h2>🍔 BiteMitra</h2>
 
-    <p style="margin-top:8px;">
-        Food Delivery Platform
-    </p>
+  <p>Local Food. Smart Delivery. Indian Heart. 🇮🇳</p>
+
+  <p>© 2026 BiteMitra. All Rights Reserved.</p>
 
 </footer>
 
 
-<!-- CART MODAL -->
+<!-- CART -->
 
 <div class="modal" id="cartModal">
 
-    <div class="modal-box">
+  <div class="box">
 
-        <span class="close" onclick="closeCart()">×</span>
+    <span class="close" onclick="closeCart()">×</span>
 
-        <h2>🛒 Your Cart</h2>
+    <h2>🛒 Your Cart</h2>
 
-        <div id="cartItems"></div>
+    <br>
 
-        <div class="total">
+    <div id="cartItems"></div>
 
-            <span>Total</span>
-
-            <span>₹<span id="cartTotal">0</span></span>
-
-        </div>
-
-        <button class="checkout-btn" onclick="openCheckout()">
-            Proceed to Checkout
-        </button>
-
+    <div class="total">
+      <span>Total</span>
+      <span>₹<span id="total">0</span></span>
     </div>
+
+    <button class="checkout" onclick="openCheckout()">
+      Proceed to Checkout
+    </button>
+
+  </div>
 
 </div>
 
 
-<!-- CHECKOUT MODAL -->
+<!-- CHECKOUT -->
 
 <div class="modal" id="checkoutModal">
 
-    <div class="modal-box">
+  <div class="box">
 
-        <span class="close" onclick="closeCheckout()">×</span>
+    <span class="close" onclick="closeCheckout()">×</span>
 
-        <h2>📦 Checkout</h2>
+    <h2>📦 Checkout</h2>
 
-        <br>
+    <div class="form">
 
-        <div class="form-group">
+      <label>Name</label>
 
-            <label>Full Name</label>
-
-            <input
-                type="text"
-                id="customerName"
-                placeholder="Enter your name"
-            >
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>Mobile Number</label>
-
-            <input
-                type="tel"
-                id="customerPhone"
-                placeholder="Enter mobile number"
-                maxlength="10"
-            >
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>Delivery Address</label>
-
-            <textarea
-                id="customerAddress"
-                rows="4"
-                placeholder="House/Room, Street, Area, City, PIN"
-            ></textarea>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>Payment Method</label>
-
-            <select id="paymentMethod">
-
-                <option value="COD">
-                    Cash on Delivery
-                </option>
-
-                <option value="ONLINE">
-                    Online Payment (Coming Soon)
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <div class="total">
-
-            <span>Order Total</span>
-
-            <span>₹<span id="checkoutTotal">0</span></span>
-
-        </div>
-
-
-        <button class="checkout-btn" onclick="placeOrder()">
-            Place Order
-        </button>
+      <input id="name" placeholder="Enter your name">
 
     </div>
+
+    <div class="form">
+
+      <label>Mobile Number</label>
+
+      <input
+        id="phone"
+        maxlength="10"
+        placeholder="10 digit mobile number"
+      >
+
+    </div>
+
+    <div class="form">
+
+      <label>Delivery Address</label>
+
+      <textarea
+        id="address"
+        rows="4"
+        placeholder="Enter complete delivery address"
+      ></textarea>
+
+    </div>
+
+    <div class="form">
+
+      <label>Payment</label>
+
+      <select id="payment">
+
+        <option>Cash on Delivery</option>
+
+        <option>Online Payment - Coming Soon</option>
+
+      </select>
+
+    </div>
+
+    <div class="total">
+
+      <span>Order Total</span>
+
+      <span>₹<span id="checkoutTotal">0</span></span>
+
+    </div>
+
+    <button class="checkout" onclick="placeOrder()">
+      Place Order
+    </button>
+
+  </div>
 
 </div>
 
 
-<!-- SUCCESS MODAL -->
+<!-- SUCCESS -->
 
 <div class="modal" id="successModal">
 
-    <div class="modal-box">
+  <div class="box">
 
-        <div class="order-success">
+    <div class="success">
 
-            <h2>✅ Order Placed!</h2>
+      <h2>✅ Order Placed!</h2>
 
-            <p id="successMessage"></p>
+      <p id="successText"></p>
 
-            <br>
+      <br>
 
-            <button
-                class="checkout-btn"
-                onclick="closeSuccess()"
-            >
-                Continue Shopping
-            </button>
-
-        </div>
+      <button class="checkout" onclick="closeSuccess()">
+        Continue Shopping
+      </button>
 
     </div>
+
+  </div>
 
 </div>
 
@@ -652,501 +744,545 @@ footer{
 
 const foods = [
 
-    {
-        id:1,
-        name:"Margherita Pizza",
-        category:"Pizza",
-        price:199,
-        description:"Fresh cheese pizza with delicious tomato sauce.",
-        image:"https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=800&q=80"
-    },
+{
+ id:1,
+ name:"Margherita Pizza",
+ category:"Pizza",
+ restaurant:"Bite Pizza House",
+ price:199,
+ rating:"4.7 ⭐",
+ image:"https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=800&q=80"
+},
 
-    {
-        id:2,
-        name:"Farmhouse Pizza",
-        category:"Pizza",
-        price:299,
-        description:"Loaded with fresh vegetables and cheese.",
-        image:"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80"
-    },
+{
+ id:2,
+ name:"Farmhouse Pizza",
+ category:"Pizza",
+ restaurant:"Mithila Pizza",
+ price:299,
+ rating:"4.8 ⭐",
+ image:"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80"
+},
 
-    {
-        id:3,
-        name:"Classic Burger",
-        category:"Burger",
-        price:149,
-        description:"Juicy burger with cheese, lettuce and sauce.",
-        image:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80"
-    },
+{
+ id:3,
+ name:"Classic Burger",
+ category:"Burger",
+ restaurant:"Bite Burger",
+ price:149,
+ rating:"4.6 ⭐",
+ image:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80"
+},
 
-    {
-        id:4,
-        name:"Cheese Burger",
-        category:"Burger",
-        price:179,
-        description:"Crispy patty with melted cheese.",
-        image:"https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80"
-    },
+{
+ id:4,
+ name:"Cheese Burger",
+ category:"Burger",
+ restaurant:"Food Corner",
+ price:179,
+ rating:"4.7 ⭐",
+ image:"https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80"
+},
 
-    {
-        id:5,
-        name:"Chicken Biryani",
-        category:"Biryani",
-        price:249,
-        description:"Aromatic rice with delicious chicken.",
-        image:"https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=800&q=80"
-    },
+{
+ id:5,
+ name:"Chicken Biryani",
+ category:"Biryani",
+ restaurant:"Mithila Biryani",
+ price:249,
+ rating:"4.9 ⭐",
+ image:"https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=800&q=80"
+},
 
-    {
-        id:6,
-        name:"Veg Biryani",
-        category:"Biryani",
-        price:199,
-        description:"Fragrant rice cooked with fresh vegetables.",
-        image:"https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80"
-    },
+{
+ id:6,
+ name:"Veg Biryani",
+ category:"Biryani",
+ restaurant:"Apna Kitchen",
+ price:199,
+ rating:"4.5 ⭐",
+ image:"https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80"
+},
 
-    {
-        id:7,
-        name:"Hakka Noodles",
-        category:"Chinese",
-        price:159,
-        description:"Classic Chinese noodles with vegetables.",
-        image:"https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=800&q=80"
-    },
+{
+ id:7,
+ name:"Hakka Noodles",
+ category:"Chinese",
+ restaurant:"China Bowl",
+ price:159,
+ rating:"4.5 ⭐",
+ image:"https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=800&q=80"
+},
 
-    {
-        id:8,
-        name:"Veg Manchurian",
-        category:"Chinese",
-        price:169,
-        description:"Crispy vegetable balls in spicy sauce.",
-        image:"https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80"
-    },
+{
+ id:8,
+ name:"Veg Manchurian",
+ category:"Chinese",
+ restaurant:"Mithila Wok",
+ price:169,
+ rating:"4.6 ⭐",
+ image:"https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80"
+},
 
-    {
-        id:9,
-        name:"Chocolate Cake",
-        category:"Dessert",
-        price:129,
-        description:"Soft and delicious chocolate cake.",
-        image:"https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80"
-    },
+{
+ id:9,
+ name:"Chocolate Cake",
+ category:"Dessert",
+ restaurant:"Sweet House",
+ price:129,
+ rating:"4.8 ⭐",
+ image:"https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80"
+},
 
-    {
-        id:10,
-        name:"Gulab Jamun",
-        category:"Dessert",
-        price:99,
-        description:"Soft sweet gulab jamun served warm.",
-        image:"https://images.unsplash.com/photo-1601303516534-4a7d5d8c1e77?auto=format&fit=crop&w=800&q=80"
-    }
+{
+ id:10,
+ name:"Gulab Jamun",
+ category:"Dessert",
+ restaurant:"Desi Sweets",
+ price:99,
+ rating:"4.7 ⭐",
+ image:"https://images.unsplash.com/photo-1601303516534-4a7d5d8c1e77?auto=format&fit=crop&w=800&q=80"
+}
 
 ];
 
 
-let cart = JSON.parse(localStorage.getItem("bitemitraCart")) || [];
+let cartData =
+JSON.parse(localStorage.getItem("bitemitraCart")) || [];
 
-let currentCategory = "All";
-
-
-function displayFoods(list = foods){
-
-    const grid = document.getElementById("foodGrid");
-
-    if(list.length === 0){
-
-        grid.innerHTML = `
-            <div class="empty">
-                <h3>😔 No food found</h3>
-                <p>Try another search.</p>
-            </div>
-        `;
-
-        return;
-    }
+let currentCategory="All";
 
 
-    grid.innerHTML = list.map(food => `
+function displayFoods(list){
 
-        <div class="food-card">
+  const grid=document.getElementById("foodGrid");
 
-            <img
-                class="food-img"
-                src="${food.image}"
-                alt="${food.name}"
-            >
+  if(list.length===0){
 
-            <div class="food-info">
+    grid.innerHTML=
+    "<h3>😔 Food not found. Try another search.</h3>";
 
-                <h3>${food.name}</h3>
+    return;
+  }
 
-                <p>${food.description}</p>
+  grid.innerHTML=list.map(food=>`
 
-                <div class="food-bottom">
+    <div class="card">
 
-                    <span class="price">
-                        ₹${food.price}
-                    </span>
+      <img src="${food.image}" alt="${food.name}">
 
-                    <button
-                        class="add-btn"
-                        onclick="addToCart(${food.id})"
-                    >
-                        + Add
-                    </button>
+      <div class="card-content">
 
-                </div>
+        <h3>${food.name}</h3>
 
-            </div>
+        <div class="restaurant">
+          🏪 ${food.restaurant}
+        </div>
+
+        <div class="rating">
+          ${food.rating}
+        </div>
+
+        <div class="card-bottom">
+
+          <span class="price">
+            ₹${food.price}
+          </span>
+
+          <button
+            class="add"
+            onclick="add(${food.id})"
+          >
+            + Add
+          </button>
 
         </div>
 
-    `).join("");
+      </div>
+
+    </div>
+
+  `).join("");
 
 }
 
 
-function addToCart(id){
+function add(id){
 
-    const food = foods.find(item => item.id === id);
+  const food=foods.find(x=>x.id===id);
 
-    const existing = cart.find(item => item.id === id);
+  const old=cartData.find(x=>x.id===id);
 
-    if(existing){
+  if(old){
 
-        existing.quantity++;
+    old.quantity++;
 
-    }else{
+  }else{
 
-        cart.push({
-            ...food,
-            quantity:1
-        });
+    cartData.push({
+      ...food,
+      quantity:1
+    });
 
-    }
+  }
 
-    saveCart();
+  save();
 
-    alert(food.name + " added to cart! 🛒");
-
-}
-
-
-function saveCart(){
-
-    localStorage.setItem(
-        "bitemitraCart",
-        JSON.stringify(cart)
-    );
-
-    updateCartCount();
+  alert(food.name+" added to cart 🛒");
 
 }
 
 
-function updateCartCount(){
+function save(){
 
-    const count = cart.reduce(
-        (sum,item) => sum + item.quantity,
-        0
-    );
+  localStorage.setItem(
+    "bitemitraCart",
+    JSON.stringify(cartData)
+  );
 
-    document.getElementById("cartCount").textContent = count;
+  updateCount();
+
+}
+
+
+function updateCount(){
+
+  document.getElementById("count").textContent=
+  cartData.reduce(
+    (sum,item)=>sum+item.quantity,
+    0
+  );
 
 }
 
 
 function openCart(){
 
-    renderCart();
+  renderCart();
 
-    document.getElementById("cartModal").style.display="block";
+  document.getElementById("cartModal")
+  .style.display="block";
 
 }
 
 
 function closeCart(){
 
-    document.getElementById("cartModal").style.display="none";
+  document.getElementById("cartModal")
+  .style.display="none";
 
 }
 
 
 function renderCart(){
 
-    const container =
-        document.getElementById("cartItems");
+  const box=document.getElementById("cartItems");
 
-    if(cart.length === 0){
+  if(cartData.length===0){
 
-        container.innerHTML = `
-            <div class="empty">
-                <h3>🛒 Your cart is empty</h3>
-                <p>Add some delicious food first.</p>
-            </div>
-        `;
+    box.innerHTML=
+    "<p style='padding:30px;text-align:center'>🛒 Cart is empty</p>";
 
-        document.getElementById("cartTotal").textContent="0";
+    document.getElementById("total").textContent=0;
 
-        return;
-    }
+    return;
+  }
 
 
-    container.innerHTML = cart.map(item => `
+  box.innerHTML=cartData.map(item=>`
 
-        <div class="cart-item">
+    <div class="cart-item">
 
-            <div class="cart-item-info">
+      <div>
+        <strong>${item.name}</strong>
+        <br>
+        ₹${item.price} × ${item.quantity}
+      </div>
 
-                <strong>${item.name}</strong>
+      <div class="qty">
 
-                <div>
-                    ₹${item.price} × ${item.quantity}
-                </div>
+        <button onclick="change(${item.id},-1)">
+          −
+        </button>
 
-            </div>
+        ${item.quantity}
 
+        <button onclick="change(${item.id},1)">
+          +
+        </button>
 
-            <div class="qty">
+      </div>
 
-                <button onclick="changeQuantity(${item.id},-1)">
-                    −
-                </button>
+      <button
+        class="remove"
+        onclick="removeItem(${item.id})"
+      >
+        Remove
+      </button>
 
-                <strong>${item.quantity}</strong>
+    </div>
 
-                <button onclick="changeQuantity(${item.id},1)">
-                    +
-                </button>
-
-            </div>
-
-
-            <button
-                class="remove"
-                onclick="removeFromCart(${item.id})"
-            >
-                Remove
-            </button>
-
-        </div>
-
-    `).join("");
+  `).join("");
 
 
-    document.getElementById("cartTotal").textContent =
-        calculateTotal();
+  document.getElementById("total")
+  .textContent=getTotal();
 
 }
 
 
-function changeQuantity(id, change){
+function change(id,value){
 
-    const item = cart.find(item => item.id === id);
+  const item=cartData.find(x=>x.id===id);
 
-    if(!item) return;
+  if(!item)return;
 
-    item.quantity += change;
+  item.quantity+=value;
 
-    if(item.quantity <= 0){
+  if(item.quantity<=0){
 
-        cart = cart.filter(item => item.id !== id);
+    cartData=cartData.filter(x=>x.id!==id);
 
-    }
+  }
 
-    saveCart();
+  save();
 
-    renderCart();
-
-}
-
-
-function removeFromCart(id){
-
-    cart = cart.filter(item => item.id !== id);
-
-    saveCart();
-
-    renderCart();
+  renderCart();
 
 }
 
 
-function calculateTotal(){
+function removeItem(id){
 
-    return cart.reduce(
-        (sum,item) =>
-            sum + item.price * item.quantity,
-        0
-    );
+  cartData=
+  cartData.filter(x=>x.id!==id);
+
+  save();
+
+  renderCart();
 
 }
 
 
-function filterFood(category,button){
+function getTotal(){
 
-    currentCategory = category;
+  return cartData.reduce(
+    (sum,item)=>
+    sum+(item.price*item.quantity),
+    0
+  );
 
-    document.querySelectorAll(".category")
-        .forEach(btn => btn.classList.remove("active"));
+}
 
-    button.classList.add("active");
 
-    applyFilters();
+function filter(category,button){
+
+  currentCategory=category;
+
+  document.querySelectorAll(".category")
+  .forEach(x=>x.classList.remove("active"));
+
+  button.classList.add("active");
+
+  searchFood();
 
 }
 
 
 function searchFood(){
 
-    applyFilters();
+  const text=
+  document.getElementById("search")
+  .value
+  .toLowerCase()
+  .trim();
+
+  const result=foods.filter(food=>{
+
+    const categoryOK=
+    currentCategory==="All" ||
+    food.category===currentCategory;
+
+    const searchOK=
+    food.name.toLowerCase().includes(text) ||
+    food.category.toLowerCase().includes(text) ||
+    food.restaurant.toLowerCase().includes(text);
+
+    return categoryOK && searchOK;
+
+  });
+
+  displayFoods(result);
 
 }
 
 
-function applyFilters(){
+function setLocation(){
 
-    const search =
-        document.getElementById("searchInput")
-        .value
-        .toLowerCase()
-        .trim();
+  const value=
+  prompt("📍 Enter your delivery area:");
 
+  if(value){
 
-    let result = foods.filter(food => {
+    document.getElementById("location")
+    .textContent=value;
 
-        const categoryMatch =
-            currentCategory === "All" ||
-            food.category === currentCategory;
+    localStorage.setItem(
+      "bitemitraLocation",
+      value
+    );
 
-        const searchMatch =
-            food.name.toLowerCase().includes(search) ||
-            food.category.toLowerCase().includes(search) ||
-            food.description.toLowerCase().includes(search);
-
-        return categoryMatch && searchMatch;
-
-    });
-
-
-    displayFoods(result);
+  }
 
 }
 
 
-function chooseLocation(){
+function showOffer(){
 
-    const location =
-        prompt(
-            "Enter your delivery location:"
-        );
-
-    if(location && location.trim() !== ""){
-
-        document.getElementById("locationText")
-            .textContent = location.trim();
-
-        localStorage.setItem(
-            "bitemitraLocation",
-            location.trim()
-        );
-
-    }
+  alert(
+    "🎉 BiteMitra Special!\n\n" +
+    "Future version me yahan real coupons, offers aur rewards system hoga."
+  );
 
 }
 
 
 function openCheckout(){
 
-    if(cart.length === 0){
+  if(cartData.length===0){
 
-        alert("Your cart is empty! Please add food first.");
+    alert("🛒 Your cart is empty!");
 
-        return;
-    }
+    return;
 
-    closeCart();
+  }
 
-    document.getElementById("checkoutTotal")
-        .textContent = calculateTotal();
+  closeCart();
 
-    document.getElementById("checkoutModal")
-        .style.display="block";
+  document.getElementById("checkoutTotal")
+  .textContent=getTotal();
+
+  document.getElementById("checkoutModal")
+  .style.display="block";
 
 }
 
 
 function closeCheckout(){
 
-    document.getElementById("checkoutModal")
-        .style.display="none";
+  document.getElementById("checkoutModal")
+  .style.display="none";
 
 }
 
 
 function placeOrder(){
 
-    const name =
-        document.getElementById("customerName")
-        .value.trim();
+  const name=
+  document.getElementById("name")
+  .value.trim();
 
-    const phone =
-        document.getElementById("customerPhone")
-        .value.trim();
+  const phone=
+  document.getElementById("phone")
+  .value.trim();
 
-    const address =
-        document.getElementById("customerAddress")
-        .value.trim();
+  const address=
+  document.getElementById("address")
+  .value.trim();
 
-    const payment =
-        document.getElementById("paymentMethod")
-        .value;
-
-
-    if(name === ""){
-
-        alert("Please enter your name.");
-
-        return;
-    }
+  const payment=
+  document.getElementById("payment")
+  .value;
 
 
-    if(!/^[0-9]{10}$/.test(phone)){
+  if(!name){
 
-        alert("Please enter a valid 10-digit mobile number.");
+    alert("Please enter your name.");
 
-        return;
-    }
+    return;
 
-
-    if(address === ""){
-
-        alert("Please enter delivery address.");
-
-        return;
-    }
+  }
 
 
-    if(payment === "ONLINE"){
+  if(!/^[0-9]{10}$/.test(phone)){
 
-        alert(
-            "Online payment will be connected in the next version. For now, please choose Cash on Delivery."
-        );
+    alert("Please enter a valid 10-digit mobile number.");
 
-        return;
-    }
+    return;
 
-
-    const orderId =
-        "BM" +
-        Date.now().toString().slice(-8);
+  }
 
 
-    document.getElementById("successMessage")
-        .innerHTML = `
-            Thank you, <strong>${name}</strong>!<br><br>
-            Your order ID is
-            <strong>${orderId}</strong>.<br><br>
-            Amount:
-            <strong>₹${calculateTotal()}<
+  if(!address){
+
+    alert("Please enter your delivery address.");
+
+    return;
+
+  }
+
+
+  if(payment.includes("Online")){
+
+    alert(
+      "Online payment will be connected securely in the next version."
+    );
+
+    return;
+
+  }
+
+
+  const orderID=
+  "BM"+Date.now().toString().slice(-8);
+
+
+  document.getElementById("successText")
+  .innerHTML=
+  `
+  Thank you, <strong>${name}</strong>!<br><br>
+  Order ID: <strong>${orderID}</strong><br>
+  Amount: <strong>₹${getTotal()}</strong><br>
+  Payment: <strong>Cash on Delivery</strong>
+  `;
+
+
+  cartData=[];
+
+  save();
+
+  closeCheckout();
+
+  document.getElementById("successModal")
+  .style.display="block";
+
+}
+
+
+function closeSuccess(){
+
+  document.getElementById("successModal")
+  .style.display="none";
+
+}
+
+
+const saved=
+localStorage.getItem("bitemitraLocation");
+
+if(saved){
+
+  document.getElementById("location")
+  .textContent=saved;
+
+}
+
+
+displayFoods(foods);
+
+updateCount();
+
+</script>
+
+</body>
+</html>
