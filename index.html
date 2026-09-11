@@ -3,11 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>BiteMitra — Har Bite Mein Apnapan ❤️</title>
+<title>BiteMitra | Har Bite Mein Apnapan ❤️</title>
 
 <style>
-
 *{
   margin:0;
   padding:0;
@@ -20,19 +18,21 @@ body{
   color:#222;
 }
 
-/* ================= HEADER ================= */
+button{
+  cursor:pointer;
+}
 
 header{
+  position:sticky;
+  top:0;
+  z-index:1000;
   background:linear-gradient(135deg,#ff7a00,#ff4d00);
   color:white;
-  padding:15px 5%;
+  padding:14px 5%;
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:15px;
-  position:sticky;
-  top:0;
-  z-index:100;
   box-shadow:0 3px 15px #0002;
 }
 
@@ -44,7 +44,6 @@ header{
 .tagline{
   font-size:12px;
   margin-top:3px;
-  opacity:.9;
 }
 
 .header-actions{
@@ -54,36 +53,35 @@ header{
 }
 
 .header-btn{
+  border:0;
   background:white;
   color:#ff5500;
   padding:10px 14px;
   border-radius:25px;
-  border:none;
   font-weight:bold;
-  cursor:pointer;
 }
 
 .profile-btn{
-  background:#fff;
-  color:#ff5500;
+  border:0;
   width:42px;
   height:42px;
   border-radius:50%;
-  border:none;
-  font-size:20px;
-  cursor:pointer;
+  background:white;
+  color:#ff5500;
+  font-size:19px;
+  font-weight:bold;
 }
 
-/* ================= HERO ================= */
+/* HERO */
 
 .hero{
-  padding:55px 6%;
-  min-height:450px;
+  min-height:470px;
+  padding:60px 6%;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:35px;
-  background:linear-gradient(135deg,#fff0dd,#fff8f2);
+  gap:40px;
+  background:linear-gradient(135deg,#fff0dc,#fff9f4);
 }
 
 .hero-content{
@@ -91,9 +89,9 @@ header{
 }
 
 .hero h1{
-  font-size:48px;
-  line-height:1.1;
-  margin-bottom:15px;
+  font-size:50px;
+  line-height:1.08;
+  margin-bottom:18px;
 }
 
 .hero h1 span{
@@ -101,36 +99,35 @@ header{
 }
 
 .hero p{
-  color:#666;
   font-size:18px;
+  color:#666;
   margin-bottom:25px;
 }
 
 .search-box{
-  display:flex;
-  max-width:600px;
   background:white;
+  max-width:600px;
   padding:7px;
   border-radius:35px;
-  box-shadow:0 5px 25px #0002;
+  display:flex;
+  box-shadow:0 6px 25px #0002;
 }
 
 .search-box input{
   flex:1;
-  border:none;
-  outline:none;
+  border:0;
+  outline:0;
   padding:14px 18px;
   font-size:16px;
 }
 
 .search-box button{
-  background:#ff5700;
-  color:white;
-  border:none;
+  border:0;
   border-radius:25px;
   padding:13px 23px;
+  background:#ff5700;
+  color:white;
   font-weight:bold;
-  cursor:pointer;
 }
 
 .hero-image{
@@ -141,12 +138,12 @@ header{
   box-shadow:0 15px 35px #0002;
 }
 
-/* ================= CONTAINER ================= */
+/* MAIN */
 
 .container{
   width:88%;
   max-width:1200px;
-  margin:40px auto;
+  margin:45px auto;
 }
 
 .section-title{
@@ -154,13 +151,11 @@ header{
   margin-bottom:20px;
 }
 
-/* ================= CATEGORIES ================= */
-
 .categories{
   display:flex;
   gap:10px;
   overflow-x:auto;
-  padding-bottom:10px;
+  padding-bottom:8px;
 }
 
 .category{
@@ -170,7 +165,6 @@ header{
   border-radius:30px;
   white-space:nowrap;
   font-weight:bold;
-  cursor:pointer;
 }
 
 .category:hover{
@@ -178,7 +172,7 @@ header{
   color:white;
 }
 
-/* ================= FOOD ================= */
+/* FOOD */
 
 .food-grid{
   display:grid;
@@ -188,8 +182,8 @@ header{
 
 .food-card{
   background:white;
-  border-radius:18px;
   overflow:hidden;
+  border-radius:18px;
   box-shadow:0 5px 20px #0001;
   transition:.2s;
 }
@@ -213,8 +207,8 @@ header{
 }
 
 .restaurant{
-  font-size:13px;
   color:#777;
+  font-size:13px;
   margin-bottom:10px;
 }
 
@@ -226,21 +220,20 @@ header{
 
 .add-btn{
   width:100%;
+  border:0;
   background:#ff5700;
   color:white;
-  border:none;
   padding:11px;
   border-radius:10px;
   margin-top:12px;
   font-weight:bold;
-  cursor:pointer;
 }
 
 .add-btn:hover{
   background:#e94d00;
 }
 
-/* ================= BANNERS ================= */
+/* BANNERS */
 
 .banner{
   margin:45px 0;
@@ -250,15 +243,15 @@ header{
   background:linear-gradient(135deg,#6d28d9,#9333ea);
 }
 
-.special{
+.banner.special{
   background:linear-gradient(135deg,#ff7a00,#ff3d00);
 }
 
 .banner h2{
-  margin-bottom:8px;
+  margin-bottom:9px;
 }
 
-/* ================= CART ================= */
+/* CART */
 
 .cart-panel{
   position:fixed;
@@ -267,11 +260,11 @@ header{
   width:400px;
   height:100%;
   background:white;
-  z-index:250;
-  box-shadow:-5px 0 25px #0003;
+  z-index:2000;
   padding:25px;
-  transition:.3s;
   overflow-y:auto;
+  box-shadow:-5px 0 25px #0003;
+  transition:.3s;
 }
 
 .cart-panel.open{
@@ -280,27 +273,26 @@ header{
 
 .panel-header{
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
   margin-bottom:20px;
 }
 
 .close-btn{
+  border:0;
+  background:#eee;
   width:35px;
   height:35px;
-  border:none;
   border-radius:50%;
-  background:#eee;
-  cursor:pointer;
 }
 
 .cart-item{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
   padding:15px 0;
   border-bottom:1px solid #eee;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
 }
 
 .qty{
@@ -310,52 +302,49 @@ header{
 }
 
 .qty button{
+  border:0;
+  background:#ff5700;
+  color:white;
   width:28px;
   height:28px;
   border-radius:50%;
-  background:#ff5700;
-  color:white;
-  border:none;
-  cursor:pointer;
 }
 
 .remove{
-  color:red;
+  border:0;
   background:none;
-  border:none;
+  color:red;
   font-size:12px;
-  cursor:pointer;
 }
 
 .cart-total{
-  margin-top:25px;
   display:flex;
   justify-content:space-between;
+  margin-top:25px;
   font-size:20px;
   font-weight:bold;
 }
 
 .checkout{
   width:100%;
-  padding:15px;
   margin-top:20px;
-  border:none;
+  border:0;
+  padding:15px;
   border-radius:12px;
   background:#16a34a;
   color:white;
   font-size:17px;
   font-weight:bold;
-  cursor:pointer;
 }
 
-/* ================= MODAL ================= */
+/* MODALS */
 
 .modal{
   display:none;
   position:fixed;
   inset:0;
+  z-index:3000;
   background:#0008;
-  z-index:300;
   align-items:center;
   justify-content:center;
   padding:20px;
@@ -364,11 +353,11 @@ header{
 .modal-box{
   width:100%;
   max-width:430px;
+  max-height:90vh;
+  overflow-y:auto;
   background:white;
   border-radius:20px;
   padding:28px;
-  max-height:90vh;
-  overflow-y:auto;
 }
 
 .modal-header{
@@ -393,24 +382,22 @@ header{
 
 .primary-btn{
   width:100%;
+  border:0;
   padding:13px;
   margin-top:10px;
-  border:none;
   border-radius:10px;
   background:#ff5700;
   color:white;
   font-weight:bold;
-  cursor:pointer;
 }
 
 .secondary-btn{
   width:100%;
+  border:0;
   padding:12px;
   margin-top:8px;
-  border:none;
   border-radius:10px;
   background:#eee;
-  cursor:pointer;
 }
 
 .switch-text{
@@ -422,26 +409,26 @@ header{
 .switch-text span{
   color:#ff5700;
   font-weight:bold;
-  cursor:pointer;
 }
 
-/* ================= PROFILE ================= */
+/* PROFILE */
 
 .profile-card{
   text-align:center;
 }
 
 .profile-avatar{
-  width:80px;
-  height:80px;
-  background:#ff5700;
-  color:white;
+  width:82px;
+  height:82px;
+  margin:0 auto 15px;
+  border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
-  border-radius:50%;
-  font-size:35px;
-  margin:0 auto 15px;
+  background:#ff5700;
+  color:white;
+  font-size:34px;
+  font-weight:bold;
 }
 
 .profile-name{
@@ -449,9 +436,10 @@ header{
   font-weight:bold;
 }
 
-.profile-email{
+.profile-email,
+.profile-phone{
   color:#777;
-  margin-top:5px;
+  margin-top:6px;
 }
 
 .profile-menu{
@@ -460,28 +448,27 @@ header{
 
 .profile-option{
   width:100%;
+  border:0;
   padding:14px;
   margin:6px 0;
-  background:#fff8f2;
-  border:none;
   border-radius:10px;
   text-align:left;
-  cursor:pointer;
+  background:#fff4eb;
   font-weight:bold;
 }
 
 .profile-option:hover{
-  background:#ffe1cc;
+  background:#ffe0ca;
 }
 
-/* ================= ORDERS ================= */
+/* ORDERS */
 
 .order-card{
-  background:#fff8f2;
+  background:#fff7f0;
+  border:1px solid #eee;
   border-radius:12px;
   padding:15px;
   margin:10px 0;
-  border:1px solid #eee;
 }
 
 .order-card h3{
@@ -491,22 +478,10 @@ header{
 .order-status{
   color:#16a34a;
   font-weight:bold;
+  margin-top:8px;
 }
 
-/* ================= LOCATION ================= */
-
-.detect-btn{
-  width:100%;
-  padding:13px;
-  background:#ff5700;
-  color:white;
-  border:none;
-  border-radius:10px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-/* ================= FOOTER ================= */
+/* FOOTER */
 
 footer{
   background:#181818;
@@ -532,24 +507,24 @@ footer{
 
 .made{
   text-align:center;
-  margin-top:35px;
   color:#aaa;
+  margin-top:35px;
 }
 
-/* ================= TOAST ================= */
+/* TOAST */
 
 .toast{
   position:fixed;
   left:50%;
   bottom:25px;
+  z-index:5000;
   transform:translateX(-50%) translateY(100px);
   background:#222;
   color:white;
   padding:13px 20px;
   border-radius:30px;
-  z-index:500;
-  transition:.3s;
   opacity:0;
+  transition:.3s;
 }
 
 .toast.show{
@@ -557,7 +532,7 @@ footer{
   opacity:1;
 }
 
-/* ================= MOBILE ================= */
+/* MOBILE */
 
 @media(max-width:900px){
 
@@ -578,7 +553,6 @@ footer{
   .search-box{
     margin:auto;
   }
-
 }
 
 @media(max-width:600px){
@@ -587,16 +561,12 @@ footer{
     flex-wrap:wrap;
   }
 
-  .logo{
-    font-size:24px;
-  }
-
   .hero{
     padding:40px 5%;
   }
 
   .hero h1{
-    font-size:35px;
+    font-size:36px;
   }
 
   .hero p{
@@ -620,7 +590,6 @@ footer{
     padding:8px 10px;
     font-size:12px;
   }
-
 }
 
 </style>
@@ -628,7 +597,7 @@ footer{
 
 <body>
 
-<!-- ================= HEADER ================= -->
+<!-- HEADER -->
 
 <header>
 
@@ -640,11 +609,11 @@ footer{
   <div class="header-actions">
 
     <button class="header-btn" onclick="openLocation()">
-      📍 <span id="locationText">Set Location</span>
+      📍 <span id="locationText">Location</span>
     </button>
 
     <button class="header-btn" onclick="openCart()">
-      🛒 Cart (<span id="cartCount">0</span>)
+      🛒 <span id="cartCount">0</span>
     </button>
 
     <button class="profile-btn" onclick="openAccount()">
@@ -656,7 +625,7 @@ footer{
 </header>
 
 
-<!-- ================= HERO ================= -->
+<!-- HERO -->
 
 <section class="hero">
 
@@ -696,12 +665,12 @@ footer{
 </section>
 
 
-<!-- ================= MAIN ================= -->
+<!-- MAIN -->
 
 <div class="container">
 
   <h2 class="section-title">
-    🍽️ Food Categories
+    🍽️ Explore Food
   </h2>
 
   <div class="categories">
@@ -740,40 +709,34 @@ footer{
 
   </div>
 
-
   <br><br>
 
-
   <h2 class="section-title">
-    🔥 Popular Food & Drinks
+    🔥 Popular Near You
   </h2>
 
   <div id="foodGrid" class="food-grid"></div>
 
-
-  <!-- LOCAL FIRST -->
 
   <div class="banner">
 
     <h2>💜 Local First</h2>
 
     <p>
-      Apne shehar ke restaurants ko,
-      apne BiteMitra se jodiye.
+      Apne shehar ke local restaurants ko
+      BiteMitra se jodiye.
     </p>
 
   </div>
 
 
-  <!-- SPECIAL -->
-
   <div class="banner special">
 
-    <h2>🎁 Aaj ka BiteMitra Special</h2>
+    <h2>🎁 BiteMitra Special</h2>
 
     <p>
-      Delicious food, local restaurants aur
-      fast doorstep delivery — sab ek jagah.
+      Fresh food • Local taste • Easy ordering
+      — sab ek jagah.
     </p>
 
   </div>
@@ -781,7 +744,7 @@ footer{
 </div>
 
 
-<!-- ================= CART ================= -->
+<!-- CART -->
 
 <div id="cartPanel" class="cart-panel">
 
@@ -808,13 +771,13 @@ footer{
   </div>
 
   <button class="checkout" onclick="checkout()">
-    Proceed to Checkout →
+    Place Order →
   </button>
 
 </div>
 
 
-<!-- ================= LOCATION MODAL ================= -->
+<!-- LOCATION -->
 
 <div id="locationModal" class="modal">
 
@@ -822,7 +785,7 @@ footer{
 
     <div class="modal-header">
 
-      <h2>📍 Location</h2>
+      <h2>📍 Delivery Location</h2>
 
       <button class="close-btn" onclick="closeLocation()">
         ✕
@@ -831,13 +794,12 @@ footer{
     </div>
 
     <p style="color:#666;">
-      Delivery ke liye apna area/location enter karein.
+      Apna area/location enter karein.
     </p>
 
     <input
       id="locationInput"
       class="input"
-      type="text"
       placeholder="Example: Jhanjharpur, Madhubani"
     >
 
@@ -845,7 +807,7 @@ footer{
       Save Location
     </button>
 
-    <button class="detect-btn" onclick="detectLocation()">
+    <button class="primary-btn" onclick="detectLocation()">
       📍 Detect My Location
     </button>
 
@@ -858,30 +820,7 @@ footer{
 </div>
 
 
-<!-- ================= ACCOUNT MODAL ================= -->
-
-<div id="accountModal" class="modal">
-
-  <div class="modal-box">
-
-    <div class="modal-header">
-
-      <h2>👤 BiteMitra Account</h2>
-
-      <button class="close-btn" onclick="closeAccount()">
-        ✕
-      </button>
-
-    </div>
-
-    <div id="accountContent"></div>
-
-  </div>
-
-</div>
-
-
-<!-- ================= LOGIN MODAL ================= -->
+<!-- LOGIN -->
 
 <div id="loginModal" class="modal">
 
@@ -916,9 +855,9 @@ footer{
     </button>
 
     <div class="switch-text">
-      Account nahi hai?
+      New to BiteMitra?
       <span onclick="showRegister()">
-        Register
+        Create Account
       </span>
     </div>
 
@@ -927,7 +866,7 @@ footer{
 </div>
 
 
-<!-- ================= REGISTER MODAL ================= -->
+<!-- REGISTER -->
 
 <div id="registerModal" class="modal">
 
@@ -946,7 +885,6 @@ footer{
     <input
       id="registerName"
       class="input"
-      type="text"
       placeholder="Full Name"
     >
 
@@ -976,7 +914,7 @@ footer{
     </button>
 
     <div class="switch-text">
-      Already have an account?
+      Already registered?
       <span onclick="showLogin()">
         Login
       </span>
@@ -987,7 +925,7 @@ footer{
 </div>
 
 
-<!-- ================= PROFILE MODAL ================= -->
+<!-- PROFILE -->
 
 <div id="profileModal" class="modal">
 
@@ -1010,7 +948,7 @@ footer{
 </div>
 
 
-<!-- ================= ORDERS MODAL ================= -->
+<!-- ORDERS -->
 
 <div id="ordersModal" class="modal">
 
@@ -1033,12 +971,7 @@ footer{
 </div>
 
 
-<!-- ================= TOAST ================= -->
-
-<div id="toast" class="toast"></div>
-
-
-<!-- ================= FOOTER ================= -->
+<!-- FOOTER -->
 
 <footer>
 
@@ -1054,25 +987,24 @@ footer{
 
     </div>
 
-
     <div class="footer-box">
 
       <h3>⚡ Fast Delivery</h3>
 
       <p>
-        Local restaurants se fresh food
-        aapke doorstep tak.
+        Fresh food from local restaurants
+        to your doorstep.
       </p>
 
     </div>
 
-
     <div class="footer-box">
 
-      <h3>🔒 Secure Payment</h3>
+      <h3>🔒 Safe & Simple</h3>
 
       <p>
-        UPI, Online Payment aur COD support.
+        Easy ordering experience for
+        BiteMitra customers.
       </p>
 
     </div>
@@ -1086,11 +1018,16 @@ footer{
 </footer>
 
 
+<!-- TOAST -->
+
+<div id="toast" class="toast"></div>
+
+
 <script>
 
-/* =====================================================
-   BITEMITRA V2 DATA
-===================================================== */
+/* =========================================================
+   FOOD DATA
+========================================================= */
 
 const foods = [
 
@@ -1164,14 +1101,23 @@ const foods = [
     restaurant:"Bite Cafe",
     price:60,
     image:"https://images.unsplash.com/photo-1629203849820-fdd70d49c38e?auto=format&fit=crop&w=900&q=85"
+  },
+
+  {
+    id:9,
+    name:"Samosa",
+    category:"sweet",
+    restaurant:"Mithila Snacks",
+    price:40,
+    image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85"
   }
 
 ];
 
 
-/* =====================================================
-   STATE
-===================================================== */
+/* =========================================================
+   STORAGE
+========================================================= */
 
 let cart = JSON.parse(
   localStorage.getItem("bitemitraCart") || "[]"
@@ -1189,9 +1135,9 @@ let savedLocation =
   localStorage.getItem("bitemitraLocation") || "";
 
 
-/* =====================================================
+/* =========================================================
    TOAST
-===================================================== */
+========================================================= */
 
 function showToast(message){
 
@@ -1211,9 +1157,9 @@ function showToast(message){
 }
 
 
-/* =====================================================
-   FOOD RENDER
-===================================================== */
+/* =========================================================
+   FOOD DISPLAY
+========================================================= */
 
 function renderFoods(list = foods){
 
@@ -1223,13 +1169,18 @@ function renderFoods(list = foods){
   if(list.length === 0){
 
     grid.innerHTML = `
-      <p style="grid-column:1/-1;text-align:center;padding:40px;color:#777;">
-        😕 Food nahi mila.
-      </p>
+      <div style="grid-column:1/-1;text-align:center;padding:45px;color:#777;">
+        <div style="font-size:45px;">😕</div>
+        <h3>Food nahi mila</h3>
+        <p style="margin-top:7px;">
+          Kuch aur search karke dekhiye.
+        </p>
+      </div>
     `;
 
     return;
   }
+
 
   grid.innerHTML = list.map(food => `
 
@@ -1243,7 +1194,9 @@ function renderFoods(list = foods){
 
       <div class="food-info">
 
-        <h3>${food.name}</h3>
+        <h3>
+          ${food.name}
+        </h3>
 
         <div class="restaurant">
           🏪 ${food.restaurant}
@@ -1269,6 +1222,114 @@ function renderFoods(list = foods){
 }
 
 
-/* =====================================================
+/* =========================================================
    SEARCH
-=============
+========================================================= */
+
+function searchFood(){
+
+  const text =
+    document
+      .getElementById("searchInput")
+      .value
+      .toLowerCase()
+      .trim();
+
+  const result =
+    foods.filter(food =>
+
+      food.name.toLowerCase().includes(text) ||
+
+      food.restaurant.toLowerCase().includes(text) ||
+
+      food.category.toLowerCase().includes(text)
+
+    );
+
+  renderFoods(result);
+
+}
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+function filterFood(category){
+
+  if(category === "all"){
+
+    renderFoods(foods);
+
+    return;
+
+  }
+
+  renderFoods(
+    foods.filter(
+      food => food.category === category
+    )
+  );
+
+}
+
+
+/* =========================================================
+   CART
+========================================================= */
+
+function saveCart(){
+
+  localStorage.setItem(
+    "bitemitraCart",
+    JSON.stringify(cart)
+  );
+
+}
+
+
+function addToCart(id){
+
+  const food =
+    foods.find(
+      item => item.id === id
+    );
+
+  if(!food) return;
+
+
+  const existing =
+    cart.find(
+      item => item.id === id
+    );
+
+
+  if(existing){
+
+    existing.qty++;
+
+  }else{
+
+    cart.push({
+
+      id:food.id,
+
+      name:food.name,
+
+      restaurant:food.restaurant,
+
+      price:food.price,
+
+      qty:1
+
+    });
+
+  }
+
+
+  saveCart();
+
+  updateCart();
+
+  showToast(
+    "?
