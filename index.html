@@ -3,737 +3,1331 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BiteMitra V4 | Food Delivery</title>
+
+<title>BiteMitra V5 | Food Delivery</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
-body{background:#fffaf7;color:#222}
-button{cursor:pointer;border:0}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+  background:#fffaf7;
+  color:#222;
+}
+
+button{
+  cursor:pointer;
+  border:0;
+}
 
 header{
-position:sticky;top:0;z-index:1000;background:#fff;
-display:flex;align-items:center;justify-content:space-between;
-padding:15px 6%;border-bottom:1px solid #eee;
-box-shadow:0 2px 10px rgba(0,0,0,.06)
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:#fff;
+  padding:14px 6%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid #eee;
+  box-shadow:0 2px 12px rgba(0,0,0,.06);
 }
 
-.logo{font-size:25px;font-weight:800;color:#e5483e}
-.logo span{color:#713c99}
+.logo{
+  font-size:25px;
+  font-weight:800;
+  color:#e5483e;
+}
 
-.nav{display:flex;gap:8px;align-items:center}
+.logo span{
+  color:#713c99;
+}
+
+.nav{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
 .nav button{
-background:#fff;border:1px solid #eee;border-radius:25px;
-padding:10px 14px;font-weight:600
+  background:#fff;
+  border:1px solid #eee;
+  border-radius:25px;
+  padding:10px 14px;
+  font-weight:600;
 }
+
 .cart-btn{
-background:linear-gradient(135deg,#e84b3f,#713c99)!important;
-color:#fff!important;border:0!important
+  background:linear-gradient(135deg,#e84b3f,#713c99)!important;
+  color:#fff!important;
 }
 
 .hero{
-min-height:480px;padding:70px 7%;
-display:flex;align-items:center;justify-content:space-between;
-gap:40px;
-background:
-radial-gradient(circle at 10% 20%,#ffd9b8,transparent 28%),
-radial-gradient(circle at 90% 70%,#e8d5ff,transparent 30%),
-linear-gradient(120deg,#fffaf4,#fff)
+  min-height:470px;
+  padding:65px 7%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:40px;
+  background:
+  radial-gradient(circle at 10% 20%,#ffd9b8,transparent 28%),
+  radial-gradient(circle at 90% 70%,#e8d5ff,transparent 30%),
+  linear-gradient(120deg,#fffaf4,#fff);
 }
 
-.hero-text{max-width:650px}
+.hero-text{
+  max-width:650px;
+}
 
 .india-badge{
-display:inline-flex;align-items:center;gap:10px;
-padding:10px 16px;background:#fff;border:1px solid #eee;
-border-radius:14px;box-shadow:0 5px 20px rgba(0,0,0,.08);
-margin-bottom:20px
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 16px;
+  background:#fff;
+  border:1px solid #eee;
+  border-radius:14px;
+  box-shadow:0 5px 20px rgba(0,0,0,.08);
+  margin-bottom:20px;
 }
 
-.india-badge .flag{font-size:30px}
-.india-badge strong{display:block;font-size:13px;letter-spacing:1px}
-.india-badge small{display:block;color:#777;font-size:11px;margin-top:3px}
+.india-badge .flag{
+  font-size:30px;
+}
 
-.hero h1{font-size:58px;line-height:1.05;margin-bottom:18px}
-.hero h1 span{color:#e84b3f}
-.hero p{font-size:18px;color:#666;line-height:1.5;margin-bottom:25px}
+.india-badge strong{
+  display:block;
+  font-size:13px;
+  letter-spacing:1px;
+}
+
+.india-badge small{
+  display:block;
+  color:#777;
+  font-size:11px;
+  margin-top:3px;
+}
+
+.hero h1{
+  font-size:58px;
+  line-height:1.05;
+  margin-bottom:18px;
+}
+
+.hero h1 span{
+  color:#e84b3f;
+}
+
+.hero p{
+  font-size:18px;
+  color:#666;
+  line-height:1.5;
+  margin-bottom:25px;
+}
 
 .search-box{
-background:#fff;padding:8px;border-radius:18px;
-display:flex;max-width:600px;
-box-shadow:0 8px 30px rgba(0,0,0,.12)
+  max-width:620px;
+  display:flex;
+  background:#fff;
+  padding:8px;
+  border-radius:18px;
+  box-shadow:0 8px 30px rgba(0,0,0,.12);
 }
+
 .search-box input{
-flex:1;border:0;outline:0;padding:15px;font-size:16px
+  flex:1;
+  border:0;
+  outline:0;
+  padding:15px;
+  font-size:16px;
 }
+
 .search-box button{
-background:#e84b3f;color:#fff;border-radius:13px;
-padding:0 24px;font-weight:bold
+  background:#e84b3f;
+  color:#fff;
+  border-radius:13px;
+  padding:0 24px;
+  font-weight:bold;
 }
 
 .location{
-display:inline-block;margin-top:15px;background:#fff;
-padding:12px 18px;border-radius:25px;
-box-shadow:0 4px 15px rgba(0,0,0,.08)
+  display:inline-block;
+  margin-top:15px;
+  padding:12px 18px;
+  background:#fff;
+  border-radius:25px;
+  box-shadow:0 4px 15px rgba(0,0,0,.08);
 }
 
 .hero-food{
-width:350px;height:350px;border-radius:35px;
-background:linear-gradient(145deg,#f05a3d,#ffb15c);
-display:flex;align-items:center;justify-content:center;
-box-shadow:0 25px 50px rgba(220,80,50,.25)
+  width:340px;
+  height:340px;
+  border-radius:35px;
+  background:linear-gradient(145deg,#f05a3d,#ffb15c);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 25px 50px rgba(220,80,50,.25);
 }
-.hero-food div{font-size:150px}
 
-section{padding:50px 7%}
-.section-title{font-size:30px;margin-bottom:25px}
-.section-title span{color:#e84b3f}
+.hero-food div{
+  font-size:145px;
+}
+
+section{
+  padding:50px 7%;
+}
+
+.section-title{
+  font-size:30px;
+  margin-bottom:25px;
+}
+
+.section-title span{
+  color:#e84b3f;
+}
 
 .categories{
-display:flex;gap:15px;overflow-x:auto;padding-bottom:10px
+  display:flex;
+  gap:15px;
+  overflow-x:auto;
+  padding-bottom:10px;
 }
+
 .category{
-min-width:105px;background:#fff;border:1px solid #eee;
-border-radius:18px;padding:16px 10px;text-align:center;
-box-shadow:0 5px 15px rgba(0,0,0,.05);
-font-weight:bold;transition:.2s
+  min-width:105px;
+  background:#fff;
+  border:1px solid #eee;
+  border-radius:18px;
+  padding:16px 10px;
+  text-align:center;
+  box-shadow:0 5px 15px rgba(0,0,0,.05);
+  font-weight:bold;
 }
-.category div{font-size:32px;margin-bottom:7px}
-.category:hover{transform:translateY(-4px);border-color:#e84b3f}
+
+.category div{
+  font-size:32px;
+  margin-bottom:7px;
+}
 
 .food-grid{
-display:grid;grid-template-columns:repeat(4,1fr);gap:20px
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
 }
+
 .food-card{
-background:#fff;border-radius:22px;overflow:hidden;
-box-shadow:0 8px 25px rgba(0,0,0,.08);transition:.2s
+  background:#fff;
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
+  transition:.2s;
 }
-.food-card:hover{transform:translateY(-5px)}
+
+.food-card:hover{
+  transform:translateY(-5px);
+}
 
 .food-img{
-height:180px;display:flex;align-items:center;
-justify-content:center;font-size:90px;
-background:linear-gradient(135deg,#ffe0ca,#fff0e8)
+  height:175px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:88px;
+  background:linear-gradient(135deg,#ffe0ca,#fff0e8);
 }
-.food-info{padding:17px}
-.food-info h3{margin-bottom:7px}
-.desc{color:#777;font-size:14px;min-height:38px;line-height:1.4}
-.rating{color:#e7a500;margin:10px 0}
-.price{font-size:20px;font-weight:bold}
+
+.food-info{
+  padding:17px;
+}
+
+.food-info h3{
+  margin-bottom:7px;
+}
+
+.desc{
+  color:#777;
+  font-size:14px;
+  min-height:38px;
+  line-height:1.4;
+}
+
+.rating{
+  color:#e7a500;
+  margin:10px 0;
+}
+
+.price{
+  font-size:20px;
+  font-weight:bold;
+}
+
 .add{
-float:right;background:#e84b3f;color:#fff;
-padding:9px 15px;border-radius:12px;font-weight:bold
+  float:right;
+  background:#e84b3f;
+  color:#fff;
+  padding:9px 15px;
+  border-radius:12px;
+  font-weight:bold;
 }
 
 .restaurant-grid{
-display:grid;grid-template-columns:repeat(3,1fr);gap:20px
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
 }
-.restaurant{
-background:#fff;padding:22px;border-radius:20px;
-box-shadow:0 8px 22px rgba(0,0,0,.07)
-}
-.restaurant-icon{font-size:45px;margin-bottom:12px}
-.restaurant h3{margin-bottom:8px}
-.restaurant p{color:#777;font-size:14px;margin-top:5px}
 
-.why{background:#fff}
+.restaurant{
+  background:#fff;
+  padding:22px;
+  border-radius:20px;
+  box-shadow:0 8px 22px rgba(0,0,0,.07);
+}
+
+.restaurant-icon{
+  font-size:45px;
+  margin-bottom:12px;
+}
+
+.restaurant h3{
+  margin-bottom:8px;
+}
+
+.restaurant p{
+  color:#777;
+  font-size:14px;
+  margin-top:5px;
+}
+
+.why{
+  background:#fff;
+}
+
 .why-grid{
-display:grid;grid-template-columns:repeat(4,1fr);gap:18px
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
 }
+
 .why-card{
-background:#fffaf7;border-radius:20px;padding:25px;
-border:1px solid #eee
+  background:#fffaf7;
+  border-radius:20px;
+  padding:25px;
+  border:1px solid #eee;
 }
-.why-card .icon{font-size:35px;margin-bottom:15px}
-.why-card h3{margin-bottom:8px}
-.why-card p{color:#777;line-height:1.5}
+
+.why-card .icon{
+  font-size:35px;
+  margin-bottom:15px;
+}
+
+.why-card h3{
+  margin-bottom:8px;
+}
+
+.why-card p{
+  color:#777;
+  line-height:1.5;
+}
 
 .india{
-margin:20px 7% 50px;padding:40px 25px;text-align:center;
-border-radius:25px;background:linear-gradient(135deg,#fff0df,#f3e8ff)
+  margin:20px 7% 50px;
+  padding:40px 25px;
+  text-align:center;
+  border-radius:25px;
+  background:linear-gradient(135deg,#fff0df,#f3e8ff);
 }
-.india-logo{font-size:55px;margin-bottom:10px}
-.india h2{font-size:30px;margin-bottom:10px}
-.india p{color:#666;line-height:1.5}
+
+.india-logo{
+  font-size:55px;
+  margin-bottom:10px;
+}
+
+.india h2{
+  font-size:30px;
+  margin-bottom:10px;
+}
+
+.india p{
+  color:#666;
+  line-height:1.5;
+}
 
 footer{
-background:#191919;color:#fff;padding:40px 7%;text-align:center
+  background:#191919;
+  color:#fff;
+  padding:40px 7%;
+  text-align:center;
 }
-footer p{color:#aaa;margin-top:8px}
 
+footer p{
+  color:#aaa;
+  margin-top:8px;
+}
+
+/* CART */
 .cart-panel{
-position:fixed;right:20px;top:80px;width:350px;
-max-width:calc(100% - 30px);background:#fff;border-radius:20px;
-padding:20px;box-shadow:0 15px 50px rgba(0,0,0,.25);
-display:none;z-index:2000
-}
-.cart-panel.show{display:block}
-.cart-panel h2{margin-bottom:15px}
-.cart-item{
-display:flex;justify-content:space-between;
-align-items:center;padding:12px 0;border-bottom:1px solid #eee;
-gap:10px
-}
-.remove{
-background:#ffe5e2;color:#d83225;
-padding:5px 9px;border-radius:7px
-}
-.total{font-size:20px;font-weight:bold;margin-top:18px}
-.order-btn{
-width:100%;margin-top:15px;padding:13px;
-border-radius:12px;background:#e84b3f;color:#fff;font-weight:bold
+  position:fixed;
+  right:20px;
+  top:78px;
+  width:380px;
+  max-width:calc(100% - 30px);
+  max-height:80vh;
+  overflow:auto;
+  background:#fff;
+  border-radius:20px;
+  padding:20px;
+  box-shadow:0 15px 50px rgba(0,0,0,.25);
+  display:none;
+  z-index:2000;
 }
 
+.cart-panel.show{
+  display:block;
+}
+
+.cart-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:15px;
+}
+
+.close-btn{
+  background:#eee;
+  width:32px;
+  height:32px;
+  border-radius:50%;
+}
+
+.cart-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  padding:14px 0;
+  border-bottom:1px solid #eee;
+}
+
+.cart-item-name{
+  font-weight:bold;
+}
+
+.cart-item-price{
+  color:#666;
+  font-size:13px;
+  margin-top:4px;
+}
+
+.qty{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.qty button{
+  width:28px;
+  height:28px;
+  border-radius:8px;
+  background:#f2f2f2;
+  font-weight:bold;
+}
+
+.total-box{
+  margin-top:18px;
+  padding-top:15px;
+  border-top:2px solid #eee;
+}
+
+.total-row{
+  display:flex;
+  justify-content:space-between;
+  margin:8px 0;
+}
+
+.grand-total{
+  font-size:21px;
+  font-weight:bold;
+}
+
+.checkout-btn{
+  width:100%;
+  padding:14px;
+  margin-top:15px;
+  border-radius:12px;
+  background:#e84b3f;
+  color:#fff;
+  font-weight:bold;
+  font-size:16px;
+}
+
+/* CHECKOUT MODAL */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+  z-index:3000;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  background:#fff;
+  width:500px;
+  max-width:100%;
+  max-height:90vh;
+  overflow:auto;
+  border-radius:22px;
+  padding:25px;
+}
+
+.modal-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:20px;
+}
+
+.form-group{
+  margin-bottom:15px;
+}
+
+.form-group label{
+  display:block;
+  font-weight:bold;
+  margin-bottom:7px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+  width:100%;
+  padding:13px;
+  border:1px solid #ddd;
+  border-radius:11px;
+  outline:none;
+  font-size:15px;
+}
+
+.form-group textarea{
+  resize:vertical;
+  min-height:80px;
+}
+
+.place-order{
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  background:#e84b3f;
+  color:#fff;
+  font-size:16px;
+  font-weight:bold;
+}
+
+/* PROFILE */
+.profile-card{
+  display:none;
+  position:fixed;
+  right:20px;
+  top:78px;
+  width:300px;
+  background:#fff;
+  padding:22px;
+  border-radius:20px;
+  box-shadow:0 15px 45px rgba(0,0,0,.2);
+  z-index:2000;
+}
+
+.profile-card.show{
+  display:block;
+}
+
+.profile-avatar{
+  width:65px;
+  height:65px;
+  border-radius:50%;
+  background:#f1e3ff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:32px;
+  margin-bottom:12px;
+}
+
+.profile-card p{
+  color:#777;
+  margin:7px 0 15px;
+}
+
+.profile-option{
+  width:100%;
+  text-align:left;
+  padding:12px;
+  background:#fafafa;
+  border-radius:10px;
+  margin-top:7px;
+}
+
+/* TOAST */
+.toast{
+  position:fixed;
+  bottom:25px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#222;
+  color:#fff;
+  padding:13px 20px;
+  border-radius:25px;
+  display:none;
+  z-index:5000;
+}
+
+.toast.show{
+  display:block;
+}
+
+/* MOBILE */
 @media(max-width:900px){
-.hero{flex-direction:column;text-align:center}
-.hero h1{font-size:42px}
-.hero-food{width:280px;height:280px}
-.food-grid{grid-template-columns:repeat(2,1fr)}
-.why-grid{grid-template-columns:repeat(2,1fr)}
-.restaurant-grid{grid-template-columns:1fr}
+
+  .hero{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .hero h1{
+    font-size:43px;
+  }
+
+  .hero-food{
+    width:280px;
+    height:280px;
+  }
+
+  .food-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .why-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .restaurant-grid{
+    grid-template-columns:1fr;
+  }
 }
 
 @media(max-width:600px){
-header{padding:12px 4%}
-.logo{font-size:20px}
-.nav{gap:4px}
-.nav button{padding:8px 9px;font-size:11px}
-.hero{padding:50px 5%}
-.hero h1{font-size:36px}
-.hero-food{width:230px;height:230px}
-.hero-food div{font-size:100px}
-section{padding:40px 5%}
-.food-grid{grid-template-columns:1fr}
-.why-grid{grid-template-columns:1fr}
-.search-box{flex-direction:column;gap:8px}
-.search-box button{padding:13px}
-.cart-panel{left:15px;right:15px;width:auto}
+
+  header{
+    padding:12px 4%;
+  }
+
+  .logo{
+    font-size:20px;
+  }
+
+  .nav button{
+    padding:8px 9px;
+    font-size:11px;
+  }
+
+  .hero{
+    padding:50px 5%;
+  }
+
+  .hero h1{
+    font-size:36px;
+  }
+
+  .hero-food{
+    width:230px;
+    height:230px;
+  }
+
+  .hero-food div{
+    font-size:100px;
+  }
+
+  section{
+    padding:40px 5%;
+  }
+
+  .food-grid{
+    grid-template-columns:1fr;
+  }
+
+  .why-grid{
+    grid-template-columns:1fr;
+  }
+
+  .search-box{
+    flex-direction:column;
+    gap:8px;
+  }
+
+  .search-box button{
+    padding:13px;
+  }
+
+  .cart-panel,
+  .profile-card{
+    left:15px;
+    right:15px;
+    width:auto;
+  }
 }
 </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
 <header>
-<div class="logo">🍴 Bite<span>Mitra</span></div>
 
-<div class="nav">
-<button onclick="setLocation()">📍 Location</button>
-<button onclick="login()">👤 Login</button>
-<button class="cart-btn" onclick="toggleCart()">
-🛒 Cart (<span id="cartCount">0</span>)
-</button>
-</div>
+  <div class="logo">
+    🍴 Bite<span>Mitra</span>
+  </div>
+
+  <div class="nav">
+
+    <button onclick="setLocation()">
+      📍 Location
+    </button>
+
+    <button onclick="toggleProfile()">
+      👤 Profile
+    </button>
+
+    <button class="cart-btn" onclick="toggleCart()">
+      🛒 Cart (<span id="cartCount">0</span>)
+    </button>
+
+  </div>
+
 </header>
 
 
+<!-- HERO -->
 <div class="hero">
 
-<div class="hero-text">
+  <div class="hero-text">
 
-<div class="india-badge">
-<span class="flag">🇮🇳</span>
-<span>
-<strong>MADE IN INDIA</strong>
-<small>Built for India 🇮🇳</small>
-</span>
+    <div class="india-badge">
+      <span class="flag">🇮🇳</span>
+      <span>
+        <strong>MADE IN INDIA</strong>
+        <small>Built for India 🇮🇳</small>
+      </span>
+    </div>
+
+    <h1>
+      Good food.<br>
+      <span>Good moments.</span>
+    </h1>
+
+    <p>
+      Discover tasty food and refreshing drinks
+      from local restaurants near you.
+    </p>
+
+    <div class="search-box">
+
+      <input
+        id="searchInput"
+        type="text"
+        placeholder="Search biryani, pizza, burger..."
+        oninput="searchFood()">
+
+      <button onclick="searchFood()">
+        🔍 Search
+      </button>
+
+    </div>
+
+    <div
+      class="location"
+      onclick="setLocation()">
+      📍 Set Delivery Location
+    </div>
+
+  </div>
+
+  <div class="hero-food">
+    <div>🍛</div>
+  </div>
+
 </div>
 
-<h1>
-Good food.<br>
-<span>Good moments.</span>
-</h1>
 
-<p>
-Discover tasty food and refreshing drinks from
-local restaurants near you.
-</p>
-
-<div class="search-box">
-<input
-id="searchInput"
-type="text"
-placeholder="Search pizza, biryani, burger, sweets..."
-oninput="searchFood()">
-<button onclick="searchFood()">🔍 Search</button>
-</div>
-
-<div class="location" onclick="setLocation()">
-📍 Set Delivery Location
-</div>
-
-</div>
-
-<div class="hero-food">
-<div>🍛</div>
-</div>
-
-</div>
-
-
+<!-- CATEGORIES -->
 <section>
 
-<h2 class="section-title">
-🍽️ Explore <span>Food</span>
-</h2>
+  <h2 class="section-title">
+    🍽️ Explore <span>Food</span>
+  </h2>
 
-<div class="categories">
+  <div class="categories">
 
-<button class="category" onclick="filterFood('all')">
-<div>🍽️</div>All
-</button>
+    <button class="category"
+      onclick="filterFood('all')">
+      <div>🍽️</div>
+      All
+    </button>
 
-<button class="category" onclick="filterFood('Biryani')">
-<div>🍛</div>Biryani
-</button>
+    <button class="category"
+      onclick="filterFood('Biryani')">
+      <div>🍛</div>
+      Biryani
+    </button>
 
-<button class="category" onclick="filterFood('Chicken')">
-<div>🍗</div>Chicken
-</button>
+    <button class="category"
+      onclick="filterFood('Chicken')">
+      <div>🍗</div>
+      Chicken
+    </button>
 
-<button class="category" onclick="filterFood('Pizza')">
-<div>🍕</div>Pizza
-</button>
+    <button class="category"
+      onclick="filterFood('Pizza')">
+      <div>🍕</div>
+      Pizza
+    </button>
 
-<button class="category" onclick="filterFood('Burger')">
-<div>🍔</div>Burger
-</button>
+    <button class="category"
+      onclick="filterFood('Burger')">
+      <div>🍔</div>
+      Burger
+    </button>
 
-<button class="category" onclick="filterFood('Sweets')">
-<div>🍮</div>Sweets
-</button>
+    <button class="category"
+      onclick="filterFood('Sweets')">
+      <div>🍮</div>
+      Sweets
+    </button>
 
-<button class="category" onclick="filterFood('Drinks')">
-<div>🥤</div>Drinks
-</button>
+    <button class="category"
+      onclick="filterFood('Drinks')">
+      <div>🥤</div>
+      Drinks
+    </button>
 
-<button class="category" onclick="filterFood('Snacks')">
-<div>🥟</div>Snacks
-</button>
+    <button class="category"
+      onclick="filterFood('Snacks')">
+      <div>🥟</div>
+      Snacks
+    </button>
 
-</div>
+  </div>
+
 </section>
 
 
+<!-- FOOD -->
 <section>
 
-<h2 class="section-title">
-🔥 Popular <span>Food</span>
-</h2>
+  <h2 class="section-title">
+    🔥 Popular <span>Food</span>
+  </h2>
 
-<div class="food-grid" id="foodGrid">
-
-<div class="food-card" data-category="Biryani">
-<div class="food-img">🍛</div>
-<div class="food-info">
-<h3>Chicken Biryani</h3>
-<p class="desc">Aromatic basmati rice with delicious chicken.</p>
-<div class="rating">⭐ 4.8</div>
-<span class="price">₹180</span>
-<button class="add" onclick="addToCart('Chicken Biryani',180)">+ Add</button>
-</div>
-</div>
+  <div class="food-grid">
 
 
-<div class="food-card" data-category="Chicken">
-<div class="food-img">🍗</div>
-<div class="food-info">
-<h3>Chicken Tikka</h3>
-<p class="desc">Juicy and spicy grilled chicken.</p>
-<div class="rating">⭐ 4.7</div>
-<span class="price">₹160</span>
-<button class="add" onclick="addToCart('Chicken Tikka',160)">+ Add</button>
-</div>
-</div>
+    <div class="food-card" data-category="Biryani">
+
+      <div class="food-img">🍛</div>
+
+      <div class="food-info">
+
+        <h3>Chicken Biryani</h3>
+
+        <p class="desc">
+          Aromatic basmati rice with delicious chicken.
+        </p>
+
+        <div class="rating">
+          ⭐ 4.8
+        </div>
+
+        <span class="price">
+          ₹180
+        </span>
+
+        <button
+          class="add"
+          onclick="addToCart('Chicken Biryani',180)">
+          + Add
+        </button>
+
+      </div>
+
+    </div>
 
 
-<div class="food-card" data-category="Pizza">
-<div class="food-img">🍕</div>
-<div class="food-info">
-<h3>Cheese Pizza</h3>
-<p class="desc">Loaded with delicious melted cheese.</p>
-<div class="rating">⭐ 4.6</div>
-<span class="price">₹199</span>
-<button class="add" onclick="addToCart('Cheese Pizza',199)">+ Add</button>
-</div>
-</div>
+    <div class="food-card" data-category="Chicken">
+
+      <div class="food-img">🍗</div>
+
+      <div class="food-info">
+
+        <h3>Chicken Tikka</h3>
+
+        <p class="desc">
+          Juicy and spicy grilled chicken.
+        </p>
+
+        <div class="rating">
+          ⭐ 4.7
+        </div>
+
+        <span class="price">
+          ₹160
+        </span>
+
+        <button
+          class="add"
+          onclick="addToCart('Chicken Tikka',160)">
+          + Add
+        </button>
+
+      </div>
+
+    </div>
 
 
-<div class="food-card" data-category="Burger">
-<div class="food-img">🍔</div>
-<div class="food-info">
-<h3>Classic Burger</h3>
-<p class="desc">Crispy, tasty and freshly prepared.</p>
-<div class="rating">⭐ 4.5</div>
-<span class="price">₹120</span>
-<button class="add" onclick="addToCart('Classic Burger',120)">+ Add</button>
-</div>
-</div>
+    <div class="food-card" data-category="Pizza">
+
+      <div class="food-img">🍕</div>
+
+      <div class="food-info">
+
+        <h3>Cheese Pizza</h3>
+
+        <p class="desc">
+          Loaded with delicious melted cheese.
+        </p>
+
+        <div class="rating">
+          ⭐ 4.6
+        </div>
+
+        <span class="price">
+          ₹199
+        </span>
+
+        <button
+          class="add"
+          onclick="addToCart('Cheese Pizza',199)">
+          + Add
+        </button>
+
+      </div>
+
+    </div>
 
 
-<div class="food-card" data-category="Sweets">
-<div class="food-img">🍮</div>
-<div class="food-info">
-<h3>Gulab Jamun</h3>
-<p class="desc">Soft and sweet traditional Indian dessert.</p>
-<div class="rating">⭐ 4.9</div>
-<span class="price">₹80</span>
-<button class="add" onclick="addToCart('Gulab Jamun',80)">+ Add</button>
-</div>
-</div>
+    <div class="food-card" data-category="Burger">
+
+      <div class="food-img">🍔</div>
+
+      <div class="food-info">
+
+        <h3>Classic Burger</h3>
+
+        <p class="desc">
+          Crispy, tasty and freshly prepared.
+        </p>
+
+        <div class="rating">
+          ⭐ 4.5
+        </div>
+
+        <span class="price">
+          ₹120
+        </span>
+
+        <button
+          class="add"
+          onclick="addToCart('Classic Burger',120)">
+          + Add
+        </button>
+
+      </div>
+
+    </div>
 
 
-<div class="food-card" data-category="Snacks">
-<div class="food-img">🥟</div>
-<div class="food-info">
-<h3>Samosa</h3>
-<p class="desc">Crispy samosa with spicy filling.</p>
-<div class="rating">⭐ 4.7</div>
-<span class="price">₹30</span>
-<button class="add" onclick="addToCart('Samosa',30)">+ Add</button>
-</div>
-</div>
+    <div class="food-card" data-category="Sweets">
+
+      <div class="food-img">🍮</div>
+
+      <div class="food-info">
+
+        <h3>Gulab Jamun</h3>
+
+        <p class="desc">
+          Soft and sweet traditional Indian dessert.
+        </p>
+
+        <div class="rating">
+          ⭐ 4.9
+        </div>
+
+        <span class="price">
+          ₹80
+        </span>
+
+        <button
+          class="add"
+          onclick="addToCart('Gulab Jamun',80)">
+          + Add
+        </button>
+
+      </div>
+
+    </div>
 
 
-<div class="food-card" data-category="Drinks">
-<div class="food-img">🥤</div>
-<div class="food-info">
-<h3>Cold Drink</h3>
-<p class="desc">Chilled and refreshing soft drink.</p>
-<div class="rating">⭐ 4.5</div>
-<span class="price">₹50</span>
-<button class="add" onclick="addToCart('Cold Drink',50)">+ Add</button>
-</div>
-</div>
+    <div class="food-card" data-category="Snacks">
+
+      <div class="food-img">🥟</div>
+
+      <div class="food-info">
+
+        <h3>Samosa</h3>
+
+        <p class="desc">
+          Crispy samosa with spicy filling.
+        </p>
+
+        <div class="rating">
+          ⭐ 4.7
+        </div>
+
+        <span class="price">
+          ₹30
+        </span>
+
+        <button
+          class="add"
+          onclick="addToCart('Samosa',30)">
+          + Add
+        </button>
+
+      </div>
+
+    </div>
 
 
-<div class="food-card" data-category="Drinks">
-<div class="food-img">💧</div>
-<div class="food-info">
-<h3>Mineral Water</h3>
-<p class="desc">Clean and chilled drinking water.</p>
-<div class="rating">⭐ 4.8</div>
-<span class="price">₹20</span>
-<button class="add" onclick="addToCart('Mineral Water',20)">+ Add</button>
-</div>
-</div>
+    <div class="food-card" data-category="Drinks">
 
-</div>
+      <div class="food-img">🥤</div>
+
+      <div class="food-info">
+
+        <h3>Cold Drink</h3>
+
+        <p class="desc">
+          Chilled and refreshing soft drink.
+        </p>
+
+        <div class="rating">
+          ⭐ 4.5
+        </div>
+
+        <span class="price">
+          ₹50
+        </span>
+
+        <button
+          class="add"
+          onclick="addToCart('Cold Drink',50)">
+          + Add
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="food-card" data-category="Drinks">
+
+      <div class="food-img">💧</div>
+
+      <div class="food-info">
+
+        <h3>Mineral Water</h3>
+
+        <p class="desc">
+          Clean and chilled drinking water.
+        </p>
+
+        <div class="rating">
+          ⭐ 4.8
+        </div>
+
+        <span class="price">
+          ₹20
+        </span>
+
+        <button
+          class="add"
+          onclick="addToCart('Mineral Water',20)">
+          + Add
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
 </section>
 
 
+<!-- RESTAURANTS -->
 <section>
 
-<h2 class="section-title">
-🏪 Local <span>Restaurants</span>
-</h2>
+  <h2 class="section-title">
+    🏪 Local <span>Restaurants</span>
+  </h2>
 
-<div class="restaurant-grid">
+  <div class="restaurant-grid">
 
-<div class="restaurant">
-<div class="restaurant-icon">🍛</div>
-<h3>Mithila Food Corner</h3>
-<p>Indian • Biryani • Snacks</p>
-<p>⭐ 4.7 • Nearby</p>
-</div>
+    <div class="restaurant">
+      <div class="restaurant-icon">🍛</div>
+      <h3>Mithila Food Corner</h3>
+      <p>Indian • Biryani • Snacks</p>
+      <p>⭐ 4.7 • Nearby</p>
+    </div>
 
-<div class="restaurant">
-<div class="restaurant-icon">🍕</div>
-<h3>Bite House</h3>
-<p>Pizza • Burger • Drinks</p>
-<p>⭐ 4.6 • Nearby</p>
-</div>
+    <div class="restaurant">
+      <div class="restaurant-icon">🍕</div>
+      <h3>Bite House</h3>
+      <p>Pizza • Burger • Drinks</p>
+      <p>⭐ 4.6 • Nearby</p>
+    </div>
 
-<div class="restaurant">
-<div class="restaurant-icon">🥘</div>
-<h3>Desi Rasoi</h3>
-<p>North Indian • Chicken • Sweets</p>
-<p>⭐ 4.8 • Nearby</p>
-</div>
+    <div class="restaurant">
+      <div class="restaurant-icon">🥘</div>
+      <h3>Desi Rasoi</h3>
+      <p>North Indian • Chicken • Sweets</p>
+      <p>⭐ 4.8 • Nearby</p>
+    </div>
 
-</div>
+  </div>
+
 </section>
 
 
+<!-- WHY -->
 <section class="why">
 
-<h2 class="section-title">
-❤️ Why <span>BiteMitra?</span>
-</h2>
+  <h2 class="section-title">
+    ❤️ Why <span>BiteMitra?</span>
+  </h2>
 
-<div class="why-grid">
+  <div class="why-grid">
 
-<div class="why-card">
-<div class="icon">🏪</div>
-<h3>Local First</h3>
-<p>Local restaurants ko customers tak connect karne ka simple platform.</p>
-</div>
+    <div class="why-card">
+      <div class="icon">🏪</div>
+      <h3>Local First</h3>
+      <p>
+        Local restaurants ko customers tak
+        connect karne ka simple platform.
+      </p>
+    </div>
 
-<div class="why-card">
-<div class="icon">⚡</div>
-<h3>Simple & Fast</h3>
-<p>Easy search, quick cart aur simple ordering experience.</p>
-</div>
+    <div class="why-card">
+      <div class="icon">⚡</div>
+      <h3>Simple & Fast</h3>
+      <p>
+        Easy search, quick cart aur
+        simple ordering experience.
+      </p>
+    </div>
 
-<div class="why-card">
-<div class="icon">📍</div>
-<h3>Nearby Food</h3>
-<p>Apne aas-paas ke restaurants aur food discover karo.</p>
-</div>
+    <div class="why-card">
+      <div class="icon">📍</div>
+      <h3>Nearby Food</h3>
+      <p>
+        Apne aas-paas ke restaurants aur
+        food discover karo.
+      </p>
+    </div>
 
-<div class="why-card">
-<div class="icon">🇮🇳</div>
-<h3>Made in India</h3>
-<p>Indian users aur local businesses ko dhyan mein rakhkar.</p>
-</div>
+    <div class="why-card">
+      <div class="icon">🇮🇳</div>
+      <h3>Made in India</h3>
+      <p>
+        Indian users aur local businesses
+        ko dhyan mein rakhkar.
+      </p>
+    </div>
 
-</div>
+  </div>
+
 </section>
 
 
+<!-- INDIA -->
 <div class="india">
 
-<div class="india-logo">🇮🇳</div>
+  <div class="india-logo">
+    🇮🇳
+  </div>
 
-<h2>BiteMitra — Made in India</h2>
+  <h2>
+    BiteMitra — Made in India
+  </h2>
 
-<p>
-Good food, local businesses aur customers ko
-ek simple platform par connect karne ka mission.
-</p>
+  <p>
+    Good food, local businesses aur customers ko
+    ek simple platform par connect karne ka mission.
+  </p>
 
 </div>
 
 
 <footer>
 
-<div class="logo">🍴 Bite<span>Mitra</span></div>
+  <div class="logo">
+    🍴 Bite<span>Mitra</span>
+  </div>
 
-<p>Food • Drinks • Local Restaurants</p>
+  <p>
+    Food • Drinks • Local Restaurants
+  </p>
 
-<p>© 2026 BiteMitra. Made with ❤️ in India.</p>
+  <p>
+    © 2026 BiteMitra. Made with ❤️ in India.
+  </p>
 
 </footer>
 
 
+<!-- CART -->
 <div class="cart-panel" id="cartPanel">
 
-<h2>🛒 Your Cart</h2>
+  <div class="cart-header">
 
-<div id="cartItems">
-<p>Your cart is empty.</p>
-</div>
+    <h2>🛒 Your Cart</h2>
 
-<div class="total">
-Total: ₹<span id="cartTotal">0</span>
-</div>
+    <button
+      class="close-btn"
+      onclick="toggleCart()">
+      ✕
+    </button>
 
-<button class="order-btn" onclick="placeOrder()">
-📦 Place Order
-</button>
+  </div>
 
-</div>
+  <div id="cartItems">
+    <p>Your cart is empty.</p>
+  </div>
 
+  <div class="total-box">
 
-<script>
+    <div class="total-row">
+      <span>Subtotal</span>
+      <span>₹<span id="subtotal">0</span></span>
+    </div>
 
-let cart=[];
+    <div class="total-row">
+      <span>Delivery</span>
+      <span>₹<span id="delivery">0</span></span>
+    </div>
 
+    <div class="total-row grand-total">
+      <span>Total</span>
+      <span>₹<span id="cartTotal">0</span></span>
+    </div>
 
-function addToCart(name,price){
+    <button
+      class="checkout-btn"
+      onclick="openCheckout()">
+      Continue to Checkout
+    </button>
 
-cart.push({
-name:name,
-price:price
-});
-
-updateCart();
-
-alert(name+" added to cart! 🛒");
-
-}
-
-
-function updateCart(){
-
-document.getElementById("cartCount").innerText=cart.length;
-
-let items=document.getElementById("cartItems");
-
-let total=0;
-
-if(cart.length===0){
-
-items.innerHTML="<p>Your cart is empty.</p>";
-
-}else{
-
-items.innerHTML="";
-
-cart.forEach(function(item,index){
-
-total+=item.price;
-
-items.innerHTML+=`
-
-<div class="cart-item">
-
-<span>${item.name}</span>
-
-<span>
-<b>₹${item.price}</b>
-
-<button
-class="remove"
-onclick="removeItem(${index})">
-✕
-</button>
-
-</span>
+  </div>
 
 </div>
 
-`;
 
-});
+<!-- PROFILE -->
+<div class="profile-card" id="profileCard">
 
-}
+  <div class="profile-avatar">
+    👤
+  </div>
 
-document.getElementById("cartTotal").innerText=total;
+  <h3>Welcome to BiteMitra</h3>
 
-}
+  <p>
+    Customer profile
+  </p>
 
+  <button
+    class="profile-option"
+    onclick="showMessage('Login system next version mein add hoga.')">
+    🔐 Login / Sign Up
+  </button>
 
-function removeItem(index){
+  <button
+    class="profile-option"
+    onclick="showMessage('Order history next version mein add hoga.')">
+    📦 My Orders
+  </button>
 
-cart.splice(index,1);
+  <button
+    class="profile-option"
+    onclick="showMessage('Saved addresses next version mein add honge.')">
+    📍 Saved Addresses
+  </button>
 
-updateCart();
+</div>
 
-}
 
+<!-- CHECKOUT -->
+<div class="modal" id="checkoutModal">
 
-function toggleCart(){
+  <div class="modal-box">
 
-document
-.getElementById("cartPanel")
-.classList.toggle("show");
+    <div class="modal-head">
 
-}
+      <h2>📦 Checkout</h2>
 
+      <button
+        class="close-btn"
+        onclick="closeCheckout()">
+        ✕
+      </button>
 
-function placeOrder(){
+    </div>
 
-if(cart.length===0){
+    <div class="form-group">
 
-alert("🛒 Cart empty hai. Pehle food add karein.");
+      <label>
+        Full Name
+      </label>
 
-return;
+      <input
+        id="customerName"
+        type="text"
+        placeholder="Enter your name">
 
-}
+    </div>
 
-alert(
-"🎉 Order system ready!\n\n"+
-"Next version mein real address, order database aur payment gateway connect karenge."
-);
 
-}
+    <div class="form-group">
 
-
-function searchFood(){
-
-let search=document
-.getElementById("searchInput")
-.value
-.toLowerCase()
-.trim();
-
-let cards=document.querySelectorAll(".food-card");
-
-cards.forEach(function(card){
-
-let text=card.innerText.toLowerCase();
-
-if(search==="" || text.includes(search)){
-
-card.style.display="block";
-
-}else{
-
-card.style.display="none";
-
-}
-
-});
-
-}
-
-
-function filterFood(category){
-
-let cards=document.querySelectorAll(".food-card");
-
-cards.forEach(function(card){
-
-if(category==="all" ||
-card.dataset.category===category){
-
-card.style.display="block";
-
-}else{
-
-card.style.display="none";
-
-}
-
-});
-
-}
-
-
-function setLocation(){
-
-if(!navigator.geolocation){
-
-alert("Location browser mein available nahi hai.");
-
-return;
-
-}
-
-navigator.geolocation.getCurrentPosition(
-
-function(){
-
-alert(
-"📍 Location permission mil gayi!\n\n"+
-"Real delivery address system next version mein connect karenge."
-);
-
-},
-
-function(){
-
-alert(
-"📍 Location permission allow karein."
-);
-
-}
-
-);
-
-}
-
-
-function login(){
-
-alert(
-"👤 BiteMitra Login\n\n"+
-"Real OTP/Login system next version mein add karenge."
-);
-
-}
-
-</script>
-
-</body>
-</html>
+      <label>
+        Mobile Number
+      </label
