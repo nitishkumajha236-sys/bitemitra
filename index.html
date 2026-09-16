@@ -3,810 +3,233 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>BiteMitra | Food Delivery</title>
+<title>BiteMitra</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Arial,Helvetica,sans-serif;
-}
-
-body{
-  background:#fffaf7;
-  color:#222;
-}
-
-button{
-  cursor:pointer;
-}
-
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{background:#fffaf7;color:#222}
 header{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:#ff5a1f;
-  color:white;
-  padding:13px 5%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
+  background:#ff5a1f;color:white;padding:15px 5%;
+  display:flex;justify-content:space-between;align-items:center;
+  gap:15px;flex-wrap:wrap
 }
-
-.logo{
-  font-size:27px;
-  font-weight:800;
-}
-
-.badge{
-  display:inline-block;
-  margin-top:4px;
-  background:white;
-  color:#ff5a1f;
-  padding:4px 9px;
-  border-radius:20px;
-  font-size:11px;
-  font-weight:bold;
-}
-
-nav{
-  display:flex;
-  gap:7px;
-  flex-wrap:wrap;
-}
-
+.logo{font-size:28px;font-weight:bold}
+.badge{font-size:11px;background:white;color:#ff5a1f;padding:4px 8px;border-radius:20px}
 nav button{
-  border:0;
-  background:white;
-  color:#ff5a1f;
-  padding:9px 12px;
-  border-radius:8px;
-  font-weight:bold;
+  border:0;background:white;color:#ff5a1f;padding:10px 14px;
+  border-radius:8px;font-weight:bold;margin:3px
 }
-
-.hero{
-  text-align:center;
-  padding:45px 5%;
-  background:linear-gradient(135deg,#fff0e8,#fff);
-}
-
-.hero h1{
-  font-size:38px;
-  margin-bottom:10px;
-}
-
-.hero p{
-  color:#666;
-  margin-bottom:20px;
-}
-
+.hero{text-align:center;padding:45px 20px;background:#fff0e8}
+.hero h1{font-size:36px;margin-bottom:12px}
 .search{
-  width:90%;
-  max-width:700px;
-  padding:15px;
-  border:1px solid #ddd;
-  border-radius:12px;
-  font-size:16px;
-  outline:none;
+  width:90%;max-width:650px;padding:15px;border:1px solid #ddd;
+  border-radius:10px;font-size:16px
 }
-
-.container{
-  width:90%;
-  max-width:1200px;
-  margin:30px auto;
-}
-
-.categories{
-  display:flex;
-  gap:10px;
-  overflow-x:auto;
-  padding:15px 0;
-}
-
+.container{width:90%;max-width:1100px;margin:30px auto}
+.categories{display:flex;gap:8px;overflow:auto;margin:15px 0}
 .categories button{
-  padding:9px 16px;
-  border-radius:25px;
-  border:1px solid #ff5a1f;
-  background:white;
-  color:#ff5a1f;
-  white-space:nowrap;
+  white-space:nowrap;padding:9px 15px;border:1px solid #ff5a1f;
+  background:white;color:#ff5a1f;border-radius:20px
 }
-
-.categories button.active{
-  background:#ff5a1f;
-  color:white;
-}
-
-.restaurant{
-  margin-top:25px;
-}
-
-.restaurantTop{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:12px;
-}
-
-.open{
-  color:#159447;
-  font-weight:bold;
-}
-
+.categories button.active{background:#ff5a1f;color:white}
 .grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:18px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:18px;margin-top:15px
 }
-
 .card{
-  background:white;
-  border-radius:15px;
-  overflow:hidden;
-  box-shadow:0 3px 15px #0001;
+  background:white;border-radius:14px;overflow:hidden;
+  box-shadow:0 3px 15px #0001
 }
-
-.card img{
-  width:100%;
-  height:175px;
-  object-fit:cover;
-  background:#eee;
-}
-
-.cardBody{
-  padding:15px;
-}
-
-.cardBody h3{
-  margin-bottom:7px;
-}
-
-.old{
-  text-decoration:line-through;
-  color:#999;
-  margin-right:7px;
-}
-
-.price{
-  color:#ff4f14;
-  font-size:20px;
-  font-weight:bold;
-}
-
-.discount{
-  color:#159447;
-  font-size:13px;
-  font-weight:bold;
-  margin:8px 0;
-}
-
+.card img{width:100%;height:160px;object-fit:cover}
+.cardbody{padding:14px}
+.price{font-size:20px;color:#ff5a1f;font-weight:bold}
 .add{
-  width:100%;
-  padding:11px;
-  border:0;
-  border-radius:8px;
-  background:#ff5a1f;
-  color:white;
-  font-weight:bold;
+  width:100%;margin-top:10px;padding:11px;border:0;
+  border-radius:8px;background:#ff5a1f;color:white;font-weight:bold
 }
-
-.panel{
-  display:none;
-  background:white;
-  padding:25px;
-  border-radius:15px;
-  box-shadow:0 3px 15px #0001;
-}
-
-.panel input,
-.panel select,
-.modal input,
-.modal textarea{
-  width:100%;
-  padding:11px;
-  margin:7px 0 12px;
-  border:1px solid #ddd;
-  border-radius:8px;
-}
-
-.primary{
-  width:100%;
-  padding:12px;
-  border:0;
-  border-radius:8px;
-  background:#ff5a1f;
-  color:white;
-  font-weight:bold;
-}
-
-.secondary{
-  padding:10px;
-  border:0;
-  border-radius:8px;
-  background:#eee;
-  font-weight:bold;
-  margin-top:8px;
-}
-
-.cart{
-  display:none;
-  position:fixed;
-  right:15px;
-  bottom:15px;
-  width:360px;
-  max-width:calc(100% - 30px);
-  background:white;
-  border-radius:15px;
-  box-shadow:0 5px 30px #0004;
-  z-index:2000;
-}
-
-.cartHead{
-  background:#ff5a1f;
-  color:white;
-  padding:14px;
-  border-radius:15px 15px 0 0;
-  display:flex;
-  justify-content:space-between;
-}
-
-.cartHead button{
-  background:none;
-  border:0;
-  color:white;
-  font-size:22px;
-}
-
-.cartBody{
-  padding:15px;
-  max-height:300px;
-  overflow:auto;
-}
-
-.cartItem{
-  padding:12px 0;
-  border-bottom:1px solid #eee;
-}
-
-.qty{
-  display:flex;
-  gap:8px;
-  align-items:center;
-  margin-top:7px;
-}
-
-.qty button{
-  width:30px;
-  height:30px;
-  border:0;
-  border-radius:6px;
-}
-
-.cartFoot{
-  padding:15px;
-  border-top:1px solid #eee;
-}
-
-.checkout{
-  width:100%;
-  padding:12px;
-  margin-top:10px;
-  background:#159447;
-  color:white;
-  border:0;
-  border-radius:8px;
-  font-weight:bold;
-}
-
 .modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:#0008;
-  z-index:3000;
-  align-items:center;
-  justify-content:center;
+  display:none;position:fixed;inset:0;background:#0008;
+  align-items:center;justify-content:center;z-index:9999
 }
-
-.modalBox{
-  width:90%;
-  max-width:430px;
-  background:white;
-  padding:25px;
-  border-radius:15px;
+.box{
+  width:90%;max-width:400px;background:white;padding:25px;
+  border-radius:15px
 }
-
-.close{
-  float:right;
-  border:0;
-  background:none;
-  font-size:24px;
+.box input{
+  width:100%;padding:12px;margin:8px 0;border:1px solid #ddd;
+  border-radius:8px
 }
-
-.msg{
-  font-size:14px;
-  color:#666;
-  margin:8px 0;
+.primary{
+  width:100%;padding:12px;background:#ff5a1f;color:white;
+  border:0;border-radius:8px;font-weight:bold;margin-top:8px
 }
-
-.row{
-  padding:13px 0;
-  border-bottom:1px solid #eee;
+.secondary{
+  width:100%;padding:11px;background:#eee;border:0;
+  border-radius:8px;font-weight:bold;margin-top:8px
 }
-
-.empty{
-  text-align:center;
-  padding:35px;
-  color:#777;
+.close{float:right;border:0;background:none;font-size:25px}
+.message{margin-top:12px;font-size:14px}
+.panel{
+  display:none;background:white;padding:25px;border-radius:15px;
+  box-shadow:0 3px 15px #0001
 }
-
-.status{
-  padding:10px;
-  background:#fff3ed;
-  border-radius:8px;
-  margin:10px 0;
+.cart{
+  display:none;position:fixed;right:15px;bottom:15px;
+  width:350px;max-width:90%;background:white;z-index:5000;
+  box-shadow:0 5px 25px #0004;border-radius:15px;padding:18px
 }
-
-footer{
-  margin-top:50px;
-  padding:35px;
-  text-align:center;
-  background:#222;
-  color:white;
-}
-
-@media(max-width:650px){
-
-  header{
-    flex-direction:column;
-    align-items:flex-start;
-  }
-
-  .hero h1{
-    font-size:29px;
-  }
-
-  .grid{
-    grid-template-columns:1fr 1fr;
-  }
-}
-
-@media(max-width:430px){
-
-  .grid{
-    grid-template-columns:1fr;
-  }
-
-}
+footer{margin-top:50px;background:#222;color:white;text-align:center;padding:30px}
 </style>
 </head>
 
 <body>
 
 <header>
-
   <div>
     <div class="logo">🍴 BiteMitra</div>
-    <div class="badge">🇮🇳 MADE IN INDIA</div>
+    <span class="badge">🇮🇳 MADE IN INDIA</span>
   </div>
 
   <nav>
-
-    <button onclick="showHome()">
-      🏠 Home
-    </button>
-
-    <button onclick="openCart()">
-      🛒 Cart (<span id="cartCount">0</span>)
-    </button>
-
-    <button id="loginButton" onclick="openLogin()">
-      🔐 Login
-    </button>
-
-    <button
-      id="ownerButton"
-      onclick="openOwner()"
-      style="display:none">
-      🏪 Owner
-    </button>
-
-    <button
-      id="adminButton"
-      onclick="openAdmin()"
-      style="display:none">
-      👑 Admin
-    </button>
-
+    <button onclick="showHome()">🏠 Home</button>
+    <button onclick="openCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
+    <button id="loginBtn" onclick="openLogin()">🔐 Login</button>
+    <button id="ownerBtn" onclick="openOwner()" style="display:none">🏪 Owner</button>
+    <button id="adminBtn" onclick="openAdmin()" style="display:none">👑 Admin</button>
   </nav>
-
 </header>
 
-
 <section class="hero">
-
-  <h1>
-    Delicious Food, Your Local Mitra ❤️
-  </h1>
-
-  <p>
-    Search food, discover restaurants and order easily.
-  </p>
+  <h1>Delicious Food, Your Local Mitra ❤️</h1>
+  <p style="margin-bottom:18px">Order your favourite food easily.</p>
 
   <input
-    id="searchBox"
+    id="search"
     class="search"
-    type="text"
     placeholder="Search Pizza, Biryani, Burger..."
   >
-
 </section>
-
 
 <div class="container">
 
-  <!-- HOME -->
-
-  <div id="homeSection">
-
+  <section id="home">
     <h2>🍽️ Food Categories</h2>
+    <div id="categories" class="categories"></div>
+    <div id="foods"></div>
+  </section>
 
-    <div
-      id="categories"
-      class="categories">
-    </div>
-
-    <div id="foodContainer"></div>
-
-  </div>
-
-
-  <!-- OWNER -->
-
-  <div
-    id="ownerSection"
-    class="panel">
-
+  <section id="owner" class="panel">
     <h2>🏪 Restaurant Owner</h2>
+    <p style="margin:10px 0">Owner dashboard</p>
 
-    <p class="msg">
-      Apne restaurant ke food items manage karo.
-    </p>
+    <input id="ownerRestaurant" placeholder="Restaurant Name">
+    <input id="ownerFood" placeholder="Food Name">
+    <input id="ownerPrice" type="number" placeholder="Price ₹">
 
-    <input
-      id="ownerRestaurant"
-      placeholder="Restaurant Name"
-    >
-
-    <input
-      id="ownerFood"
-      placeholder="Food Name"
-    >
-
-    <select id="ownerCategory">
-
-      <option>Pizza</option>
-      <option>Biryani</option>
-      <option>Chicken</option>
-      <option>Burger</option>
-      <option>Sweets</option>
-      <option>Drinks</option>
-      <option>Rice</option>
-      <option>Other</option>
-
-    </select>
-
-    <input
-      id="ownerPrice"
-      type="number"
-      placeholder="Price ₹"
-    >
-
-    <input
-      id="ownerDiscount"
-      type="number"
-      min="0"
-      max="100"
-      value="0"
-      placeholder="Discount %"
-    >
-
-    <button
-      class="primary"
-      onclick="addOwnerFood()">
+    <button class="primary" onclick="addOwnerFood()">
       ➕ Add Food
     </button>
 
-    <div
-      id="ownerFoodList"
-      style="margin-top:20px">
-    </div>
+    <div id="ownerList" style="margin-top:20px"></div>
 
-    <button
-      class="secondary"
-      onclick="showHome()">
-      🏠 Back
-    </button>
+    <button class="secondary" onclick="showHome()">🏠 Back</button>
+  </section>
 
-  </div>
-
-
-  <!-- ADMIN -->
-
-  <div
-    id="adminSection"
-    class="panel">
-
+  <section id="admin" class="panel">
     <h2>👑 BiteMitra Admin</h2>
-
-    <p class="msg">
-      Admin dashboard — platform control
+    <p style="margin:10px 0">
+      Only BiteMitra admin can access this dashboard.
     </p>
 
-    <div class="status">
-      🔐 Only the designated admin account can access this panel.
-    </div>
+    <input id="adminRestaurant" placeholder="Restaurant Name">
+    <input id="adminFood" placeholder="Food Name">
+    <input id="adminPrice" type="number" placeholder="Price ₹">
 
-    <h3 style="margin-top:20px">
-      ➕ Add Food
-    </h3>
-
-    <input
-      id="adminRestaurant"
-      placeholder="Restaurant Name"
-    >
-
-    <input
-      id="adminFood"
-      placeholder="Food Name"
-    >
-
-    <select id="adminCategory">
-
-      <option>Pizza</option>
-      <option>Biryani</option>
-      <option>Chicken</option>
-      <option>Burger</option>
-      <option>Sweets</option>
-      <option>Drinks</option>
-      <option>Rice</option>
-      <option>Other</option>
-
-    </select>
-
-    <input
-      id="adminPrice"
-      type="number"
-      placeholder="Price ₹"
-    >
-
-    <input
-      id="adminDiscount"
-      type="number"
-      min="0"
-      max="100"
-      value="0"
-      placeholder="Discount %"
-    >
-
-    <button
-      class="primary"
-      onclick="addAdminFood()">
+    <button class="primary" onclick="addAdminFood()">
       ➕ Add Food
     </button>
 
-    <h3 style="margin-top:25px">
-      🍴 Food Management
-    </h3>
+    <div id="adminList" style="margin-top:20px"></div>
 
-    <div id="adminFoodList"></div>
+    <h3 style="margin-top:25px">📦 Orders</h3>
+    <div id="orders" style="margin-top:10px">Loading...</div>
 
-    <h3 style="margin-top:25px">
-      📦 Orders
-    </h3>
-
-    <div id="orderList">
-      Loading...
-    </div>
-
-    <button
-      class="secondary"
-      onclick="showHome()">
-      🏠 Back
-    </button>
-
-  </div>
+    <button class="secondary" onclick="showHome()">🏠 Back</button>
+  </section>
 
 </div>
-
-
-<!-- CART -->
-
-<div
-  id="cartBox"
-  class="cart">
-
-  <div class="cartHead">
-
-    <b>🛒 Your Cart</b>
-
-    <button onclick="closeCart()">
-      ×
-    </button>
-
-  </div>
-
-  <div
-    id="cartItems"
-    class="cartBody">
-  </div>
-
-  <div class="cartFoot">
-
-    <b>
-      Total: ₹<span id="cartTotal">0</span>
-    </b>
-
-    <button
-      class="checkout"
-      onclick="checkout()">
-      Proceed to Order
-    </button>
-
-  </div>
-
-</div>
-
 
 <!-- LOGIN -->
+<div id="loginModal" class="modal">
+  <div class="box">
 
-<div
-  id="loginModal"
-  class="modal">
-
-  <div class="modalBox">
-
-    <button
-      class="close"
-      onclick="closeLogin()">
-      ×
-    </button>
+    <button class="close" onclick="closeLogin()">×</button>
 
     <h2>🔐 BiteMitra Login</h2>
 
-    <p class="msg">
-      Customer / Restaurant Owner / Admin
-    </p>
+    <input id="email" type="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
 
-    <input
-      id="loginEmail"
-      type="email"
-      placeholder="Email"
-    >
-
-    <input
-      id="loginPassword"
-      type="password"
-      placeholder="Password"
-    >
-
-    <button
-      class="primary"
-      onclick="loginUser()">
+    <button class="primary" onclick="loginUser()">
       Login
     </button>
 
-    <button
-      class="secondary"
-      style="width:100%"
-      onclick="createCustomer()">
-      Create Customer Account
+    <button class="secondary" onclick="createAccount()">
+      Create Account
     </button>
 
-    <p
-      id="loginMessage"
-      class="msg">
-    </p>
+    <p id="loginMessage" class="message"></p>
 
   </div>
-
 </div>
 
+<!-- CART -->
+<div id="cart" class="cart">
+  <h2>🛒 Cart</h2>
+  <div id="cartItems" style="margin:15px 0"></div>
+  <h3>Total: ₹<span id="total">0</span></h3>
 
-<!-- ORDER -->
+  <button class="primary" onclick="placeOrder()">
+    💵 Place COD Order
+  </button>
 
-<div
-  id="orderModal"
-  class="modal">
-
-  <div class="modalBox">
-
-    <button
-      class="close"
-      onclick="closeOrder()">
-      ×
-    </button>
-
-    <h2>📦 Place COD Order</h2>
-
-    <input
-      id="customerName"
-      placeholder="Your Name"
-    >
-
-    <input
-      id="customerPhone"
-      type="tel"
-      placeholder="Mobile Number"
-    >
-
-    <textarea
-      id="customerAddress"
-      rows="4"
-      placeholder="Delivery Address">
-    </textarea>
-
-    <div class="status">
-      💵 <b>Cash on Delivery</b>
-    </div>
-
-    <button
-      class="primary"
-      onclick="placeOrder()">
-      ✅ Confirm Order
-    </button>
-
-  </div>
-
+  <button class="secondary" onclick="closeCart()">
+    Close
+  </button>
 </div>
-
 
 <footer>
-
   <h2>🍴 BiteMitra</h2>
-
-  <p style="margin-top:8px">
-    Your Local Food Delivery Partner
-  </p>
-
-  <p style="margin-top:10px">
-    🇮🇳 MADE IN INDIA
-  </p>
-
+  <p style="margin-top:8px">Your Local Food Delivery Partner</p>
+  <p style="margin-top:8px">🇮🇳 MADE IN INDIA</p>
 </footer>
 
 
 <script type="module">
 
-/* =====================================================
+/* =========================
    FIREBASE
-===================================================== */
+========================= */
 
-import {
-  initializeApp
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {initializeApp}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+  onAuthStateChanged,
+  signOut
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
   getFirestore,
   collection,
   addDoc,
-  getDocs,
-  deleteDoc,
-  doc,
-  query,
-  where
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  getDocs
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
 const firebaseConfig = {
@@ -832,86 +255,49 @@ const firebaseConfig = {
 };
 
 
-const app =
-  initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
-const auth =
-  getAuth(app);
+const auth = getAuth(app);
 
-const db =
-  getFirestore(app);
+const db = getFirestore(app);
 
 
-/* =====================================================
-   ADMIN EMAIL
-===================================================== */
+/* =========================
+   ADMIN
+========================= */
 
 const ADMIN_EMAIL =
   "supportbitemitra@gmail.com";
 
 
-/* =====================================================
-   DATA
-===================================================== */
+/* =========================
+   FOOD DATA
+========================= */
 
-let foods = [];
-
-let cart =
-  JSON.parse(
-    localStorage.getItem("bitemitra_cart")
-  ) || [];
-
-let selectedCategory =
-  "All";
-
-let searchText =
-  "";
-
-
-/* =====================================================
-   DEFAULT FOOD
-===================================================== */
-
-const defaultFoods = [
-
-  {
-    restaurant:"Mithila Food Corner",
-    name:"Paneer Pizza",
-    category:"Pizza",
-    price:200,
-    discount:5,
-    image:
-    "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=800&q=80"
-  },
+let foods = [
 
   {
     restaurant:"Mithila Food Corner",
     name:"Chicken Biryani",
     category:"Biryani",
     price:180,
-    discount:5,
-    image:
-    "https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=800&q=80"
+    image:"https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    restaurant:"Mithila Food Corner",
+    name:"Pizza",
+    category:"Pizza",
+    price:200,
+    image:"https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=800&q=80"
   },
 
   {
     restaurant:"Bite House",
-    name:"Chicken Burger",
+    name:"Burger",
     category:"Burger",
     price:150,
-    discount:10,
-    image:
-    "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80"
-  },
-
-  {
-    restaurant:"Bite House",
-    name:"Cold Drink",
-    category:"Drinks",
-    price:50,
-    discount:5,
-    image:
-    "https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=800&q=80"
+    image:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80"
   },
 
   {
@@ -919,135 +305,88 @@ const defaultFoods = [
     name:"Gulab Jamun",
     category:"Sweets",
     price:100,
-    discount:5,
-    image:
-    "https://images.unsplash.com/photo-1666190094766-efb7e8c5b2f3?auto=format&fit=crop&w=800&q=80"
+    image:"https://placehold.co/800x500?text=Gulab+Jamun"
   },
 
   {
-    restaurant:"Desi Rasoi",
-    name:"Rice",
-    category:"Rice",
-    price:100,
-    discount:5,
-    image:
-    "https://images.unsplash.com/photo-1516684732162-798a0062be99?auto=format&fit=crop&w=800&q=80"
+    restaurant:"Bite House",
+    name:"Cold Drink",
+    category:"Drinks",
+    price:50,
+    image:"https://placehold.co/800x500?text=Cold+Drink"
   }
 
 ];
 
 
-/* =====================================================
-   HELPERS
-===================================================== */
+let selectedCategory="All";
 
-function escapeHTML(value){
-
-  return String(value ?? "")
-  .replace(/&/g,"&amp;")
-  .replace(/</g,"&lt;")
-  .replace(/>/g,"&gt;")
-  .replace(/"/g,"&quot;")
-  .replace(/'/g,"&#039;");
-
-}
+let cartData=[];
 
 
-function finalPrice(food){
-
-  return Math.round(
-    food.price -
-    (food.price * food.discount / 100)
-  );
-
-}
-
-
-/* =====================================================
+/* =========================
    HOME
-===================================================== */
+========================= */
 
-window.showHome =
-function(){
+window.showHome=function(){
 
-  document.getElementById(
-    "homeSection"
-  ).style.display="block";
+  document.getElementById("home").style.display="block";
 
-  document.getElementById(
-    "ownerSection"
-  ).style.display="none";
+  document.getElementById("owner").style.display="none";
 
-  document.getElementById(
-    "adminSection"
-  ).style.display="none";
-
-  renderFoods();
+  document.getElementById("admin").style.display="none";
 
 };
 
 
-/* =====================================================
-   LOGIN MODAL
-===================================================== */
+/* =========================
+   LOGIN WINDOW
+========================= */
 
-window.openLogin =
-function(){
+window.openLogin=function(){
 
-  document.getElementById(
-    "loginModal"
-  ).style.display="flex";
+  document.getElementById("loginModal").style.display="flex";
 
 };
 
 
-window.closeLogin =
-function(){
+window.closeLogin=function(){
 
-  document.getElementById(
-    "loginModal"
-  ).style.display="none";
+  document.getElementById("loginModal").style.display="none";
 
 };
 
 
-/* =====================================================
-   CUSTOMER CREATE
-===================================================== */
+/* =========================
+   CREATE ACCOUNT
+========================= */
 
-window.createCustomer =
-async function(){
+window.createAccount=async function(){
 
-  const email =
-    document.getElementById(
-      "loginEmail"
-    ).value.trim();
+  const email=
+    document.getElementById("email").value.trim();
 
-  const password =
-    document.getElementById(
-      "loginPassword"
-    ).value;
+  const password=
+    document.getElementById("password").value;
 
-  const message =
-    document.getElementById(
-      "loginMessage"
-    );
+  const message=
+    document.getElementById("loginMessage");
 
 
-  if(!email){
+  if(!email || !password){
 
-    message.innerText =
-      "⚠️ Email enter karo.";
+    message.innerText=
+      "Email aur password bharo.";
 
     return;
 
   }
 
 
-  if(password.length < 6){
+  if(password.length<6){
 
-    message.innerText =
-      "⚠️ Password minimum 6 characters hona chahiye.";
+    message.innerText=
+      "Password minimum 6 characters hona chahiye.";
 
     return;
 
@@ -1062,47 +401,40 @@ async function(){
       password
     );
 
-    message.innerText =
+    message.innerText=
       "✅ Account created successfully.";
 
   }
   catch(error){
 
-    message.innerText =
-      "❌ "+error.code;
+    message.innerText=
+      "❌ "+error.message;
 
   }
 
 };
 
 
-/* =====================================================
+/* =========================
    LOGIN
-===================================================== */
+========================= */
 
-window.loginUser =
-async function(){
+window.loginUser=async function(){
 
-  const email =
-    document.getElementById(
-      "loginEmail"
-    ).value.trim();
+  const email=
+    document.getElementById("email").value.trim();
 
-  const password =
-    document.getElementById(
-      "loginPassword"
-    ).value;
+  const password=
+    document.getElementById("password").value;
 
-  const message =
-    document.getElementById(
-      "loginMessage"
-    );
+  const message=
+    document.getElementById("loginMessage");
 
 
   if(!email || !password){
 
-    message.innerText =
-      "⚠️ Email aur password bharo.";
+    message.innerText=
+      "Email aur password bharo.";
 
     return;
 
@@ -1117,56 +449,51 @@ async function(){
       password
     );
 
-    message.innerText =
+    message.innerText=
       "✅ Login successful.";
 
     setTimeout(
-      closeLogin,
+      function(){
+        closeLogin();
+      },
       700
     );
 
   }
   catch(error){
 
-    message.innerText =
-      "❌ Login failed: "+
-      error.code;
+    message.innerText=
+      "❌ "+error.message;
 
   }
 
 };
 
 
-/* =====================================================
+/* =========================
    AUTH STATE
-===================================================== */
+========================= */
 
 onAuthStateChanged(
   auth,
   function(user){
 
-    const loginButton =
-      document.getElementById(
-        "loginButton"
-      );
+    const loginBtn=
+      document.getElementById("loginBtn");
 
-    const adminButton =
-      document.getElementById(
-        "adminButton"
-      );
+    const ownerBtn=
+      document.getElementById("ownerBtn");
 
-    const ownerButton =
-      document.getElementById(
-        "ownerButton"
-      );
+    const adminBtn=
+      document.getElementById("adminBtn");
 
 
     if(user){
 
-      loginButton.innerText =
+      loginBtn.innerText=
         "🚪 Logout";
 
-      loginButton.onclick =
+      loginBtn.onclick=
         async function(){
 
           await signOut(auth);
@@ -1178,41 +505,33 @@ onAuthStateChanged(
 
       if(
         user.email &&
-        user.email.toLowerCase() ===
+        user.email.toLowerCase()===
         ADMIN_EMAIL.toLowerCase()
       ){
 
-        adminButton.style.display =
-          "block";
+        adminBtn.style.display="inline-block";
 
-        ownerButton.style.display =
-          "none";
+        ownerBtn.style.display="none";
 
       }
       else{
 
-        adminButton.style.display =
-          "none";
+        ownerBtn.style.display="inline-block";
 
-        ownerButton.style.display =
-          "block";
+        adminBtn.style.display="none";
 
       }
 
     }
     else{
 
-      loginButton.innerText =
-        "🔐 Login";
+      loginBtn.innerText="🔐 Login";
 
-      loginButton.onclick =
-        openLogin;
+      loginBtn.onclick=openLogin;
 
-      adminButton.style.display =
-        "none";
+      ownerBtn.style.display="none";
 
-      ownerButton.style.display =
-        "none";
+      adminBtn.style.display="none";
 
     }
 
@@ -1220,153 +539,52 @@ onAuthStateChanged(
 );
 
 
-/* =====================================================
-   LOAD FOOD
-===================================================== */
-
-async function loadFoods(){
-
-  try{
-
-    const snapshot =
-      await getDocs(
-        collection(db,"foods")
-      );
-
-
-    if(snapshot.empty){
-
-      for(
-        const food of defaultFoods
-      ){
-
-        await addDoc(
-          collection(db,"foods"),
-          food
-        );
-
-      }
-
-
-      foods =
-        defaultFoods.map(
-          function(food,index){
-
-            return {
-              id:"default-"+index,
-              ...food
-            };
-
-          }
-        );
-
-    }
-    else{
-
-      foods =
-        snapshot.docs.map(
-          function(item){
-
-            return {
-              id:item.id,
-              ...item.data()
-            };
-
-          }
-        );
-
-    }
-
-  }
-  catch(error){
-
-    console.log(error);
-
-    foods =
-      defaultFoods.map(
-        function(food,index){
-
-          return {
-            id:"default-"+index,
-            ...food
-          };
-
-        }
-      );
-
-  }
-
-
-  renderFoods();
-
-}
-
-
-/* =====================================================
+/* =========================
    CATEGORIES
-===================================================== */
+========================= */
 
 function renderCategories(){
 
-  const list = [
+  const list=[
     "All",
     "Pizza",
     "Biryani",
     "Chicken",
     "Burger",
     "Sweets",
-    "Drinks",
-    "Rice",
-    "Other"
+    "Drinks"
   ];
 
+  const box=
+    document.getElementById("categories");
 
-  const box =
-    document.getElementById(
-      "categories"
-    );
-
-  box.innerHTML = "";
+  box.innerHTML="";
 
 
   list.forEach(
     function(category){
 
-      const button =
-        document.createElement(
-          "button"
-        );
+      const button=
+        document.createElement("button");
 
-      button.innerText =
-        category;
+      button.innerText=category;
 
+      if(category===selectedCategory){
 
-      if(
-        category ===
-        selectedCategory
-      ){
-
-        button.classList.add(
-          "active"
-        );
+        button.classList.add("active");
 
       }
 
-
-      button.onclick =
+      button.onclick=
         function(){
 
-          selectedCategory =
-            category;
+          selectedCategory=category;
 
           renderFoods();
 
         };
 
-
-      box.appendChild(
-        button
-      );
+      box.appendChild(button);
 
     }
   );
@@ -1374,10 +592,476 @@ function renderCategories(){
 }
 
 
-/* =====================================================
+/* =========================
    FOOD DISPLAY
-===================================================== */
+========================= */
 
 function renderFoods(){
 
-  rend
+  renderCategories();
+
+  const box=
+    document.getElementById("foods");
+
+  box.innerHTML="";
+
+
+  const search=
+    document.getElementById("search")
+    .value
+    .toLowerCase();
+
+
+  const filtered=
+    foods.filter(
+      function(food){
+
+        const categoryOK=
+          selectedCategory==="All" ||
+          food.category===selectedCategory;
+
+        const searchOK=
+          food.name.toLowerCase().includes(search) ||
+          food.restaurant.toLowerCase().includes(search);
+
+        return categoryOK && searchOK;
+
+      }
+    );
+
+
+  if(!filtered.length){
+
+    box.innerHTML=
+      "<p style='padding:30px'>Food nahi mila.</p>";
+
+    return;
+
+  }
+
+
+  const grid=
+    document.createElement("div");
+
+  grid.className="grid";
+
+
+  filtered.forEach(
+    function(food,index){
+
+      const card=
+        document.createElement("div");
+
+      card.className="card";
+
+
+      card.innerHTML=`
+
+        <img
+          src="${food.image}"
+          onerror="
+            this.src='https://placehold.co/800x500?text=BiteMitra'
+          "
+        >
+
+        <div class="cardbody">
+
+          <h3>${food.name}</h3>
+
+          <p style="color:#777;margin:6px 0">
+            🏪 ${food.restaurant}
+          </p>
+
+          <div class="price">
+            ₹${food.price}
+          </div>
+
+          <button
+            class="add"
+            onclick="addToCart(${index})">
+            🛒 Add to Cart
+          </button>
+
+        </div>
+      `;
+
+      grid.appendChild(card);
+
+    }
+  );
+
+
+  box.appendChild(grid);
+
+}
+
+
+document.getElementById("search")
+.addEventListener(
+  "input",
+  renderFoods
+);
+
+
+/* =========================
+   CART
+========================= */
+
+window.addToCart=function(index){
+
+  const food=foods[index];
+
+  cartData.push(food);
+
+  renderCart();
+
+  alert(
+    "✅ "+food.name+" cart mein add ho gaya."
+  );
+
+};
+
+
+function renderCart(){
+
+  const box=
+    document.getElementById("cartItems");
+
+  box.innerHTML="";
+
+  let total=0;
+
+
+  cartData.forEach(
+    function(food){
+
+      total+=Number(food.price);
+
+      box.innerHTML+=`
+        <div style="
+          padding:10px 0;
+          border-bottom:1px solid #ddd
+        ">
+          ${food.name} — ₹${food.price}
+        </div>
+      `;
+
+    }
+  );
+
+
+  document.getElementById("total")
+  .innerText=total;
+
+
+  document.getElementById("cartCount")
+  .innerText=cartData.length;
+
+}
+
+
+window.openCart=function(){
+
+  document.getElementById("cart")
+  .style.display="block";
+
+  renderCart();
+
+};
+
+
+window.closeCart=function(){
+
+  document.getElementById("cart")
+  .style.display="none";
+
+};
+
+
+window.placeOrder=function(){
+
+  if(!cartData.length){
+
+    alert("Cart empty hai.");
+
+    return;
+
+  }
+
+
+  if(!auth.currentUser){
+
+    alert("Pehle login karo.");
+
+    openLogin();
+
+    return;
+
+  }
+
+
+  alert(
+    "💵 COD order system ready hai.\n\n"+
+    "Customer details/order database next step mein add karenge."
+  );
+
+};
+
+
+/* =========================
+   OWNER
+========================= */
+
+window.openOwner=function(){
+
+  document.getElementById("home").style.display="none";
+
+  document.getElementById("admin").style.display="none";
+
+  document.getElementById("owner").style.display="block";
+
+};
+
+
+window.addOwnerFood=async function(){
+
+  const user=auth.currentUser;
+
+  if(!user){
+
+    alert("Login required.");
+
+    return;
+
+  }
+
+
+  const restaurant=
+    document.getElementById("ownerRestaurant")
+    .value.trim();
+
+  const name=
+    document.getElementById("ownerFood")
+    .value.trim();
+
+  const price=
+    Number(
+      document.getElementById("ownerPrice")
+      .value
+    );
+
+
+  if(!restaurant || !name || !price){
+
+    alert(
+      "Restaurant, food name aur price bharo."
+    );
+
+    return;
+
+  }
+
+
+  try{
+
+    await addDoc(
+      collection(db,"foods"),
+      {
+        restaurant:restaurant,
+        name:name,
+        category:"Other",
+        price:price,
+        image:"https://placehold.co/800x500?text=BiteMitra",
+        ownerUid:user.uid,
+        ownerEmail:user.email
+      }
+    );
+
+
+    foods.push({
+      restaurant:restaurant,
+      name:name,
+      category:"Other",
+      price:price,
+      image:"https://placehold.co/800x500?text=BiteMitra"
+    });
+
+
+    renderFoods();
+
+
+    alert("✅ Food added.");
+
+  }
+  catch(error){
+
+    alert("❌ "+error.message);
+
+  }
+
+};
+
+
+/* =========================
+   ADMIN
+========================= */
+
+window.openAdmin=function(){
+
+  const user=auth.currentUser;
+
+
+  if(
+    !user ||
+    user.email.toLowerCase() !==
+    ADMIN_EMAIL.toLowerCase()
+  ){
+
+    alert("⛔ Admin access only.");
+
+    return;
+
+  }
+
+
+  document.getElementById("home").style.display="none";
+
+  document.getElementById("owner").style.display="none";
+
+  document.getElementById("admin").style.display="block";
+
+  loadOrders();
+
+};
+
+
+window.addAdminFood=async function(){
+
+  const user=auth.currentUser;
+
+
+  if(
+    !user ||
+    user.email.toLowerCase() !==
+    ADMIN_EMAIL.toLowerCase()
+  ){
+
+    alert("⛔ Admin access only.");
+
+    return;
+
+  }
+
+
+  const restaurant=
+    document.getElementById("adminRestaurant")
+    .value.trim();
+
+  const name=
+    document.getElementById("adminFood")
+    .value.trim();
+
+  const price=
+    Number(
+      document.getElementById("adminPrice")
+      .value
+    );
+
+
+  if(!restaurant || !name || !price){
+
+    alert(
+      "Restaurant, food name aur price bharo."
+    );
+
+    return;
+
+  }
+
+
+  try{
+
+    await addDoc(
+      collection(db,"foods"),
+      {
+        restaurant:restaurant,
+        name:name,
+        category:"Other",
+        price:price,
+        image:"https://placehold.co/800x500?text=BiteMitra",
+        addedBy:"admin",
+        adminEmail:user.email
+      }
+    );
+
+
+    foods.push({
+      restaurant:restaurant,
+      name:name,
+      category:"Other",
+      price:price,
+      image:"https://placehold.co/800x500?text=BiteMitra"
+    });
+
+
+    renderFoods();
+
+
+    alert("✅ Admin food added.");
+
+  }
+  catch(error){
+
+    alert("❌ "+error.message);
+
+  }
+
+};
+
+
+/* =========================
+   ORDERS
+========================= */
+
+async function loadOrders(){
+
+  const box=
+    document.getElementById("orders");
+
+  try{
+
+    const snapshot=
+      await getDocs(
+        collection(db,"orders")
+      );
+
+    box.innerHTML=
+      "Total orders: "+
+      snapshot.size;
+
+  }
+  catch(error){
+
+    box.innerText=
+      "Orders load error: "+
+      error.message;
+
+  }
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+renderCategories();
+
+renderFoods();
+
+renderCart();
+
+</script>
+
+</body>
+</html>
