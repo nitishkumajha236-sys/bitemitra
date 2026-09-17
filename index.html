@@ -3,152 +3,122 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>BiteMitra | Food Delivery</title>
+<title>BiteMitra | Your Local Food Delivery Partner</title>
 
 <!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-storage-compat.js"></script>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Arial,sans-serif;
-}
-
+*{box-sizing:border-box;margin:0;padding:0}
 body{
+  font-family:Arial,Helvetica,sans-serif;
   background:#f7f7f7;
   color:#222;
 }
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
 
-header{
+.navbar{
   background:#ff6b00;
   color:white;
-  padding:14px 5%;
+  padding:13px 5%;
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:15px;
   position:sticky;
   top:0;
-  z-index:100;
+  z-index:1000;
+  box-shadow:0 2px 10px #0002;
 }
-
 .logo{
   font-size:25px;
   font-weight:800;
+  cursor:pointer;
+  white-space:nowrap;
 }
-
 .badge{
   background:white;
   color:#ff6b00;
-  padding:5px 9px;
-  border-radius:20px;
-  font-size:11px;
+  padding:4px 8px;
+  border-radius:15px;
+  font-size:10px;
   font-weight:bold;
-  margin-left:7px;
+  margin-left:6px;
 }
-
-nav{
+.navlinks{
   display:flex;
-  gap:7px;
+  align-items:center;
+  gap:8px;
   flex-wrap:wrap;
+  justify-content:flex-end;
 }
-
-nav button{
+.navbtn{
   border:0;
   background:transparent;
   color:white;
   padding:9px 11px;
   border-radius:8px;
-  cursor:pointer;
   font-weight:bold;
 }
-
-nav button:hover{
-  background:rgba(255,255,255,.2);
-}
+.navbtn:hover{background:#0002}
 
 .hero{
-  width:90%;
-  max-width:1200px;
-  min-height:300px;
-  margin:20px auto;
-  padding:45px;
-  border-radius:20px;
-  display:flex;
-  align-items:center;
+  background:linear-gradient(135deg,#ff6b00,#ff9b42);
   color:white;
-
-  background:
-  linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
-  url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1400&q=80")
-  center/cover;
+  padding:55px 5%;
+  text-align:center;
 }
-
-.hero h1{
-  font-size:42px;
-  margin-bottom:10px;
-}
-
-.hero p{
-  font-size:18px;
-  margin-bottom:20px;
-}
-
-.search{
+.hero h1{font-size:42px;margin-bottom:10px}
+.hero p{font-size:18px;margin-bottom:24px}
+.searchbox{
+  max-width:650px;
+  margin:auto;
   display:flex;
-  width:100%;
-  max-width:600px;
   background:white;
-  border-radius:12px;
-  overflow:hidden;
+  border-radius:30px;
+  padding:6px;
+  box-shadow:0 5px 20px #0003;
 }
-
-.search input{
+.searchbox input{
   flex:1;
   border:0;
   outline:0;
-  padding:15px;
-  font-size:16px;
+  padding:13px 18px;
+  border-radius:25px;
+  min-width:0;
 }
-
-.search button{
+.searchbox button{
   border:0;
   background:#ff6b00;
   color:white;
-  padding:0 25px;
-  cursor:pointer;
+  padding:12px 22px;
+  border-radius:25px;
   font-weight:bold;
 }
 
 .container{
   width:90%;
-  max-width:1200px;
-  margin:25px auto;
+  max-width:1250px;
+  margin:30px auto;
 }
-
 .categories{
   display:flex;
   gap:10px;
   overflow-x:auto;
   padding:5px 0 15px;
 }
-
-.cat{
+.category{
   border:1px solid #ddd;
   background:white;
   padding:10px 18px;
   border-radius:25px;
-  cursor:pointer;
   white-space:nowrap;
 }
-
-.cat:hover,
-.cat.active{
+.category.active,.category:hover{
   background:#ff6b00;
   color:white;
   border-color:#ff6b00;
@@ -156,1279 +126,762 @@ nav button:hover{
 
 .layout{
   display:grid;
-  grid-template-columns:1fr 280px;
+  grid-template-columns:1fr 300px;
   gap:25px;
 }
-
-.food-grid{
+.foodgrid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:20px;
+  gap:18px;
 }
-
-.food-card{
+.foodcard{
   background:white;
   border-radius:15px;
   overflow:hidden;
-  box-shadow:0 3px 15px rgba(0,0,0,.08);
+  box-shadow:0 3px 12px #0001;
+  transition:.2s;
 }
-
-.food-card img{
+.foodcard:hover{transform:translateY(-3px);box-shadow:0 7px 20px #0002}
+.foodimg{
   width:100%;
-  height:170px;
+  height:190px;
   object-fit:cover;
+  background:#eee;
 }
-
-.food-info{
-  padding:15px;
-}
-
-.food-info h3{
-  margin-bottom:7px;
-}
-
-.restaurant{
-  color:#777;
-  font-size:13px;
-  margin-bottom:10px;
-}
-
+.foodbody{padding:15px}
+.foodbody h3{margin-bottom:6px}
+.restaurant{color:#777;font-size:13px;margin-bottom:10px}
 .price{
-  color:#ff6b00;
-  font-size:20px;
+  font-size:19px;
   font-weight:bold;
+  color:#ff6b00;
 }
-
-.old-price{
+.oldprice{
   color:#999;
   text-decoration:line-through;
   font-size:13px;
   margin-left:5px;
 }
-
 .discount{
-  color:#16863a;
-  background:#e7f8ec;
+  display:inline-block;
+  background:#e8f8ed;
+  color:#15803d;
   padding:4px 7px;
   border-radius:5px;
-  font-size:12px;
+  font-size:11px;
+  font-weight:bold;
   margin-left:5px;
 }
-
-.actions{
+.cardbuttons{
   display:flex;
   gap:8px;
   margin-top:13px;
 }
-
-.actions button{
+.addbtn,.orderbtn{
   flex:1;
   border:0;
-  padding:10px;
+  padding:10px 7px;
   border-radius:8px;
-  cursor:pointer;
   font-weight:bold;
 }
-
-.cart-btn{
-  background:#fff0e6;
+.addbtn{
+  background:#fff1e8;
   color:#ff6b00;
 }
-
-.order-btn{
+.orderbtn{
   background:#ff6b00;
   color:white;
 }
 
-aside{
+.sidebar{
   display:flex;
   flex-direction:column;
   gap:15px;
 }
-
-.side-box{
+.sidebox{
   background:white;
-  padding:20px;
-  border-radius:15px;
-  box-shadow:0 3px 15px rgba(0,0,0,.07);
+  padding:18px;
+  border-radius:14px;
+  box-shadow:0 3px 12px #0001;
 }
-
-.side-box h3{
-  margin-bottom:10px;
-}
-
-.login-side{
-  background:#fff3e9;
-  border:1px solid #ffd5b8;
-}
-
-.login-side button{
+.sidebox h3{margin-bottom:10px}
+.sidebox p{font-size:14px;color:#666;line-height:1.6}
+.sidebtn{
   width:100%;
-  margin-top:10px;
-  padding:11px;
   border:0;
-  border-radius:8px;
   background:#ff6b00;
   color:white;
+  padding:11px;
+  border-radius:8px;
   font-weight:bold;
-  cursor:pointer;
+  margin-top:10px;
 }
 
 .status{
   text-align:center;
+  padding:10px;
   color:#666;
-  padding:15px;
+  font-size:14px;
 }
 
-footer{
+.footer{
+  margin-top:50px;
   background:#111;
   color:white;
-  margin-top:50px;
   padding:40px 5%;
+}
+.footergrid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:30px;
+}
+.footer h2{margin-bottom:10px}
+.footer p{color:#bbb;line-height:1.7}
+.footer a{
+  color:#bbb;
+  display:block;
+  margin:7px 0;
+  cursor:pointer;
+}
+.copyright{
+  border-top:1px solid #333;
+  margin-top:25px;
+  padding-top:20px;
+  color:#888;
   text-align:center;
 }
-
-footer p{
-  color:#aaa;
-  margin-top:8px;
-}
-
-/* LOGIN */
 
 .modal{
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.65);
-  z-index:999;
+  background:#0008;
+  z-index:3000;
   align-items:center;
   justify-content:center;
-  padding:20px;
+  padding:15px;
 }
-
-.modal-box{
+.modal.show{display:flex}
+.modalbox{
   width:100%;
-  max-width:420px;
+  max-width:500px;
+  max-height:90vh;
+  overflow:auto;
   background:white;
   border-radius:18px;
   padding:25px;
   position:relative;
 }
-
 .close{
   position:absolute;
-  right:16px;
+  right:15px;
   top:10px;
-  font-size:28px;
-  cursor:pointer;
+  border:0;
+  background:none;
+  font-size:25px;
 }
-
-.modal-box h2{
-  color:#ff6b00;
-  margin-bottom:7px;
+.modal h2{margin-bottom:18px;color:#ff6b00}
+.formgroup{margin-bottom:12px}
+.formgroup label{
+  display:block;
+  font-size:13px;
+  font-weight:bold;
+  margin-bottom:5px;
 }
-
-.modal-box p{
-  color:#777;
-  margin-bottom:18px;
-}
-
-.modal-box input{
+.formgroup input,.formgroup select,.formgroup textarea{
   width:100%;
-  padding:13px;
-  margin-bottom:12px;
+  padding:11px;
   border:1px solid #ddd;
-  border-radius:9px;
-  outline:none;
+  border-radius:8px;
+  outline:0;
 }
-
-.modal-box input:focus{
+.formgroup input:focus,.formgroup select:focus,.formgroup textarea:focus{
   border-color:#ff6b00;
 }
-
-.main-btn{
+.primary{
   width:100%;
-  padding:13px;
-  border:0;
-  border-radius:9px;
   background:#ff6b00;
   color:white;
-  font-size:16px;
+  border:0;
+  padding:12px;
+  border-radius:9px;
   font-weight:bold;
-  cursor:pointer;
 }
-
+.secondary{
+  width:100%;
+  background:#f1f1f1;
+  color:#222;
+  border:0;
+  padding:11px;
+  border-radius:9px;
+  font-weight:bold;
+  margin-top:8px;
+}
 .switch{
   text-align:center;
-  margin-top:15px;
+  margin-top:14px;
+  font-size:14px;
 }
-
 .switch span{
   color:#ff6b00;
   font-weight:bold;
   cursor:pointer;
 }
 
-.message{
-  text-align:center;
-  margin-top:12px;
-  min-height:20px;
-  font-size:14px;
+.cartitem{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:12px 0;
+  border-bottom:1px solid #eee;
+}
+.qty{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.qty button{
+  width:27px;
+  height:27px;
+  border:0;
+  border-radius:50%;
+  background:#ff6b00;
+  color:white;
+}
+.total{
+  display:flex;
+  justify-content:space-between;
+  font-size:20px;
+  font-weight:bold;
+  margin:20px 0;
 }
 
-.account-box{
-  display:none;
-  margin-top:12px;
+.ownerpanel{
+  background:#fff;
+  border-radius:15px;
+  padding:20px;
+  margin-top:20px;
+}
+.owneritems{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin-top:20px;
+}
+.owneritem{
+  border:1px solid #eee;
+  border-radius:10px;
   padding:10px;
+}
+.owneritem img{
+  width:100%;
+  height:120px;
+  object-fit:cover;
   border-radius:8px;
-  background:#eafff0;
-  color:#16863a;
 }
 
-.logout{
-  background:#222 !important;
-  color:white !important;
+.hidden{display:none!important}
+
+@media(max-width:1000px){
+  .foodgrid{grid-template-columns:repeat(2,1fr)}
 }
-
-/* MOBILE */
-
-@media(max-width:950px){
-
-  .layout{
-    grid-template-columns:1fr;
-  }
-
-  .food-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
+@media(max-width:800px){
+  .navbar{align-items:flex-start;flex-direction:column}
+  .navlinks{width:100%;justify-content:flex-start}
+  .layout{grid-template-columns:1fr}
+  .sidebar{display:grid;grid-template-columns:1fr 1fr}
+  .footergrid{grid-template-columns:1fr 1fr}
 }
-
-@media(max-width:650px){
-
-  header{
-    flex-direction:column;
-  }
-
-  nav{
-    justify-content:center;
-  }
-
-  .hero{
-    padding:30px 20px;
-  }
-
-  .hero h1{
-    font-size:30px;
-  }
-
-  .food-grid{
-    grid-template-columns:1fr;
-  }
-
-  .search{
-    flex-direction:column;
-  }
-
-  .search button{
-    padding:13px;
-  }
+@media(max-width:600px){
+  .hero{padding:40px 5%}
+  .hero h1{font-size:30px}
+  .hero p{font-size:15px}
+  .foodgrid{grid-template-columns:1fr}
+  .sidebar{display:flex}
+  .footergrid{grid-template-columns:1fr}
+  .navlinks{gap:3px}
+  .navbtn{padding:7px 8px;font-size:12px}
+  .badge{font-size:8px}
+  .owneritems{grid-template-columns:1fr}
 }
 </style>
 </head>
 
 <body>
 
-<header>
-
-  <div>
-    <span class="logo">🍴 BiteMitra</span>
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo" onclick="goHome()">
+    🍴 BiteMitra
     <span class="badge">🇮🇳 MADE IN INDIA</span>
   </div>
 
-  <nav>
-
-    <button onclick="goHome()">Home</button>
-
-    <button onclick="showCart()">🛒 Cart</button>
-
-    <button onclick="openLogin()">👤 Account</button>
-
-    <button onclick="openLogin()">Login</button>
-
-    <button onclick="ownerLogin()">Owner</button>
-
-    <button onclick="adminLogin()">Admin</button>
-
-  </nav>
-
-</header>
-
-
-<section class="hero">
-
-  <div>
-
-    <h1>Delicious Food, Your Local Mitra ❤️</h1>
-
-    <p>
-      Discover tasty food and order from your local restaurants.
-    </p>
-
-    <div class="search">
-
-      <input
-        id="searchInput"
-        type="text"
-        placeholder="Search food, restaurant..."
-      >
-
-      <button onclick="searchFood()">
-        Search
-      </button>
-
-    </div>
-
+  <div class="navlinks">
+    <button class="navbtn" onclick="goHome()">Home</button>
+    <button class="navbtn" onclick="showCart()">🛒 Cart <span id="cartCount">0</span></button>
+    <button class="navbtn" onclick="openLogin()">👤 Login</button>
+    <button class="navbtn" onclick="ownerLogin()">🏪 Owner</button>
+    <button class="navbtn" onclick="adminLogin()">⚙️ Admin</button>
   </div>
+</nav>
 
+<!-- HERO -->
+<section class="hero">
+  <h1>Delicious Food, Your Local Mitra ❤️</h1>
+  <p>Order your favourite food from local restaurants.</p>
+
+  <div class="searchbox">
+    <input id="searchInput" type="text"
+           placeholder="Search pizza, biryani, burger..."
+           oninput="searchFood()">
+    <button onclick="searchFood()">Search</button>
+  </div>
 </section>
-
 
 <div class="container">
 
-  <div class="categories">
-
-    <button class="cat active"
-      onclick="filterFood('All',this)">
-      All
-    </button>
-
-    <button class="cat"
-      onclick="filterFood('Pizza',this)">
-      Pizza
-    </button>
-
-    <button class="cat"
-      onclick="filterFood('Biryani',this)">
-      Biryani
-    </button>
-
-    <button class="cat"
-      onclick="filterFood('Chicken',this)">
-      Chicken
-    </button>
-
-    <button class="cat"
-      onclick="filterFood('Burger',this)">
-      Burger
-    </button>
-
-    <button class="cat"
-      onclick="filterFood('Sweets',this)">
-      Sweets
-    </button>
-
-    <button class="cat"
-      onclick="filterFood('Drinks',this)">
-      Drinks
-    </button>
-
-    <button class="cat"
-      onclick="filterFood('Rice',this)">
-      Rice
-    </button>
-
+  <div id="status" class="status">
+    BiteMitra food menu
   </div>
 
+  <!-- CATEGORIES -->
+  <div class="categories">
+    <button class="category active" onclick="filterFood('All',this)">All</button>
+    <button class="category" onclick="filterFood('Pizza',this)">🍕 Pizza</button>
+    <button class="category" onclick="filterFood('Biryani',this)">🍛 Biryani</button>
+    <button class="category" onclick="filterFood('Chicken',this)">🍗 Chicken</button>
+    <button class="category" onclick="filterFood('Burger',this)">🍔 Burger</button>
+    <button class="category" onclick="filterFood('Sweets',this)">🍬 Sweets</button>
+    <button class="category" onclick="filterFood('Drinks',this)">🥤 Drinks</button>
+    <button class="category" onclick="filterFood('Rice',this)">🍚 Rice</button>
+    <button class="category" onclick="filterFood('Other',this)">🍽️ Other</button>
+  </div>
 
   <div class="layout">
 
+    <!-- FOOD -->
     <main>
-
-      <h2>Popular Food</h2>
-
-      <div class="status" id="status">
-        BiteMitra food menu
-      </div>
-
-      <div id="foodGrid" class="food-grid"></div>
-
+      <div id="foodGrid" class="foodgrid"></div>
     </main>
 
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
 
-    <aside>
-
-      <div class="side-box">
-
-        <h3>🚀 Fast Delivery</h3>
-
-        <p>
-          Fresh food delivered to your doorstep.
-        </p>
-
+      <div class="sidebox">
+        <h3>🚴 Fast Delivery</h3>
+        <p>Fresh food delivered to your doorstep.</p>
       </div>
 
-
-      <div class="side-box login-side">
-
+      <div class="sidebox">
         <h3>👤 Your Account</h3>
-
-        <p id="accountText">
-          Login or create your BiteMitra account.
-        </p>
-
-        <button onclick="openLogin()">
-          Login / Signup
-        </button>
-
-        <div class="account-box" id="accountBox">
-
-          <b id="userEmail"></b>
-
-          <button
-            class="logout"
-            onclick="logoutUser()">
-            Logout
-          </button>
-
-        </div>
-
+        <p id="userStatus">Login to place and track your orders.</p>
+        <button class="sidebtn" onclick="openLogin()">Login / Create Account</button>
+        <button id="logoutBtn" class="secondary hidden" onclick="logoutUser()">Logout</button>
       </div>
 
-
-      <div class="side-box">
-
+      <div class="sidebox">
         <h3>🏪 Popular Restaurants</h3>
-
-        <p>• Mithila Food Corner</p>
-        <p>• Bite House</p>
-        <p>• Desi Rasoi</p>
-
+        <p>🍛 Mithila Food Corner</p>
+        <p>🍔 Bite House</p>
+        <p>🍗 Desi Rasoi</p>
       </div>
 
     </aside>
-
   </div>
-
 </div>
 
+<!-- OWNER PANEL -->
+<div id="ownerSection" class="container hidden">
 
-<footer>
+  <div class="ownerpanel">
+    <h2>🏪 BiteMitra Owner Dashboard</h2>
+    <p id="ownerEmail" style="color:#777;margin:8px 0 20px"></p>
 
-  <div class="logo">
-    🍴 BiteMitra
-  </div>
+    <h3>Add Food</h3>
 
-  <p>🇮🇳 MADE IN INDIA</p>
+    <div class="formgroup">
+      <label>Food Name</label>
+      <input id="foodName" placeholder="Example: Paneer Pizza">
+    </div>
 
-  <p>
-    Your Local Food Delivery Partner
-  </p>
+    <div class="formgroup">
+      <label>Category</label>
+      <select id="foodCategory">
+        <option>Pizza</option>
+        <option>Biryani</option>
+        <option>Chicken</option>
+        <option>Burger</option>
+        <option>Sweets</option>
+        <option>Drinks</option>
+        <option>Rice</option>
+        <option>Other</option>
+      </select>
+    </div>
 
-</footer>
+    <div class="formgroup">
+      <label>Original Price ₹</label>
+      <input id="foodPrice" type="number" placeholder="100">
+    </div>
 
+    <div class="formgroup">
+      <label>Discount %</label>
+      <input id="foodDiscount" type="number" min="0" max="100" value="0">
+    </div>
 
-<!-- LOGIN MODAL -->
+    <div class="formgroup">
+      <label>Food Photo</label>
+      <input id="foodImage" type="file" accept="image/*">
+    </div>
 
-<div class="modal" id="loginModal">
+    <div class="formgroup">
+      <label>Restaurant Name</label>
+      <input id="restaurantName" placeholder="Your restaurant name">
+    </div>
 
-  <div class="modal-box">
-
-    <span class="close" onclick="closeLogin()">×</span>
-
-    <h2 id="authTitle">
-      Login to BiteMitra
-    </h2>
-
-    <p id="authSubtitle">
-      Login with your email and password.
-    </p>
-
-
-    <input
-      id="email"
-      type="email"
-      placeholder="Email address"
-    >
-
-
-    <input
-      id="password"
-      type="password"
-      placeholder="Password"
-    >
-
-
-    <button
-      id="authButton"
-      class="main-btn"
-      onclick="handleAuth()">
-
-      Login
-
+    <button class="primary" onclick="addFood()">
+      ➕ Add Food
     </button>
 
+    <button class="secondary" onclick="closeOwner()">
+      Close Owner Dashboard
+    </button>
 
-    <div class="switch">
+    <div id="ownerFoodList" class="owneritems"></div>
+  </div>
+</div>
 
-      <span
-        id="switchText"
-        onclick="toggleAuthMode()">
-
-        New user? Create account
-
-      </span>
-
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footergrid">
+    <div>
+      <h2>🍴 BiteMitra</h2>
+      <p>Delicious Food, Your Local Mitra ❤️</p>
+      <p style="margin-top:8px">🇮🇳 MADE IN INDIA</p>
     </div>
 
+    <div>
+      <h3>Quick Links</h3>
+      <a onclick="goHome()">Home</a>
+      <a onclick="showCart()">Cart</a>
+      <a onclick="openLogin()">Login</a>
+    </div>
 
-    <div
-      class="message"
-      id="message">
+    <div>
+      <h3>For Partners</h3>
+      <a onclick="ownerLogin()">Restaurant Owner</a>
+      <a onclick="adminLogin()">Admin</a>
+    </div>
+  </div>
+
+  <div class="copyright">
+    © 2026 BiteMitra — Your Local Food Delivery Partner
+  </div>
+</footer>
+
+<!-- LOGIN MODAL -->
+<div id="loginModal" class="modal">
+  <div class="modalbox">
+
+    <button class="close" onclick="closeModal('loginModal')">×</button>
+
+    <div id="loginFormBox">
+      <h2>👤 BiteMitra Login</h2>
+
+      <div class="formgroup">
+        <label>Email</label>
+        <input id="loginEmail" type="email" placeholder="your@email.com">
+      </div>
+
+      <div class="formgroup">
+        <label>Password</label>
+        <input id="loginPassword" type="password" placeholder="Password">
+      </div>
+
+      <button class="primary" onclick="loginUser()">Login</button>
+
+      <div class="switch">
+        Don't have an account?
+        <span onclick="showSignup()">Create Account</span>
+      </div>
+    </div>
+
+    <div id="signupFormBox" class="hidden">
+      <h2>📝 Create Account</h2>
+
+      <div class="formgroup">
+        <label>Full Name</label>
+        <input id="signupName" placeholder="Your full name">
+      </div>
+
+      <div class="formgroup">
+        <label>Mobile Number</label>
+        <input id="signupMobile" type="tel" placeholder="10 digit mobile number">
+      </div>
+
+      <div class="formgroup">
+        <label>Email</label>
+        <input id="signupEmail" type="email" placeholder="your@email.com">
+      </div>
+
+      <div class="formgroup">
+        <label>Password</label>
+        <input id="signupPassword" type="password" placeholder="At least 6 characters">
+      </div>
+
+      <button class="primary" onclick="signupUser()">Create Account</button>
+
+      <div class="switch">
+        Already have an account?
+        <span onclick="showLogin()">Login</span>
+      </div>
     </div>
 
   </div>
-
 </div>
 
+<!-- CART MODAL -->
+<div id="cartModal" class="modal">
+  <div class="modalbox">
+    <button class="close" onclick="closeModal('cartModal')">×</button>
+
+    <h2>🛒 Your Cart</h2>
+
+    <div id="cartItems"></div>
+
+    <div class="total">
+      <span>Total</span>
+      <span id="cartTotal">₹0</span>
+    </div>
+
+    <button class="primary" onclick="checkout()">
+      Order Now
+    </button>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div id="checkoutModal" class="modal">
+  <div class="modalbox">
+    <button class="close" onclick="closeModal('checkoutModal')">×</button>
+
+    <h2>📍 Delivery Address</h2>
+
+    <div class="formgroup">
+      <label>Full Name</label>
+      <input id="addressName" placeholder="Full name">
+    </div>
+
+    <div class="formgroup">
+      <label>Mobile Number</label>
+      <input id="addressMobile" placeholder="Mobile number">
+    </div>
+
+    <div class="formgroup">
+      <label>House / Street / Address</label>
+      <textarea id="addressLine" rows="2" placeholder="Complete address"></textarea>
+    </div>
+
+    <div class="formgroup">
+      <label>Ward Number</label>
+      <input id="wardNumber" placeholder="Ward number">
+    </div>
+
+    <div class="formgroup">
+      <label>Village / Town</label>
+      <input id="villageTown" placeholder="Village or town">
+    </div>
+
+    <div class="formgroup">
+      <label>District</label>
+      <input id="district" placeholder="District">
+    </div>
+
+    <div class="formgroup">
+      <label>PIN Code</label>
+      <input id="pinCode" maxlength="6" placeholder="PIN">
+    </div>
+
+    <div class="formgroup">
+      <label>Landmark</label>
+      <input id="landmark" placeholder="Nearby landmark">
+    </div>
+
+    <button class="primary" onclick="placeOrder()">
+      ✅ Confirm Order
+    </button>
+  </div>
+</div>
 
 <script>
+/* =========================================================
+   BITEMITRA APP
+   ========================================================= */
 
-/* =====================================
-   BITEMITRA FIREBASE
-===================================== */
+let firebaseReady = false;
+let auth = null;
+let db = null;
+let storage = null;
 
+/* Firebase configuration */
 const firebaseConfig = {
-
-  apiKey:
-  "AIzaSyBlNJPH4sJCmR5jUJ1txjiC92aKfp9Ou8Y",
-
-  authDomain:
-  "bitemitra-388fc.firebaseapp.com",
-
-  projectId:
-  "bitemitra-388fc",
-
-  storageBucket:
-  "bitemitra-388fc.firebasestorage.app",
-
-  messagingSenderId:
-  "581936609316",
-
-  appId:
-  "1:581936609316:web:48c2b2198e39bf27d200b1"
-
+  apiKey: "AIzaSyBlNJPH4sJCmR5jUJ1txjiC92aKfp9Ou8Y",
+  authDomain: "bitemitra-388fc.firebaseapp.com",
+  projectId: "bitemitra-388fc",
+  storageBucket: "bitemitra-388fc.firebasestorage.app",
+  messagingSenderId: "581936609316",
+  appId: "1:581936609316:web:48c2b2198e39bf27d200b1",
+  measurementId: "G-XBYN8F9WXK"
 };
 
-
-firebase.initializeApp(firebaseConfig);
-
-const auth = firebase.auth();
-
-const db = firebase.firestore();
-
-
-/* =====================================
-   FOOD DATA
-===================================== */
-
-const foods = [
-
+/* Demo food - website will show these immediately */
+const demoFoods = [
   {
+    id:"demo1",
     name:"Paneer Pizza",
     category:"Pizza",
     restaurant:"Mithila Food Corner",
-    price:199,
-    oldPrice:249,
-    discount:20,
-    image:
-    "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=800&q=80"
+    price:249,
+    discount:10,
+    image:"https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=900&q=80"
   },
-
   {
+    id:"demo2",
     name:"Chicken Biryani",
     category:"Biryani",
-    restaurant:"Bite House",
-    price:179,
-    oldPrice:219,
-    discount:18,
-    image:
-    "https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=800&q=80"
+    restaurant:"Desi Rasoi",
+    price:199,
+    discount:10,
+    image:"https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=900&q=80"
   },
-
   {
+    id:"demo3",
     name:"Chicken Burger",
     category:"Burger",
-    restaurant:"Desi Rasoi",
-    price:129,
-    oldPrice:159,
-    discount:19,
-    image:
-    "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80"
+    restaurant:"Bite House",
+    price:149,
+    discount:5,
+    image:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80"
   },
-
   {
+    id:"demo4",
     name:"Gulab Jamun",
     category:"Sweets",
     restaurant:"Mithila Food Corner",
-    price:80,
-    oldPrice:100,
-    discount:20,
-    image:
-    "https://images.unsplash.com/photo-1666190094760-8b2f8d1f6b8e?auto=format&fit=crop&w=800&q=80"
+    price:99,
+    discount:5,
+    image:"https://images.unsplash.com/photo-1666190094765-5c6c9f0b1f42?auto=format&fit=crop&w=900&q=80"
   },
-
   {
+    id:"demo5",
     name:"Cold Drink",
     category:"Drinks",
     restaurant:"Bite House",
     price:50,
-    oldPrice:60,
-    discount:17,
-    image:
-    "https://images.unsplash.com/photo-1629203849820-fdd70d49c38e?auto=format&fit=crop&w=800&q=80"
+    discount:0,
+    image:"https://images.unsplash.com/photo-1629203849820-fdd70d49c38e?auto=format&fit=crop&w=900&q=80"
   },
-
   {
+    id:"demo6",
     name:"Chicken Rice",
     category:"Rice",
     restaurant:"Desi Rasoi",
-    price:149,
-    oldPrice:179,
-    discount:17,
-    image:
-    "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80"
+    price:169,
+    discount:10,
+    image:"https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=80"
   }
-
 ];
 
+let foods = [...demoFoods];
+let currentCategory = "All";
+let cart = JSON.parse(localStorage.getItem("bitemitra_cart") || "[]");
 
-let currentFoods = foods;
+/* =========================================================
+   FIREBASE INIT
+   ========================================================= */
 
-let cart = [];
+function initFirebase(){
 
-let signupMode = false;
+  try{
 
+    if(typeof firebase === "undefined"){
+      console.warn("Firebase SDK not loaded.");
+      setStatus("BiteMitra menu ready");
+      return;
+    }
 
-/* =====================================
-   HOME
-===================================== */
+    if(!firebase.apps.length){
+      firebase.initializeApp(firebaseConfig);
+    }
 
-function goHome(){
+    auth = firebase.auth();
+    db = firebase.firestore();
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+    try{
+      storage = firebase.storage();
+    }catch(storageError){
+      console.warn("Storage unavailable:",storageError);
+      storage = null;
+    }
 
+    firebaseReady = true;
+
+    console.log("Firebase connected");
+
+    auth.onAuthStateChanged(function(user){
+
+      updateUserUI(user);
+
+      if(user){
+        console.log("Logged in:",user.email);
+      }
+    });
+
+    /* Firebase menu loads in background */
+    loadFirebaseFoods();
+
+  }catch(error){
+
+    console.error("Firebase initialization error:",error);
+
+    firebaseReady = false;
+
+    setStatus("BiteMitra menu ready");
+
+  }
 }
 
-
-/* =====================================
-   DISPLAY FOOD
-===================================== */
+/* =========================================================
+   FOOD
+   ========================================================= */
 
 function renderFoods(list){
 
-  const grid =
-  document.getElementById("foodGrid");
+  const grid = document.getElementById("foodGrid");
 
-  if(!list || list.length===0){
+  if(!grid)return;
+
+  if(!list || list.length === 0){
 
     grid.innerHTML =
-    "<div class='side-box'>No food found.</div>";
+      '<div style="grid-column:1/-1;text-align:center;padding:40px;background:white;border-radius:15px">No food found.</div>';
 
     return;
   }
 
-
-  grid.innerHTML =
-  list.map((food,index)=>`
-
-    <div class="food-card">
-
-      <img
-        src="${food.image}"
-        alt="${food.name}"
-      >
-
-      <div class="food-info">
-
-        <h3>${food.name}</h3>
-
-        <div class="restaurant">
-          🏪 ${food.restaurant}
-        </div>
-
-        <span class="price">
-          ₹${food.price}
-        </span>
-
-        <span class="old-price">
-          ₹${food.oldPrice}
-        </span>
-
-        <span class="discount">
-          ${food.discount}% OFF
-        </span>
-
-        <div class="actions">
-
-          <button
-            class="cart-btn"
-            onclick="addToCart(${index})">
-
-            🛒 Add to Cart
-
-          </button>
-
-          <button
-            class="order-btn"
-            onclick="orderNow('${food.name}')">
-
-            Order Now
-
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  `).join("");
-
-}
-
-
-renderFoods(foods);
-
-
-/* =====================================
-   CATEGORY
-===================================== */
-
-function filterFood(category,button){
-
-  document
-  .querySelectorAll(".cat")
-  .forEach(function(btn){
-
-    btn.classList.remove("active");
-
-  });
-
-
-  button.classList.add("active");
-
-
-  if(category==="All"){
-
-    currentFoods = foods;
-
-  }else{
-
-    currentFoods =
-    foods.filter(function(food){
-
-      return food.category===category;
-
-    });
-
-  }
-
-
-  renderFoods(currentFoods);
-
-}
-
-
-/* =====================================
-   SEARCH
-===================================== */
-
-function searchFood(){
-
-  const text =
-  document
-  .getElementById("searchInput")
-  .value
-  .toLowerCase()
-  .trim();
-
-
-  if(text===""){
-
-    currentFoods=foods;
-
-  }else{
-
-    currentFoods =
-    foods.filter(function(food){
-
-      return (
-
-        food.name
-        .toLowerCase()
-        .includes(text)
-
-        ||
-
-        food.restaurant
-        .toLowerCase()
-        .includes(text)
-
-        ||
-
-        food.category
-        .toLowerCase()
-        .includes(text)
-
-      );
-
-    });
-
-  }
-
-
-  renderFoods(currentFoods);
-
-}
-
-
-/* =====================================
-   CART
-===================================== */
-
-function addToCart(index){
-
-  const food=currentFoods[index];
-
-  cart.push(food);
-
-  alert(
-    food.name+
-    " added to your cart 🛒"
-  );
-
-}
-
-
-function showCart(){
-
-  if(cart.length===0){
-
-    alert("Your BiteMitra cart is empty.");
-
-    return;
-
-  }
-
-
-  let total=0;
-
-  let text="🛒 BiteMitra Cart\n\n";
-
-
-  cart.forEach(function(food){
-
-    text +=
-    food.name+
-    " - ₹"+
-    food.price+
-    "\n";
-
-    total += Number(food.price);
-
-  });
-
-
-  text +=
-  "\nTotal: ₹"+
-  total;
-
-
-  alert(text);
-
-}
-
-
-/* =====================================
-   ORDER
-===================================== */
-
-function orderNow(foodName){
-
-  if(!auth.currentUser){
-
-    alert(
-      "Please login first to place your order."
-    );
-
-    openLogin();
-
-    return;
-
-  }
-
-
-  alert(
-    "Order Now: "+
-    foodName+
-    "\n\nNext step will be premium checkout."
-  );
-
-}
-
-
-/* =====================================
-   LOGIN MODAL
-===================================== */
-
-function openLogin(){
-
-  document
-  .getElementById("loginModal")
-  .style.display="flex";
-
-}
-
-
-function closeLogin(){
-
-  document
-  .getElementById("loginModal")
-  .style.display="none";
-
-  document
-  .getElementById("message")
-  .innerText="";
-
-}
-
-
-function toggleAuthMode(){
-
-  signupMode=!signupMode;
-
-
-  const title=
-  document.getElementById("authTitle");
-
-  const subtitle=
-  document.getElementById("authSubtitle");
-
-  const button=
-  document.getElementById("authButton");
-
-  const switchText=
-  document.getElementById("switchText");
-
-
-  if(signupMode){
-
-    title.innerText=
-    "Create BiteMitra Account";
-
-    subtitle.innerText=
-    "Create your customer account.";
-
-    button.innerText=
-    "Create Account";
-
-    switchText.innerText=
-    "Already have an account? Login";
-
-  }else{
-
-    title.innerText=
-    "Login to BiteMitra";
-
-    subtitle.innerText=
-    "Login with your email and password.";
-
-    button.innerText=
-    "Login";
-
-    switchText.innerText=
-    "New user? Create account";
-
-  }
-
-}
-
-
-/* =====================================
-   REAL FIREBASE AUTH
-===================================== */
-
-function handleAuth(){
-
-  const email=
-  document
-  .getElementById("email")
-  .value
-  .trim();
-
-
-  const password=
-  document
-  .getElementById("password")
-  .value;
-
-
-  const message=
-  document
-  .getElementById("message");
-
-
-  message.innerText="";
-
-
-  if(email===""){
-
-    message.innerText=
-    "Please enter your email.";
-
-    return;
-
-  }
-
-
-  if(password===""){
-
-    message.innerText=
-    "Please enter your password.";
-
-    return;
-
-  }
-
-
-  if(password.length<6){
-
-    message.innerText=
-    "Password must contain at least 6 characters.";
-
-    return;
-
-  }
-
-
-  /* CREATE ACCOUNT */
-
-  if(signupMode){
-
-    auth
-    .createUserWithEmailAndPassword(
-      email,
-      password
-    )
-
-    .then(function(result){
-
-      return db
-      .collection("users")
-      .doc(result.user.uid)
-      .set({
-
-        email:result.user.email,
-
-        role:"customer",
-
-        createdAt:
-        firebase.firestore.FieldValue.serverTimestamp()
-
-      });
-
-    })
-
-    .then(function(){
-
-      message.innerText=
-      "Account created successfully ✅";
-
-      setTimeout(function(){
-
-        closeLogin();
-
-      },1000);
-
-    })
-
-    .catch(function(error){
-
-      showFirebaseError(error);
-
-    });
-
-
-    return;
-
-  }
-
-
-  /* LOGIN */
-
-  auth
-  .signInWithEmailAndPassword(
-    email,
-    password
-  )
-
-  .then(function(){
-
-    message.innerText=
-    "Login successful ✅";
-
-    setTimeout(function(){
-
-      closeLogin();
-
-    },1000);
-
-  })
-
-  .catch(function(error){
-
-    showFirebaseError(error);
-
-  });
-
-}
-
-
-/* =====================================
-   FIREBASE ERROR
-===================================== */
-
-function showFirebaseError(error){
-
-  const message=
-  document.getElementById("message");
-
-
-  console.log(error);
-
-
-  if(
-    error.code===
-    "auth/email-already-in-use"
-  ){
-
-    message.innerText=
-    "This email is already registered.";
-
-  }
-
-  else if(
-    error.code===
-    "auth/invalid-email"
-  ){
-
-    message.innerText=
-    "Please enter a valid email.";
-
-  }
-
-  else if(
-    error.code===
-    "auth/invalid-credential"
-  ){
-
-    message.innerText=
-    "Email or password is incorrect.";
-
-  }
-
-  else if(
-    error.code===
-    "auth/weak-password"
-  ){
-
-    message.innerText=
-    "Password must contain at least 6 characters.";
-
-  }
-
-  else{
-
-    message.innerText=
-    error.message;
-
-  }
-
-}
-
-
-/* =====================================
-   LOGIN STATE
-===================================== */
-
-auth.onAuthStateChanged(function(user){
-
-  const accountText=
-  document.getElementById("accountText");
-
-  const accountBox=
-  document.getElementById("accountBox");
-
-  const userEmail=
-  document.getElementById("userEmail");
-
-
-  if(user){
-
-    accountText.innerText=
-    "You are logged in ✅";
-
-    accountBox.style.display="block";
-
-    userEmail.innerText=
-    user.email;
-
-  }else{
-
-    accountText.innerText=
-    "Login or create your BiteMitra account.";
-
-    accountBox.style.display="none";
-
-  }
-
-});
-
-
-/* =====================================
-   LOGOUT
-===================================== */
-
-function logoutUser(){
-
-  auth
-  .signOut()
-
-  .then(function(){
-
-    alert(
-      "You have been logged out successfully."
-    );
-
-  })
-
-  .catch(function(error){
-
-    alert(error.message);
-
-  });
-
-}
-
-
-/* =====================================
-   OWNER
-===================================== */
-
-function ownerLogin(){
-
-  alert(
-    "BiteMitra Owner Login\n\nOwner system will be connec
+  grid.innerHTML = list.map(function(food){
+
+    const original = Number(food.price || food.originalPrice || 0);
+    const discount = Number(food.discount || 0);
+    const finalPrice = Math.round(original - (original * discount / 100));
+
+    return `
+      <div class="foodcard">
+
+        <img
+          class="foodimg"
+          src="${escapeHTML(food.image || food.imageUrl || '')}"
+          onerror="this.src='https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80'"
+          alt="${escapeHTML(food.name || 'Food')}"
+        >
+
+        <div class="foodbody">
