@@ -1,541 +1,629 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BiteMitra | Food Delivery</title>
-
-  <style>
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
-      font-family:Arial, sans-serif;
-    }
-
-    body{
-      background:#f7f7f7;
-      color:#222;
-    }
-
-    header{
-      background:#ff6b00;
-      color:white;
-      padding:14px 5%;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:15px;
-      position:sticky;
-      top:0;
-      z-index:100;
-    }
-
-    .logo{
-      font-size:24px;
-      font-weight:800;
-      white-space:nowrap;
-    }
-
-    .badge{
-      background:white;
-      color:#ff6b00;
-      padding:5px 9px;
-      border-radius:20px;
-      font-size:11px;
-      font-weight:bold;
-      display:inline-block;
-      margin-left:8px;
-    }
-
-    nav{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      justify-content:center;
-    }
-
-    nav button{
-      border:0;
-      background:transparent;
-      color:white;
-      padding:8px 11px;
-      border-radius:8px;
-      cursor:pointer;
-      font-weight:bold;
-    }
-
-    nav button:hover{
-      background:rgba(255,255,255,.2);
-    }
-
-    .hero{
-      margin:20px auto;
-      width:90%;
-      max-width:1200px;
-      min-height:280px;
-      border-radius:20px;
-      padding:45px;
-      display:flex;
-      align-items:center;
-      background:
-        linear-gradient(rgba(0,0,0,.42),rgba(0,0,0,.42)),
-        url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1400&q=80")
-        center/cover;
-      color:white;
-    }
-
-    .hero h1{
-      font-size:42px;
-      margin-bottom:10px;
-    }
-
-    .hero p{
-      font-size:18px;
-      margin-bottom:20px;
-    }
-
-    .search{
-      display:flex;
-      max-width:600px;
-      background:white;
-      border-radius:12px;
-      overflow:hidden;
-    }
-
-    .search input{
-      flex:1;
-      border:0;
-      outline:0;
-      padding:15px;
-      font-size:16px;
-    }
-
-    .search button{
-      background:#ff6b00;
-      color:white;
-      border:0;
-      padding:0 22px;
-      font-weight:bold;
-    }
-
-    .container{
-      width:90%;
-      max-width:1200px;
-      margin:25px auto;
-    }
-
-    .categories{
-      display:flex;
-      gap:10px;
-      overflow-x:auto;
-      padding:5px 0 15px;
-    }
-
-    .cat{
-      border:1px solid #ddd;
-      background:white;
-      padding:10px 18px;
-      border-radius:25px;
-      cursor:pointer;
-      white-space:nowrap;
-    }
-
-    .cat.active,
-    .cat:hover{
-      background:#ff6b00;
-      color:white;
-      border-color:#ff6b00;
-    }
-
-    .layout{
-      display:grid;
-      grid-template-columns:1fr 280px;
-      gap:25px;
-    }
-
-    .food-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:20px;
-    }
-
-    .food-card{
-      background:white;
-      border-radius:15px;
-      overflow:hidden;
-      box-shadow:0 3px 15px rgba(0,0,0,.08);
-    }
-
-    .food-card img{
-      width:100%;
-      height:170px;
-      object-fit:cover;
-    }
-
-    .food-info{
-      padding:15px;
-    }
-
-    .food-info h3{
-      margin-bottom:6px;
-    }
-
-    .restaurant{
-      color:#777;
-      font-size:13px;
-      margin-bottom:10px;
-    }
-
-    .price{
-      font-size:20px;
-      font-weight:bold;
-      color:#ff6b00;
-    }
-
-    .old-price{
-      text-decoration:line-through;
-      color:#999;
-      font-size:13px;
-      margin-left:5px;
-    }
-
-    .discount{
-      display:inline-block;
-      background:#e7f8ec;
-      color:#16863a;
-      padding:4px 7px;
-      border-radius:5px;
-      font-size:12px;
-      margin-left:5px;
-    }
-
-    .actions{
-      display:flex;
-      gap:8px;
-      margin-top:13px;
-    }
-
-    .actions button{
-      flex:1;
-      border:0;
-      padding:10px;
-      border-radius:8px;
-      cursor:pointer;
-      font-weight:bold;
-    }
-
-    .cart-btn{
-      background:#fff0e6;
-      color:#ff6b00;
-    }
-
-    .order-btn{
-      background:#ff6b00;
-      color:white;
-    }
-
-    aside{
-      display:flex;
-      flex-direction:column;
-      gap:15px;
-    }
-
-    .side-box{
-      background:white;
-      padding:20px;
-      border-radius:15px;
-      box-shadow:0 3px 15px rgba(0,0,0,.07);
-    }
-
-    .side-box h3{
-      margin-bottom:10px;
-    }
-
-    .login-side{
-      background:#fff3e9;
-      border:1px solid #ffd5b8;
-    }
-
-    .login-side button{
-      width:100%;
-      margin-top:10px;
-      padding:11px;
-      border:0;
-      border-radius:8px;
-      background:#ff6b00;
-      color:white;
-      font-weight:bold;
-      cursor:pointer;
-    }
-
-    .status{
-      text-align:center;
-      margin:20px 0;
-      color:#666;
-    }
-
-    footer{
-      background:#111;
-      color:white;
-      margin-top:50px;
-      padding:40px 5%;
-      text-align:center;
-    }
-
-    footer .logo{
-      margin-bottom:10px;
-    }
-
-    footer p{
-      color:#bbb;
-      margin-top:8px;
-    }
-
-    /* MODAL */
-
-    .modal{
-      display:none;
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.65);
-      z-index:500;
-      align-items:center;
-      justify-content:center;
-      padding:20px;
-    }
-
-    .modal-box{
-      width:100%;
-      max-width:420px;
-      background:white;
-      border-radius:18px;
-      padding:25px;
-      position:relative;
-      box-shadow:0 10px 40px rgba(0,0,0,.25);
-    }
-
-    .close{
-      position:absolute;
-      right:15px;
-      top:12px;
-      font-size:25px;
-      cursor:pointer;
-    }
-
-    .modal-box h2{
-      color:#ff6b00;
-      margin-bottom:5px;
-    }
-
-    .modal-box p{
-      color:#777;
-      margin-bottom:18px;
-    }
-
-    .modal-box input{
-      width:100%;
-      padding:13px;
-      border:1px solid #ddd;
-      border-radius:9px;
-      margin-bottom:12px;
-      outline:none;
-    }
-
-    .modal-box input:focus{
-      border-color:#ff6b00;
-    }
-
-    .main-login-btn{
-      width:100%;
-      padding:13px;
-      border:0;
-      border-radius:9px;
-      background:#ff6b00;
-      color:white;
-      font-size:16px;
-      font-weight:bold;
-      cursor:pointer;
-    }
-
-    .switch{
-      text-align:center;
-      margin-top:15px;
-      color:#555;
-    }
-
-    .switch span{
-      color:#ff6b00;
-      font-weight:bold;
-      cursor:pointer;
-    }
-
-    .message{
-      margin-top:12px;
-      text-align:center;
-      font-size:14px;
-      min-height:20px;
-    }
-
-    .user-panel{
-      display:none;
-      margin-top:15px;
-      padding:12px;
-      background:#f1fff5;
-      border-radius:10px;
-      color:#16863a;
-      font-size:14px;
-    }
-
-    .logout-btn{
-      margin-top:8px;
-      padding:8px 12px;
-      border:0;
-      border-radius:7px;
-      background:#222;
-      color:white;
-      cursor:pointer;
-    }
-
-    @media(max-width:950px){
-      .food-grid{
-        grid-template-columns:repeat(2,1fr);
-      }
-
-      .layout{
-        grid-template-columns:1fr;
-      }
-
-      aside{
-        display:grid;
-        grid-template-columns:repeat(3,1fr);
-      }
-    }
-
-    @media(max-width:650px){
-      header{
-        flex-direction:column;
-      }
-
-      .hero{
-        padding:30px 20px;
-        min-height:300px;
-      }
-
-      .hero h1{
-        font-size:30px;
-      }
-
-      .food-grid{
-        grid-template-columns:1fr;
-      }
-
-      aside{
-        display:flex;
-      }
-
-      .search{
-        flex-direction:column;
-      }
-
-      .search button{
-        padding:13px;
-      }
-
-      nav{
-        width:100%;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BiteMitra | Food Delivery</title>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#f7f7f7;
+  color:#222;
+}
+
+header{
+  background:#ff6b00;
+  color:white;
+  padding:14px 5%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:800;
+}
+
+.badge{
+  background:white;
+  color:#ff6b00;
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:bold;
+  margin-left:7px;
+}
+
+nav{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+}
+
+nav button{
+  border:0;
+  background:transparent;
+  color:white;
+  padding:9px 11px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+nav button:hover{
+  background:rgba(255,255,255,.2);
+}
+
+.hero{
+  width:90%;
+  max-width:1200px;
+  min-height:300px;
+  margin:20px auto;
+  padding:45px;
+  border-radius:20px;
+  display:flex;
+  align-items:center;
+  color:white;
+
+  background:
+  linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
+  url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1400&q=80")
+  center/cover;
+}
+
+.hero h1{
+  font-size:42px;
+  margin-bottom:10px;
+}
+
+.hero p{
+  font-size:18px;
+  margin-bottom:20px;
+}
+
+.search{
+  display:flex;
+  width:100%;
+  max-width:600px;
+  background:white;
+  border-radius:12px;
+  overflow:hidden;
+}
+
+.search input{
+  flex:1;
+  border:0;
+  outline:0;
+  padding:15px;
+  font-size:16px;
+}
+
+.search button{
+  border:0;
+  background:#ff6b00;
+  color:white;
+  padding:0 25px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.container{
+  width:90%;
+  max-width:1200px;
+  margin:25px auto;
+}
+
+.categories{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  padding:5px 0 15px;
+}
+
+.cat{
+  border:1px solid #ddd;
+  background:white;
+  padding:10px 18px;
+  border-radius:25px;
+  cursor:pointer;
+  white-space:nowrap;
+}
+
+.cat:hover,
+.cat.active{
+  background:#ff6b00;
+  color:white;
+  border-color:#ff6b00;
+}
+
+.layout{
+  display:grid;
+  grid-template-columns:1fr 280px;
+  gap:25px;
+}
+
+.food-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.food-card{
+  background:white;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 3px 15px rgba(0,0,0,.08);
+}
+
+.food-card img{
+  width:100%;
+  height:170px;
+  object-fit:cover;
+}
+
+.food-info{
+  padding:15px;
+}
+
+.food-info h3{
+  margin-bottom:7px;
+}
+
+.restaurant{
+  color:#777;
+  font-size:13px;
+  margin-bottom:10px;
+}
+
+.price{
+  color:#ff6b00;
+  font-size:20px;
+  font-weight:bold;
+}
+
+.old-price{
+  color:#999;
+  text-decoration:line-through;
+  font-size:13px;
+  margin-left:5px;
+}
+
+.discount{
+  color:#16863a;
+  background:#e7f8ec;
+  padding:4px 7px;
+  border-radius:5px;
+  font-size:12px;
+  margin-left:5px;
+}
+
+.actions{
+  display:flex;
+  gap:8px;
+  margin-top:13px;
+}
+
+.actions button{
+  flex:1;
+  border:0;
+  padding:10px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.cart-btn{
+  background:#fff0e6;
+  color:#ff6b00;
+}
+
+.order-btn{
+  background:#ff6b00;
+  color:white;
+}
+
+aside{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.side-box{
+  background:white;
+  padding:20px;
+  border-radius:15px;
+  box-shadow:0 3px 15px rgba(0,0,0,.07);
+}
+
+.side-box h3{
+  margin-bottom:10px;
+}
+
+.login-side{
+  background:#fff3e9;
+  border:1px solid #ffd5b8;
+}
+
+.login-side button{
+  width:100%;
+  margin-top:10px;
+  padding:11px;
+  border:0;
+  border-radius:8px;
+  background:#ff6b00;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.status{
+  text-align:center;
+  color:#666;
+  padding:15px;
+}
+
+footer{
+  background:#111;
+  color:white;
+  margin-top:50px;
+  padding:40px 5%;
+  text-align:center;
+}
+
+footer p{
+  color:#aaa;
+  margin-top:8px;
+}
+
+/* LOGIN */
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  z-index:999;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal-box{
+  width:100%;
+  max-width:420px;
+  background:white;
+  border-radius:18px;
+  padding:25px;
+  position:relative;
+}
+
+.close{
+  position:absolute;
+  right:16px;
+  top:10px;
+  font-size:28px;
+  cursor:pointer;
+}
+
+.modal-box h2{
+  color:#ff6b00;
+  margin-bottom:7px;
+}
+
+.modal-box p{
+  color:#777;
+  margin-bottom:18px;
+}
+
+.modal-box input{
+  width:100%;
+  padding:13px;
+  margin-bottom:12px;
+  border:1px solid #ddd;
+  border-radius:9px;
+  outline:none;
+}
+
+.modal-box input:focus{
+  border-color:#ff6b00;
+}
+
+.main-btn{
+  width:100%;
+  padding:13px;
+  border:0;
+  border-radius:9px;
+  background:#ff6b00;
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.switch{
+  text-align:center;
+  margin-top:15px;
+}
+
+.switch span{
+  color:#ff6b00;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.message{
+  text-align:center;
+  margin-top:12px;
+  min-height:20px;
+  font-size:14px;
+}
+
+.account-box{
+  display:none;
+  margin-top:12px;
+  padding:10px;
+  border-radius:8px;
+  background:#eafff0;
+  color:#16863a;
+}
+
+.logout{
+  background:#222 !important;
+  color:white !important;
+}
+
+/* MOBILE */
+
+@media(max-width:950px){
+
+  .layout{
+    grid-template-columns:1fr;
+  }
+
+  .food-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:650px){
+
+  header{
+    flex-direction:column;
+  }
+
+  nav{
+    justify-content:center;
+  }
+
+  .hero{
+    padding:30px 20px;
+  }
+
+  .hero h1{
+    font-size:30px;
+  }
+
+  .food-grid{
+    grid-template-columns:1fr;
+  }
+
+  .search{
+    flex-direction:column;
+  }
+
+  .search button{
+    padding:13px;
+  }
+}
+</style>
 </head>
 
 <body>
 
 <header>
+
   <div>
-    <div class="logo">🍴 BiteMitra</div>
+    <span class="logo">🍴 BiteMitra</span>
     <span class="badge">🇮🇳 MADE IN INDIA</span>
   </div>
 
   <nav>
-    <button onclick="window.scrollTo({top:0,behavior:'smooth'})">Home</button>
+
+    <button onclick="goHome()">Home</button>
+
     <button onclick="showCart()">🛒 Cart</button>
+
     <button onclick="openLogin()">👤 Account</button>
+
     <button onclick="openLogin()">Login</button>
+
     <button onclick="ownerLogin()">Owner</button>
+
     <button onclick="adminLogin()">Admin</button>
+
   </nav>
+
 </header>
 
+
 <section class="hero">
+
   <div>
+
     <h1>Delicious Food, Your Local Mitra ❤️</h1>
-    <p>Discover tasty food and order from your local restaurants.</p>
+
+    <p>
+      Discover tasty food and order from your local restaurants.
+    </p>
 
     <div class="search">
-      <input id="searchInput" type="text" placeholder="Search food, restaurant...">
-      <button onclick="searchFood()">Search</button>
+
+      <input
+        id="searchInput"
+        type="text"
+        placeholder="Search food, restaurant..."
+      >
+
+      <button onclick="searchFood()">
+        Search
+      </button>
+
     </div>
+
   </div>
+
 </section>
+
 
 <div class="container">
 
   <div class="categories">
-    <button class="cat active" onclick="filterFood('All',this)">All</button>
-    <button class="cat" onclick="filterFood('Pizza',this)">Pizza</button>
-    <button class="cat" onclick="filterFood('Biryani',this)">Biryani</button>
-    <button class="cat" onclick="filterFood('Chicken',this)">Chicken</button>
-    <button class="cat" onclick="filterFood('Burger',this)">Burger</button>
-    <button class="cat" onclick="filterFood('Sweets',this)">Sweets</button>
-    <button class="cat" onclick="filterFood('Drinks',this)">Drinks</button>
-    <button class="cat" onclick="filterFood('Rice',this)">Rice</button>
-    <button class="cat" onclick="filterFood('Other',this)">Other</button>
+
+    <button class="cat active"
+      onclick="filterFood('All',this)">
+      All
+    </button>
+
+    <button class="cat"
+      onclick="filterFood('Pizza',this)">
+      Pizza
+    </button>
+
+    <button class="cat"
+      onclick="filterFood('Biryani',this)">
+      Biryani
+    </button>
+
+    <button class="cat"
+      onclick="filterFood('Chicken',this)">
+      Chicken
+    </button>
+
+    <button class="cat"
+      onclick="filterFood('Burger',this)">
+      Burger
+    </button>
+
+    <button class="cat"
+      onclick="filterFood('Sweets',this)">
+      Sweets
+    </button>
+
+    <button class="cat"
+      onclick="filterFood('Drinks',this)">
+      Drinks
+    </button>
+
+    <button class="cat"
+      onclick="filterFood('Rice',this)">
+      Rice
+    </button>
+
   </div>
+
 
   <div class="layout">
 
     <main>
+
       <h2>Popular Food</h2>
-      <div class="status" id="status">BiteMitra food menu</div>
+
+      <div class="status" id="status">
+        BiteMitra food menu
+      </div>
 
       <div id="foodGrid" class="food-grid"></div>
+
     </main>
+
 
     <aside>
 
       <div class="side-box">
+
         <h3>🚀 Fast Delivery</h3>
-        <p>Fresh food delivered to your doorstep.</p>
+
+        <p>
+          Fresh food delivered to your doorstep.
+        </p>
+
       </div>
+
 
       <div class="side-box login-side">
-        <h3>👤 Your Account</h3>
-        <p id="accountText">Login or create your BiteMitra account.</p>
-        <button onclick="openLogin()">Login / Signup</button>
 
-        <div class="user-panel" id="userPanel">
+        <h3>👤 Your Account</h3>
+
+        <p id="accountText">
+          Login or create your BiteMitra account.
+        </p>
+
+        <button onclick="openLogin()">
+          Login / Signup
+        </button>
+
+        <div class="account-box" id="accountBox">
+
           <b id="userEmail"></b>
-          <br>
-          <button class="logout-btn" onclick="logoutUser()">Logout</button>
+
+          <button
+            class="logout"
+            onclick="logoutUser()">
+            Logout
+          </button>
+
         </div>
+
       </div>
 
+
       <div class="side-box">
+
         <h3>🏪 Popular Restaurants</h3>
+
         <p>• Mithila Food Corner</p>
         <p>• Bite House</p>
         <p>• Desi Rasoi</p>
+
       </div>
 
     </aside>
+
   </div>
+
 </div>
 
+
 <footer>
-  <div class="logo">🍴 BiteMitra</div>
+
+  <div class="logo">
+    🍴 BiteMitra
+  </div>
+
   <p>🇮🇳 MADE IN INDIA</p>
-  <p>Your Local Food Delivery Partner</p>
+
+  <p>
+    Your Local Food Delivery Partner
+  </p>
+
 </footer>
 
 
@@ -547,529 +635,800 @@
 
     <span class="close" onclick="closeLogin()">×</span>
 
-    <h2 id="authTitle">Login to BiteMitra</h2>
-    <p id="authSubtitle">Use your email and password.</p>
+    <h2 id="authTitle">
+      Login to BiteMitra
+    </h2>
+
+    <p id="authSubtitle">
+      Login with your email and password.
+    </p>
+
 
     <input
-      type="email"
       id="email"
+      type="email"
       placeholder="Email address"
-      autocomplete="email"
     >
+
 
     <input
-      type="password"
       id="password"
+      type="password"
       placeholder="Password"
-      autocomplete="current-password"
     >
 
-    <button class="main-login-btn" id="authButton" onclick="loginUser()">
+
+    <button
+      id="authButton"
+      class="main-btn"
+      onclick="handleAuth()">
+
       Login
+
     </button>
 
+
     <div class="switch">
-      <span id="switchText">New user? Create account</span>
+
+      <span
+        id="switchText"
+        onclick="toggleAuthMode()">
+
+        New user? Create account
+
+      </span>
+
     </div>
 
-    <div class="message" id="message"></div>
+
+    <div
+      class="message"
+      id="message">
+    </div>
 
   </div>
+
 </div>
 
 
-<script type="module">
+<script>
 
-  import { initializeApp }
-    from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+/* =====================================
+   BITEMITRA FIREBASE
+===================================== */
 
-  import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    signOut,
-    onAuthStateChanged
+const firebaseConfig = {
+
+  apiKey:
+  "AIzaSyBlNJPH4sJCmR5jUJ1txjiC92aKfp9Ou8Y",
+
+  authDomain:
+  "bitemitra-388fc.firebaseapp.com",
+
+  projectId:
+  "bitemitra-388fc",
+
+  storageBucket:
+  "bitemitra-388fc.firebasestorage.app",
+
+  messagingSenderId:
+  "581936609316",
+
+  appId:
+  "1:581936609316:web:48c2b2198e39bf27d200b1"
+
+};
+
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+
+const db = firebase.firestore();
+
+
+/* =====================================
+   FOOD DATA
+===================================== */
+
+const foods = [
+
+  {
+    name:"Paneer Pizza",
+    category:"Pizza",
+    restaurant:"Mithila Food Corner",
+    price:199,
+    oldPrice:249,
+    discount:20,
+    image:
+    "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    name:"Chicken Biryani",
+    category:"Biryani",
+    restaurant:"Bite House",
+    price:179,
+    oldPrice:219,
+    discount:18,
+    image:
+    "https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    name:"Chicken Burger",
+    category:"Burger",
+    restaurant:"Desi Rasoi",
+    price:129,
+    oldPrice:159,
+    discount:19,
+    image:
+    "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    name:"Gulab Jamun",
+    category:"Sweets",
+    restaurant:"Mithila Food Corner",
+    price:80,
+    oldPrice:100,
+    discount:20,
+    image:
+    "https://images.unsplash.com/photo-1666190094760-8b2f8d1f6b8e?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    name:"Cold Drink",
+    category:"Drinks",
+    restaurant:"Bite House",
+    price:50,
+    oldPrice:60,
+    discount:17,
+    image:
+    "https://images.unsplash.com/photo-1629203849820-fdd70d49c38e?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    name:"Chicken Rice",
+    category:"Rice",
+    restaurant:"Desi Rasoi",
+    price:149,
+    oldPrice:179,
+    discount:17,
+    image:
+    "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80"
   }
-    from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
-  import {
-    getFirestore,
-    doc,
-    setDoc,
-    serverTimestamp
+];
+
+
+let currentFoods = foods;
+
+let cart = [];
+
+let signupMode = false;
+
+
+/* =====================================
+   HOME
+===================================== */
+
+function goHome(){
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =====================================
+   DISPLAY FOOD
+===================================== */
+
+function renderFoods(list){
+
+  const grid =
+  document.getElementById("foodGrid");
+
+  if(!list || list.length===0){
+
+    grid.innerHTML =
+    "<div class='side-box'>No food found.</div>";
+
+    return;
   }
-    from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
-  // ==============================
-  // BITEMITRA FIREBASE CONFIG
-  // ==============================
+  grid.innerHTML =
+  list.map((food,index)=>`
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyBlNJPH4sJCmR5jUJ1txjiC92aKfp9Ou8Y",
-    authDomain: "bitemitra-388fc.firebaseapp.com",
-    projectId: "bitemitra-388fc",
-    storageBucket: "bitemitra-388fc.firebasestorage.app",
-    messagingSenderId: "581936609316",
-    appId: "1:581936609316:web:48c2b2198e39bf27d200b1",
-    measurementId: "G-XBYN8F9WXK"
-  };
+    <div class="food-card">
 
+      <img
+        src="${food.image}"
+        alt="${food.name}"
+      >
 
-  const app = initializeApp(firebaseConfig);
+      <div class="food-info">
 
-  const auth = getAuth(app);
+        <h3>${food.name}</h3>
 
-  const db = getFirestore(app);
-
-
-  // ==============================
-  // DEMO FOOD
-  // ==============================
-
-  const foods = [
-
-    {
-      name:"Paneer Pizza",
-      category:"Pizza",
-      restaurant:"Mithila Food Corner",
-      price:199,
-      oldPrice:249,
-      discount:20,
-      image:"https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=800&q=80"
-    },
-
-    {
-      name:"Chicken Biryani",
-      category:"Biryani",
-      restaurant:"Bite House",
-      price:179,
-      oldPrice:219,
-      discount:18,
-      image:"https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=800&q=80"
-    },
-
-    {
-      name:"Chicken Burger",
-      category:"Burger",
-      restaurant:"Desi Rasoi",
-      price:129,
-      oldPrice:159,
-      discount:19,
-      image:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80"
-    },
-
-    {
-      name:"Gulab Jamun",
-      category:"Sweets",
-      restaurant:"Mithila Food Corner",
-      price:80,
-      oldPrice:100,
-      discount:20,
-      image:"https://images.unsplash.com/photo-1666190094760-8b2f8d1f6b8e?auto=format&fit=crop&w=800&q=80"
-    },
-
-    {
-      name:"Cold Drink",
-      category:"Drinks",
-      restaurant:"Bite House",
-      price:50,
-      oldPrice:60,
-      discount:17,
-      image:"https://images.unsplash.com/photo-1629203849820-fdd70d49c38e?auto=format&fit=crop&w=800&q=80"
-    },
-
-    {
-      name:"Chicken Rice",
-      category:"Rice",
-      restaurant:"Desi Rasoi",
-      price:149,
-      oldPrice:179,
-      discount:17,
-      image:"https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80"
-    }
-
-  ];
-
-
-  let currentFoods = foods;
-
-
-  // ==============================
-  // DISPLAY FOOD
-  // ==============================
-
-  function renderFoods(list = currentFoods){
-
-    const grid = document.getElementById("foodGrid");
-
-    if(!list.length){
-
-      grid.innerHTML = `
-        <div style="background:white;padding:30px;border-radius:15px">
-          No food found.
+        <div class="restaurant">
+          🏪 ${food.restaurant}
         </div>
-      `;
 
-      return;
-    }
+        <span class="price">
+          ₹${food.price}
+        </span>
 
+        <span class="old-price">
+          ₹${food.oldPrice}
+        </span>
 
-    grid.innerHTML = list.map((food,index)=>`
+        <span class="discount">
+          ${food.discount}% OFF
+        </span>
 
-      <div class="food-card">
+        <div class="actions">
 
-        <img
-          src="${food.image}"
-          alt="${food.name}"
-          onerror="this.src='https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80'"
-        >
+          <button
+            class="cart-btn"
+            onclick="addToCart(${index})">
 
-        <div class="food-info">
+            🛒 Add to Cart
 
-          <h3>${food.name}</h3>
+          </button>
 
-          <div class="restaurant">
-            🏪 ${food.restaurant}
-          </div>
+          <button
+            class="order-btn"
+            onclick="orderNow('${food.name}')">
 
-          <div>
+            Order Now
 
-            <span class="price">
-              ₹${food.price}
-            </span>
-
-            <span class="old-price">
-              ₹${food.oldPrice}
-            </span>
-
-            <span class="discount">
-              ${food.discount}% OFF
-            </span>
-
-          </div>
-
-          <div class="actions">
-
-            <button
-              class="cart-btn"
-              onclick="addToCart(${index})">
-              🛒 Add to Cart
-            </button>
-
-            <button
-              class="order-btn"
-              onclick="orderNow('${food.name}')">
-              Order Now
-            </button>
-
-          </div>
+          </button>
 
         </div>
 
       </div>
 
-    `).join("");
+    </div>
 
-  }
+  `).join("");
 
+}
 
-  renderFoods();
 
+renderFoods(foods);
 
-  // ==============================
-  // CATEGORY
-  // ==============================
 
-  window.filterFood = function(category,button){
+/* =====================================
+   CATEGORY
+===================================== */
 
-    document.querySelectorAll(".cat")
-      .forEach(x=>x.classList.remove("active"));
-
-    button.classList.add("active");
-
-
-    if(category === "All"){
-
-      currentFoods = foods;
-
-    }else{
-
-      currentFoods = foods.filter(
-        food => food.category === category
-      );
-
-    }
-
-    renderFoods(currentFoods);
-
-  };
-
-
-  // ==============================
-  // SEARCH
-  // ==============================
-
-  window.searchFood = function(){
-
-    const text =
-      document.getElementById("searchInput")
-      .value
-      .toLowerCase()
-      .trim();
-
-
-    if(!text){
-
-      currentFoods = foods;
-
-    }else{
-
-      currentFoods = foods.filter(food =>
-        food.name.toLowerCase().includes(text) ||
-        food.restaurant.toLowerCase().includes(text) ||
-        food.category.toLowerCase().includes(text)
-      );
-
-    }
-
-    renderFoods(currentFoods);
-
-  };
-
-
-  // ==============================
-  // CART
-  // ==============================
-
-  let cart = [];
-
-
-  window.addToCart = function(index){
-
-    const food = currentFoods[index];
-
-    cart.push(food);
-
-    alert(food.name + " added to cart 🛒");
-
-  };
-
-
-  window.showCart = function(){
-
-    if(cart.length === 0){
-
-      alert("Your cart is empty.");
-
-      return;
-    }
-
-
-    const items = cart
-      .map(x => "• " + x.name + " - ₹" + x.price)
-      .join("\n");
-
-    alert(
-      "🛒 BiteMitra Cart\n\n" +
-      items +
-      "\n\nTotal Items: " +
-      cart.length
-    );
-
-  };
-
-
-  // ==============================
-  // ORDER NOW
-  // ==============================
-
-  window.orderNow = function(foodName){
-
-    const user = auth.currentUser;
-
-    if(!user){
-
-      alert("Please login first to place an order.");
-
-      openLogin();
-
-      return;
-
-    }
-
-
-    alert(
-      "Order Now selected for " +
-      foodName +
-      ".\n\nNext step: premium checkout + address + order creation."
-    );
-
-  };
-
-
-  // ==============================
-  // LOGIN MODAL
-  // ==============================
-
-  let signupMode = false;
-
-
-  window.openLogin = function(){
-
-    document.getElementById("loginModal").style.display="flex";
-
-  };
-
-
-  window.closeLogin = function(){
-
-    document.getElementById("loginModal").style.display="none";
-
-    document.getElementById("message").textContent="";
-
-  };
-
+function filterFood(category,button){
 
   document
-    .getElementById("switchText")
-    .onclick = function(){
+  .querySelectorAll(".cat")
+  .forEach(function(btn){
 
-      signupMode = !signupMode;
+    btn.classList.remove("active");
 
-      updateAuthMode();
-
-    };
+  });
 
 
-  function updateAuthMode(){
-
-    const title =
-      document.getElementById("authTitle");
-
-    const subtitle =
-      document.getElementById("authSubtitle");
-
-    const button =
-      document.getElementById("authButton");
-
-    const switchText =
-      document.getElementById("switchText");
+  button.classList.add("active");
 
 
-    if(signupMode){
+  if(category==="All"){
 
-      title.textContent="Create BiteMitra Account";
+    currentFoods = foods;
 
-      subtitle.textContent=
-        "Create your customer account.";
+  }else{
 
-      button.textContent="Create Account";
+    currentFoods =
+    foods.filter(function(food){
 
-      switchText.textContent=
-        "Already have an account? Login";
+      return food.category===category;
 
-    }else{
-
-      title.textContent="Login to BiteMitra";
-
-      subtitle.textContent=
-        "Use your email and password.";
-
-      button.textContent="Login";
-
-      switchText.textContent=
-        "New user? Create account";
-
-    }
+    });
 
   }
 
 
-  // ==============================
-  // REAL FIREBASE LOGIN
-  // ==============================
+  renderFoods(currentFoods);
 
-  window.loginUser = async function(){
-
-    const email =
-      document.getElementById("email")
-      .value
-      .trim();
-
-    const password =
-      document.getElementById("password")
-      .value;
+}
 
 
-    const message =
-      document.getElementById("message");
+/* =====================================
+   SEARCH
+===================================== */
+
+function searchFood(){
+
+  const text =
+  document
+  .getElementById("searchInput")
+  .value
+  .toLowerCase()
+  .trim();
 
 
-    message.textContent="";
+  if(text===""){
+
+    currentFoods=foods;
+
+  }else{
+
+    currentFoods =
+    foods.filter(function(food){
+
+      return (
+
+        food.name
+        .toLowerCase()
+        .includes(text)
+
+        ||
+
+        food.restaurant
+        .toLowerCase()
+        .includes(text)
+
+        ||
+
+        food.category
+        .toLowerCase()
+        .includes(text)
+
+      );
+
+    });
+
+  }
 
 
-    if(!email || !password){
+  renderFoods(currentFoods);
 
-      message.textContent=
-        "Please enter email and password.";
-
-      return;
-
-    }
+}
 
 
-    if(password.length < 6){
+/* =====================================
+   CART
+===================================== */
 
-      message.textContent=
-        "Password must be at least 6 characters.";
+function addToCart(index){
 
-      return;
+  const food=currentFoods[index];
 
-    }
+  cart.push(food);
 
+  alert(
+    food.name+
+    " added to your cart 🛒"
+  );
 
-    try{
-
-      if(signupMode){
-
-        // CREATE REAL FIREBASE ACCOUNT
-
-        const result =
-          await createUserWithEmailAndPassword(
-            auth,
-            email,
-            password
-          );
+}
 
 
-        // Save basic user information
-        // in Firestore
+function showCart(){
 
-        await setDoc(
-          doc(db,"users",result.user.uid),
-          {
-            email: result.user.email,
-            role:"customer",
-            createdAt:serverTimestamp()
-          }
-        );
+  if(cart.length===0){
+
+    alert("Your BiteMitra cart is empty.");
+
+    return;
+
+  }
 
 
-        message.textContent=
-          "Account created successfully ✅";
+  let total=0;
+
+  let text="🛒 BiteMitra Cart\n\n";
 
 
-      }else{
+  cart.forEach(function(food){
 
-        // REAL FIREBASE LOGIN
+    text +=
+    food.name+
+    " - ₹"+
+    food.price+
+    "\n";
 
-        await signInWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
+    total += Number(food.price);
+
+  });
 
 
-        message.textContent=
-          "Login successful ✅
+  text +=
+  "\nTotal: ₹"+
+  total;
+
+
+  alert(text);
+
+}
+
+
+/* =====================================
+   ORDER
+===================================== */
+
+function orderNow(foodName){
+
+  if(!auth.currentUser){
+
+    alert(
+      "Please login first to place your order."
+    );
+
+    openLogin();
+
+    return;
+
+  }
+
+
+  alert(
+    "Order Now: "+
+    foodName+
+    "\n\nNext step will be premium checkout."
+  );
+
+}
+
+
+/* =====================================
+   LOGIN MODAL
+===================================== */
+
+function openLogin(){
+
+  document
+  .getElementById("loginModal")
+  .style.display="flex";
+
+}
+
+
+function closeLogin(){
+
+  document
+  .getElementById("loginModal")
+  .style.display="none";
+
+  document
+  .getElementById("message")
+  .innerText="";
+
+}
+
+
+function toggleAuthMode(){
+
+  signupMode=!signupMode;
+
+
+  const title=
+  document.getElementById("authTitle");
+
+  const subtitle=
+  document.getElementById("authSubtitle");
+
+  const button=
+  document.getElementById("authButton");
+
+  const switchText=
+  document.getElementById("switchText");
+
+
+  if(signupMode){
+
+    title.innerText=
+    "Create BiteMitra Account";
+
+    subtitle.innerText=
+    "Create your customer account.";
+
+    button.innerText=
+    "Create Account";
+
+    switchText.innerText=
+    "Already have an account? Login";
+
+  }else{
+
+    title.innerText=
+    "Login to BiteMitra";
+
+    subtitle.innerText=
+    "Login with your email and password.";
+
+    button.innerText=
+    "Login";
+
+    switchText.innerText=
+    "New user? Create account";
+
+  }
+
+}
+
+
+/* =====================================
+   REAL FIREBASE AUTH
+===================================== */
+
+function handleAuth(){
+
+  const email=
+  document
+  .getElementById("email")
+  .value
+  .trim();
+
+
+  const password=
+  document
+  .getElementById("password")
+  .value;
+
+
+  const message=
+  document
+  .getElementById("message");
+
+
+  message.innerText="";
+
+
+  if(email===""){
+
+    message.innerText=
+    "Please enter your email.";
+
+    return;
+
+  }
+
+
+  if(password===""){
+
+    message.innerText=
+    "Please enter your password.";
+
+    return;
+
+  }
+
+
+  if(password.length<6){
+
+    message.innerText=
+    "Password must contain at least 6 characters.";
+
+    return;
+
+  }
+
+
+  /* CREATE ACCOUNT */
+
+  if(signupMode){
+
+    auth
+    .createUserWithEmailAndPassword(
+      email,
+      password
+    )
+
+    .then(function(result){
+
+      return db
+      .collection("users")
+      .doc(result.user.uid)
+      .set({
+
+        email:result.user.email,
+
+        role:"customer",
+
+        createdAt:
+        firebase.firestore.FieldValue.serverTimestamp()
+
+      });
+
+    })
+
+    .then(function(){
+
+      message.innerText=
+      "Account created successfully ✅";
+
+      setTimeout(function(){
+
+        closeLogin();
+
+      },1000);
+
+    })
+
+    .catch(function(error){
+
+      showFirebaseError(error);
+
+    });
+
+
+    return;
+
+  }
+
+
+  /* LOGIN */
+
+  auth
+  .signInWithEmailAndPassword(
+    email,
+    password
+  )
+
+  .then(function(){
+
+    message.innerText=
+    "Login successful ✅";
+
+    setTimeout(function(){
+
+      closeLogin();
+
+    },1000);
+
+  })
+
+  .catch(function(error){
+
+    showFirebaseError(error);
+
+  });
+
+}
+
+
+/* =====================================
+   FIREBASE ERROR
+===================================== */
+
+function showFirebaseError(error){
+
+  const message=
+  document.getElementById("message");
+
+
+  console.log(error);
+
+
+  if(
+    error.code===
+    "auth/email-already-in-use"
+  ){
+
+    message.innerText=
+    "This email is already registered.";
+
+  }
+
+  else if(
+    error.code===
+    "auth/invalid-email"
+  ){
+
+    message.innerText=
+    "Please enter a valid email.";
+
+  }
+
+  else if(
+    error.code===
+    "auth/invalid-credential"
+  ){
+
+    message.innerText=
+    "Email or password is incorrect.";
+
+  }
+
+  else if(
+    error.code===
+    "auth/weak-password"
+  ){
+
+    message.innerText=
+    "Password must contain at least 6 characters.";
+
+  }
+
+  else{
+
+    message.innerText=
+    error.message;
+
+  }
+
+}
+
+
+/* =====================================
+   LOGIN STATE
+===================================== */
+
+auth.onAuthStateChanged(function(user){
+
+  const accountText=
+  document.getElementById("accountText");
+
+  const accountBox=
+  document.getElementById("accountBox");
+
+  const userEmail=
+  document.getElementById("userEmail");
+
+
+  if(user){
+
+    accountText.innerText=
+    "You are logged in ✅";
+
+    accountBox.style.display="block";
+
+    userEmail.innerText=
+    user.email;
+
+  }else{
+
+    accountText.innerText=
+    "Login or create your BiteMitra account.";
+
+    accountBox.style.display="none";
+
+  }
+
+});
+
+
+/* =====================================
+   LOGOUT
+===================================== */
+
+function logoutUser(){
+
+  auth
+  .signOut()
+
+  .then(function(){
+
+    alert(
+      "You have been logged out successfully."
+    );
+
+  })
+
+  .catch(function(error){
+
+    alert(error.message);
+
+  });
+
+}
+
+
+/* =====================================
+   OWNER
+===================================== */
+
+function ownerLogin(){
+
+  alert(
+    "BiteMitra Owner Login\n\nOwner system will be connec
