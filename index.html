@@ -3,23 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>BiteMitra – Your Local Food Delivery Partner</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
 body{
   font-family:Arial,Helvetica,sans-serif;
   background:#fff7f2;
   color:#222;
 }
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
+
+button,input,select,textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
 
 :root{
   --orange:#ff4b0b;
   --dark:#171717;
   --light:#fff7f2;
-  --border:#eee;
 }
 
 header{
@@ -37,7 +48,7 @@ header{
   min-height:72px;
   display:flex;
   align-items:center;
-  gap:18px;
+  gap:15px;
   padding:10px 18px;
 }
 
@@ -61,7 +72,7 @@ header{
   margin-left:auto;
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:5px;
   flex-wrap:wrap;
 }
 
@@ -69,7 +80,7 @@ header{
   background:transparent;
   border:0;
   color:white;
-  padding:9px 11px;
+  padding:9px 10px;
   border-radius:8px;
   font-weight:bold;
 }
@@ -218,6 +229,7 @@ header{
   gap:8px;
   align-items:center;
   margin:10px 0;
+  flex-wrap:wrap;
 }
 
 .old{
@@ -360,6 +372,11 @@ header{
   outline:0;
 }
 
+.form-group textarea{
+  min-height:80px;
+  resize:vertical;
+}
+
 .primary{
   background:var(--orange);
   color:white;
@@ -375,22 +392,7 @@ header{
   padding:12px 18px;
   border-radius:9px;
   font-weight:bold;
-}
-
-.cart-item{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  padding:12px 0;
-  border-bottom:1px solid #eee;
-}
-
-.qty button{
-  border:0;
-  background:#eee;
-  width:30px;
-  height:30px;
-  border-radius:6px;
+  margin-left:5px;
 }
 
 .owner-dashboard{
@@ -452,26 +454,85 @@ footer p{
   display:none;
 }
 
+.small-note{
+  color:#777;
+  font-size:12px;
+  margin-top:6px;
+}
+
+.owner-food{
+  background:white;
+  padding:13px;
+  border-radius:10px;
+  border:1px solid #eee;
+  margin-top:8px;
+}
+
 @media(max-width:1000px){
-  .food-grid{grid-template-columns:repeat(2,1fr)}
+  .food-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
 }
 
 @media(max-width:800px){
-  .layout{grid-template-columns:1fr}
-  .sidebar{display:grid;grid-template-columns:1fr 1fr}
-  .nav{flex-wrap:wrap}
-  .navlinks{margin-left:0;width:100%;justify-content:center}
+  .layout{
+    grid-template-columns:1fr;
+  }
+
+  .sidebar{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+  }
+
+  .nav{
+    flex-wrap:wrap;
+  }
+
+  .navlinks{
+    margin-left:0;
+    width:100%;
+    justify-content:center;
+  }
 }
 
 @media(max-width:600px){
-  .hero{min-height:390px}
-  .hero h1{font-size:34px}
-  .hero p{font-size:16px}
-  .searchbox{border-radius:15px;flex-direction:column;gap:7px}
-  .searchbox button{padding:13px}
-  .food-grid{grid-template-columns:1fr}
-  .sidebar{display:block}
-  .logo{font-size:23px}
+  .hero{
+    min-height:390px;
+  }
+
+  .hero h1{
+    font-size:34px;
+  }
+
+  .hero p{
+    font-size:16px;
+  }
+
+  .searchbox{
+    border-radius:15px;
+    flex-direction:column;
+    gap:7px;
+  }
+
+  .searchbox button{
+    padding:13px;
+  }
+
+  .food-grid{
+    grid-template-columns:1fr;
+  }
+
+  .sidebar{
+    display:block;
+  }
+
+  .logo{
+    font-size:23px;
+  }
+
+  .navlinks button{
+    font-size:12px;
+  }
 }
 </style>
 </head>
@@ -480,205 +541,439 @@ footer p{
 
 <header>
   <div class="nav">
+
     <div class="logo">🍴 BiteMitra</div>
+
     <div class="badge">🇮🇳 MADE IN INDIA</div>
 
     <div class="navlinks">
+
       <button onclick="goHome()">🏠 Home</button>
-      <button onclick="openCart()">🛒 Cart <span id="cartCount">0</span></button>
+
+      <button onclick="openCart()">
+        🛒 Cart <span id="cartCount">0</span>
+      </button>
+
       <button onclick="openLogin()">👤 Login</button>
+
       <button onclick="openOwner()">👨‍🍳 Owner</button>
+
       <button onclick="openAdmin()">⚙️ Admin</button>
+
     </div>
+
   </div>
 </header>
 
+
 <section class="hero" id="home">
+
   <div class="hero-content">
+
     <h1>Delicious Food, Your Local Mitra ❤️</h1>
-    <p>Discover local food, order easily and enjoy fast delivery.</p>
+
+    <p>
+      Discover local food, order easily and enjoy fast delivery.
+    </p>
 
     <div class="searchbox">
+
       <input
         id="searchInput"
         type="text"
         placeholder="Search food, pizza, biryani, burger..."
         oninput="searchFood()"
       >
-      <button onclick="searchFood()">🔎 Search</button>
+
+      <button onclick="searchFood()">
+        🔎 Search
+      </button>
+
     </div>
+
   </div>
+
 </section>
+
 
 <main class="container">
 
   <div class="categories">
-    <button class="cat active" onclick="setCategory('All',this)">All</button>
-    <button class="cat" onclick="setCategory('Pizza',this)">🍕 Pizza</button>
-    <button class="cat" onclick="setCategory('Biryani',this)">🍛 Biryani</button>
-    <button class="cat" onclick="setCategory('Chicken',this)">🍗 Chicken</button>
-    <button class="cat" onclick="setCategory('Burger',this)">🍔 Burger</button>
-    <button class="cat" onclick="setCategory('Sweets',this)">🍩 Sweets</button>
-    <button class="cat" onclick="setCategory('Drinks',this)">🥤 Drinks</button>
-    <button class="cat" onclick="setCategory('Rice',this)">🍚 Rice</button>
-    <button class="cat" onclick="setCategory('Other',this)">🍽️ Other</button>
+
+    <button class="cat active"
+      onclick="setCategory('All',this)">
+      All
+    </button>
+
+    <button class="cat"
+      onclick="setCategory('Pizza',this)">
+      🍕 Pizza
+    </button>
+
+    <button class="cat"
+      onclick="setCategory('Biryani',this)">
+      🍛 Biryani
+    </button>
+
+    <button class="cat"
+      onclick="setCategory('Chicken',this)">
+      🍗 Chicken
+    </button>
+
+    <button class="cat"
+      onclick="setCategory('Burger',this)">
+      🍔 Burger
+    </button>
+
+    <button class="cat"
+      onclick="setCategory('Sweets',this)">
+      🍩 Sweets
+    </button>
+
+    <button class="cat"
+      onclick="setCategory('Drinks',this)">
+      🥤 Drinks
+    </button>
+
+    <button class="cat"
+      onclick="setCategory('Rice',this)">
+      🍚 Rice
+    </button>
+
+    <button class="cat"
+      onclick="setCategory('Other',this)">
+      🍽️ Other
+    </button>
+
   </div>
+
 
   <div class="layout">
 
     <section>
-      <h2 class="section-title">Popular Food</h2>
+
+      <h2 class="section-title">
+        Popular Food
+      </h2>
+
       <div id="foodGrid" class="food-grid">
-        <div class="empty">Loading BiteMitra food...</div>
+
+        <div class="empty">
+          Loading BiteMitra food...
+        </div>
+
       </div>
+
     </section>
+
 
     <aside class="sidebar">
 
       <div class="side-box">
+
         <h3>🚴 Fast Delivery</h3>
+
         <div class="feature">
+
           <div class="feature-icon">⚡</div>
+
           <div>
             <b>Quick Service</b>
             <p>Fast local delivery.</p>
           </div>
+
         </div>
 
+
         <div class="feature">
+
           <div class="feature-icon">📍</div>
+
           <div>
             <b>Local Delivery</b>
             <p>Delivery to your area.</p>
           </div>
+
         </div>
 
+
         <div class="feature">
+
           <div class="feature-icon">🔒</div>
+
           <div>
             <b>Secure Orders</b>
             <p>Your order details are saved safely.</p>
           </div>
+
         </div>
+
       </div>
 
+
       <div class="side-box">
+
         <h3>👤 Account</h3>
-        <p style="margin-bottom:12px">Login to manage your orders.</p>
-        <button class="primary" onclick="openLogin()">Login / Create Account</button>
+
+        <p style="margin-bottom:12px">
+          Login to manage your orders.
+        </p>
+
+        <button
+          class="primary"
+          onclick="openLogin()">
+          Login / Create Account
+        </button>
+
       </div>
 
+
       <div class="side-box">
+
         <h3>🏪 Popular Restaurants</h3>
+
         <p>🍽️ Mithila Food Corner</p>
-        <p style="margin-top:8px">🍽️ Bite House</p>
-        <p style="margin-top:8px">🍽️ Desi Rasoi</p>
+
+        <p style="margin-top:8px">
+          🍽️ Bite House
+        </p>
+
+        <p style="margin-top:8px">
+          🍽️ Desi Rasoi
+        </p>
+
       </div>
 
     </aside>
 
   </div>
+
 </main>
+
 
 <button class="cart-box" onclick="openCart()">
   🛒 Cart: ₹<span id="floatingTotal">0</span>
 </button>
 
+
 <footer>
+
   <div class="footer-inner">
-    <div>
-      <div class="footer-logo">🍴 BiteMitra</div>
-      <p>Your Local Food Delivery Partner</p>
-    </div>
 
     <div>
-      <div class="badge">🇮🇳 MADE IN INDIA</div>
-      <p>Delicious Food, Your Local Mitra ❤️</p>
+
+      <div class="footer-logo">
+        🍴 BiteMitra
+      </div>
+
+      <p>
+        Your Local Food Delivery Partner
+      </p>
+
     </div>
+
+
+    <div>
+
+      <div class="badge">
+        🇮🇳 MADE IN INDIA
+      </div>
+
+      <p>
+        Delicious Food, Your Local Mitra ❤️
+      </p>
+
+    </div>
+
   </div>
+
 </footer>
 
-<!-- LOGIN MODAL -->
+
+<!-- ================= LOGIN ================= -->
+
 <div class="modal" id="loginModal">
+
   <div class="modal-box">
 
     <div class="modal-head">
+
       <h2>👤 Customer Login</h2>
-      <button class="close" onclick="closeModal('loginModal')">✕</button>
+
+      <button
+        class="close"
+        onclick="closeModal('loginModal')">
+        ✕
+      </button>
+
     </div>
 
+
     <div class="form-group">
+
       <label>Email</label>
-      <input id="customerEmail" type="email" placeholder="Enter email">
+
+      <input
+        id="customerEmail"
+        type="email"
+        placeholder="Enter email">
+
     </div>
+
 
     <div class="form-group">
+
       <label>Password</label>
-      <input id="customerPassword" type="password" placeholder="Enter password">
+
+      <input
+        id="customerPassword"
+        type="password"
+        placeholder="Minimum 6 characters">
+
     </div>
 
-    <button class="primary" onclick="customerLogin()">Login</button>
-    <button class="secondary" onclick="customerSignup()">Create Account</button>
 
-    <p id="loginMessage" style="margin-top:15px"></p>
+    <button
+      class="primary"
+      onclick="customerLogin()">
+      Login
+    </button>
+
+
+    <button
+      class="secondary"
+      onclick="customerSignup()">
+      Create Account
+    </button>
+
+
+    <p
+      id="loginMessage"
+      style="margin-top:15px">
+    </p>
+
   </div>
+
 </div>
 
-<!-- OWNER MODAL -->
+
+<!-- ================= OWNER ================= -->
+
 <div class="modal" id="ownerModal">
+
   <div class="modal-box">
 
     <div class="modal-head">
+
       <h2>👨‍🍳 BiteMitra Owner</h2>
-      <button class="close" onclick="closeModal('ownerModal')">✕</button>
+
+      <button
+        class="close"
+        onclick="closeModal('ownerModal')">
+        ✕
+      </button>
+
     </div>
+
 
     <div id="ownerLoginBox">
 
       <div class="form-group">
+
         <label>Owner Email</label>
-        <input id="ownerEmail" type="email" placeholder="Owner email">
+
+        <input
+          id="ownerEmail"
+          type="email"
+          placeholder="Owner email">
+
       </div>
+
 
       <div class="form-group">
+
         <label>Password</label>
-        <input id="ownerPassword" type="password" placeholder="Owner password">
+
+        <input
+          id="ownerPassword"
+          type="password"
+          placeholder="Owner password">
+
       </div>
 
-      <button class="primary" onclick="ownerLogin()">Owner Login</button>
 
-      <p style="margin-top:12px;color:#777">
-        Owner account must be created securely in Firebase Authentication.
+      <button
+        class="primary"
+        onclick="ownerLogin()">
+        Owner Login
+      </button>
+
+
+      <p
+        id="ownerMessage"
+        style="margin-top:12px">
       </p>
 
-      <p id="ownerMessage" style="margin-top:12px"></p>
+      <p class="small-note">
+        Owner account must already exist in Firebase Authentication.
+      </p>
 
     </div>
 
-    <div id="ownerDashboard" style="display:none">
+
+    <div
+      id="ownerDashboard"
+      style="display:none">
 
       <div class="status">
+
         ✅ Owner logged in
-        <button class="secondary" style="float:right;padding:7px 10px" onclick="ownerLogout()">Logout</button>
+
+        <button
+          class="secondary"
+          style="float:right;padding:7px 10px"
+          onclick="ownerLogout()">
+          Logout
+        </button>
+
       </div>
+
 
       <div class="owner-dashboard">
 
-        <h3 style="margin-bottom:15px">➕ Add Food</h3>
+        <h3 style="margin-bottom:15px">
+          ➕ Add Food
+        </h3>
+
 
         <div class="form-group">
-          <label>Restaurant Name</label>
-          <input id="restaurantName" placeholder="Restaurant name">
+
+          <label>Restaurant Name *</label>
+
+          <input
+            id="restaurantName"
+            placeholder="Restaurant name">
+
         </div>
 
-        <div class="form-group">
-          <label>Food Name</label>
-          <input id="foodName" placeholder="Example: Paneer Pizza">
-        </div>
 
         <div class="form-group">
-          <label>Category</label>
+
+          <label>Food Name *</label>
+
+          <input
+            id="foodName"
+            placeholder="Example: Paneer Pizza">
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>Category *</label>
+
           <select id="foodCategory">
+
             <option>Pizza</option>
             <option>Biryani</option>
             <option>Chicken</option>
@@ -687,311 +982,382 @@ footer p{
             <option>Drinks</option>
             <option>Rice</option>
             <option>Other</option>
+
           </select>
+
         </div>
 
-        <div class="form-group">
-          <label>Original Price ₹</label>
-          <input id="originalPrice" type="number" placeholder="100">
-        </div>
 
         <div class="form-group">
+
+          <label>Original Price ₹ *</label>
+
+          <input
+            id="originalPrice"
+            type="number"
+            placeholder="100">
+
+        </div>
+
+
+        <div class="form-group">
+
           <label>Discount %</label>
-          <input id="discountPercent" type="number" value="0" placeholder="10">
+
+          <input
+            id="discountPercent"
+            type="number"
+            value="0"
+            placeholder="10">
+
         </div>
+
 
         <div class="form-group">
+
           <label>Food Image URL</label>
-          <input id="foodImageUrl" placeholder="Paste image URL">
-          <small style="color:#777">
-            📸 Firebase Storage billing abhi enabled nahi hai, isliye filhaal image URL use hoga.
-          </small>
+
+          <input
+            id="foodImageUrl"
+            placeholder="Paste image URL">
+
+          <div class="small-note">
+            📸 Storage/Billing अभी enable नहीं है, इसलिए फिलहाल image URL इस्तेमाल होगा।
+          </div>
+
         </div>
 
-        <button class="primary" onclick="addFood()">Save Food to Firebase</button>
 
-        <p id="foodSaveMessage" style="margin-top:12px"></p>
+        <button
+          class="primary"
+          onclick="addFood()">
+          Save Food to Firebase
+        </button>
+
+
+        <p
+          id="foodSaveMessage"
+          style="margin-top:12px">
+        </p>
 
       </div>
 
-      <hr style="margin:20px 0;border:0;border-top:1px solid #eee">
 
-      <h3>📦 Your Added Foods</h3>
-      <div id="ownerFoods" style="margin-top:15px"></div>
+      <hr
+        style="
+        margin:20px 0;
+        border:0;
+        border-top:1px solid #eee;">
+
+
+      <h3>
+        📦 Your Added Foods
+      </h3>
+
+
+      <div
+        id="ownerFoods"
+        style="margin-top:15px">
+      </div>
 
     </div>
 
   </div>
+
 </div>
 
-<!-- CART MODAL -->
+
+<!-- ================= CART ================= -->
+
 <div class="modal" id="cartModal">
+
   <div class="modal-box">
 
     <div class="modal-head">
+
       <h2>🛒 Your Cart</h2>
-      <button class="close" onclick="closeModal('cartModal')">✕</button>
+
+      <button
+        class="close"
+        onclick="closeModal('cartModal')">
+        ✕
+      </button>
+
     </div>
+
 
     <div id="cartItems"></div>
 
+
     <div style="margin-top:20px">
-      <h3>Total: ₹<span id="cartTotal">0</span></h3>
+
+      <h3>
+        Total: ₹<span id="cartTotal">0</span>
+      </h3>
+
     </div>
 
-    <button class="primary" style="margin-top:15px" onclick="openCheckout()">
+
+    <button
+      class="primary"
+      style="margin-top:15px"
+      onclick="openCheckout()">
       Order Now
     </button>
 
   </div>
+
 </div>
 
-<!-- CHECKOUT MODAL -->
+
+<!-- ================= CHECKOUT ================= -->
+
 <div class="modal" id="checkoutModal">
+
   <div class="modal-box">
 
     <div class="modal-head">
+
       <h2>📦 Delivery Address</h2>
-      <button class="close" onclick="closeModal('checkoutModal')">✕</button>
+
+      <button
+        class="close"
+        onclick="closeModal('checkoutModal')">
+        ✕
+      </button>
+
     </div>
 
+
     <div class="form-group">
+
       <label>Full Name *</label>
-      <input id="orderName" placeholder="Your full name">
+
+      <input
+        id="orderName"
+        placeholder="Your full name">
+
     </div>
 
+
     <div class="form-group">
+
       <label>Mobile Number *</label>
-      <input id="orderMobile" type="tel" placeholder="10 digit mobile number">
+
+      <input
+        id="orderMobile"
+        type="tel"
+        maxlength="10"
+        placeholder="10 digit mobile number">
+
     </div>
 
+
     <div class="form-group">
+
       <label>House / Street / Address *</label>
-      <textarea id="orderAddress" placeholder="Complete address"></textarea>
+
+      <textarea
+        id="orderAddress"
+        placeholder="Complete address"></textarea>
+
     </div>
 
+
     <div class="form-group">
+
       <label>Ward Number</label>
-      <input id="orderWard" placeholder="Ward number">
+
+      <input
+        id="orderWard"
+        placeholder="Ward number">
+
     </div>
 
+
     <div class="form-group">
+
       <label>Village / Town *</label>
-      <input id="orderVillage" placeholder="Village / Town">
+
+      <input
+        id="orderVillage"
+        placeholder="Village / Town">
+
     </div>
 
+
     <div class="form-group">
+
       <label>District *</label>
-      <input id="orderDistrict" placeholder="District">
+
+      <input
+        id="orderDistrict"
+        placeholder="District">
+
     </div>
 
+
     <div class="form-group">
+
       <label>PIN *</label>
-      <input id="orderPin" maxlength="6" placeholder="6 digit PIN">
+
+      <input
+        id="orderPin"
+        type="tel"
+        maxlength="6"
+        placeholder="6 digit PIN">
+
     </div>
 
+
     <div class="form-group">
+
       <label>Landmark</label>
-      <input id="orderLandmark" placeholder="Nearby landmark">
+
+      <input
+        id="orderLandmark"
+        placeholder="Nearby landmark">
+
     </div>
 
+
     <div class="form-group">
+
       <label>Nearby / Current Location</label>
-      <input id="orderLocation" placeholder="Optional">
+
+      <input
+        id="orderLocation"
+        placeholder="Optional">
+
     </div>
+
 
     <div class="form-group">
+
       <label>Payment</label>
+
       <select id="paymentMethod">
-        <option>Cash on Delivery</option>
-        <option>Online Payment - Coming Soon</option>
+
+        <option>
+          Cash on Delivery
+        </option>
+
+        <option disabled>
+          Online Payment - Coming Soon
+        </option>
+
       </select>
+
     </div>
 
-    <button class="primary" onclick="placeOrder()">
+
+    <button
+      class="primary"
+      onclick="placeOrder()">
       ✅ Place Order
     </button>
 
-    <p id="orderMessage" style="margin-top:15px"></p>
+
+    <p
+      id="orderMessage"
+      style="margin-top:15px">
+    </p>
 
   </div>
+
 </div>
 
-<!-- ADMIN -->
+
+<!-- ================= ADMIN ================= -->
+
 <div class="modal" id="adminModal">
+
   <div class="modal-box">
 
     <div class="modal-head">
+
       <h2>⚙️ BiteMitra Admin</h2>
-      <button class="close" onclick="closeModal('adminModal')">✕</button>
+
+      <button
+        class="close"
+        onclick="closeModal('adminModal')">
+        ✕
+      </button>
+
     </div>
 
+
     <div class="empty">
-      <h3>Admin Dashboard</h3>
+
+      <h3>
+        Admin Dashboard
+      </h3>
+
       <p style="margin-top:10px">
-        Orders, delivery staff, delivery fee, offers and platform settings
-        will be connected here.
+
+        Orders, delivery staff, delivery fee,
+        offers and platform settings will be
+        connected here.
+
       </p>
+
     </div>
 
   </div>
+
 </div>
 
-<div class="toast" id="toast"></div>
 
-<!-- FIREBASE -->
+<div
+  class="toast"
+  id="toast">
+</div>
+
+
+<!-- ======================================================
+     FIREBASE
+====================================================== -->
+
 <script type="module">
 
 import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
 
 import {
+
   getFirestore,
   collection,
   addDoc,
   getDocs,
   query,
   where,
-  orderBy,
   serverTimestamp
+
 }
-from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
 
 import {
+
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged
+
 }
-from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
 
-/* =========================================================
-   🔥 PASTE YOUR FIREBASE CONFIG HERE
-   ========================================================= */
+/* ======================================================
+   FIREBASE CONFIG
+====================================================== */
 
 const firebaseConfig = {
 
-  apiKey: "PASTE_YOUR_API_KEY",
+  apiKey: "AIzaSyBlNJPH4sJCmR5jUJ1txjiC92aKfp9Ou8Y",
 
   authDomain: "bitemitra-388fc.firebaseapp.com",
 
-  projectId: "bitemitra-388fc",
-
-  storageBucket: "bitemitra-388fc.firebasestorage.app",
-
-  messagingSenderId: "PASTE_YOUR_SENDER_ID",
-
-  appId: "PASTE_YOUR_APP_ID"
-
-};
-
-
-/* =========================================================
-   FIREBASE START
-   ========================================================= */
-
-const app = initializeApp(firebaseConfig);
-
-const db = getFirestore(app);
-
-const auth = getAuth(app);
-
-
-/* =========================================================
-   GLOBAL DATA
-   ========================================================= */
-
-let allFoods = [];
-
-let cart = JSON.parse(localStorage.getItem("bitemitra_cart") || "[]");
-
-let selectedCategory = "All";
-
-let currentOwner = null;
-
-
-/* =========================================================
-   TOAST
-   ========================================================= */
-
-function toast(message){
-
-  const box = document.getElementById("toast");
-
-  box.textContent = message;
-
-  box.style.display = "block";
-
-  setTimeout(()=>{
-    box.style.display = "none";
-  },2500);
-
-}
-
-
-/* =========================================================
-   MODAL
-   ========================================================= */
-
-window.closeModal = function(id){
-
-  document.getElementById(id).style.display = "none";
-
-};
-
-
-/* =========================================================
-   LOAD FOOD FROM FIRESTORE
-   ========================================================= */
-
-async function loadFoods(){
-
-  const grid = document.getElementById("foodGrid");
-
-  grid.innerHTML = `<div class="empty">Loading food...</div>`;
-
-  try{
-
-    const q = query(
-      collection(db,"foods"),
-      orderBy("createdAt","desc")
-    );
-
-    const snapshot = await getDocs(q);
-
-    allFoods = [];
-
-    snapshot.forEach(doc=>{
-
-      allFoods.push({
-        id:doc.id,
-        ...doc.data()
-      });
-
-    });
-
-    renderFoods();
-
-  }catch(error){
-
-    console.error(error);
-
-    grid.innerHTML = `
-      <div class="empty">
-        <h3>Food loading problem</h3>
-        <p style="margin-top:10px">
-          Check Firebase configuration and Firestore rules.
-        </p>
-      </div>
-    `;
-
-  }
-
-}
-
-
-/* =========================================================
-   RENDER FOOD
-   =============================================
+  projectId:
