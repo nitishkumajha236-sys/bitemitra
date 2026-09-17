@@ -2,227 +2,156 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BiteMitra — Your Local Food Delivery Partner</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BiteMitra | Your Local Food Delivery Partner</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f7f8fa;color:#171717;
-}
+body{font-family:Arial,sans-serif;background:#f6f7f9;color:#151515}
 button,input,select{font:inherit}
 button{cursor:pointer;border:0}
 
 header{
-  position:sticky;top:0;z-index:50;
-  background:#fff;
-  border-bottom:1px solid #eee;
-  padding:14px 5%;
-  display:flex;align-items:center;gap:20px;
-  justify-content:space-between;
+ position:sticky;top:0;z-index:20;background:#fff;
+ padding:14px 5%;display:flex;align-items:center;
+ gap:18px;border-bottom:1px solid #eee
 }
-.logo{
-  font-size:25px;font-weight:900;
-  white-space:nowrap;
-}
-.badge{
-  font-size:10px;background:#111;color:#fff;
-  padding:5px 9px;border-radius:20px;
-  margin-left:7px;
-}
-.search{
-  flex:1;max-width:520px;
-  position:relative;
-}
+.logo{font-size:24px;font-weight:900;white-space:nowrap}
+.badge{font-size:9px;background:#111;color:#fff;padding:5px 8px;border-radius:20px}
+.search{flex:1;max-width:520px}
 .search input{
-  width:100%;padding:13px 18px;
-  border:1px solid #ddd;border-radius:30px;
-  outline:none;
+ width:100%;padding:13px 18px;border:1px solid #ddd;
+ border-radius:30px;outline:0
 }
-.actions{display:flex;gap:8px}
-.action{
-  background:#111;color:white;
-  padding:11px 15px;border-radius:25px;
-}
-.cartCount{
-  background:#fff;color:#111;
-  padding:2px 7px;border-radius:20px;
-  margin-left:4px;
-}
+.action{background:#111;color:#fff;padding:11px 15px;border-radius:25px}
+.count{background:#fff;color:#111;padding:2px 6px;border-radius:15px}
 
 .hero{
-  padding:55px 6%;
-  background:linear-gradient(135deg,#111,#343434);
-  color:white;
+ padding:55px 6%;color:#fff;
+ background:linear-gradient(135deg,#101010,#363636)
 }
-.hero h1{font-size:clamp(35px,6vw,65px);max-width:800px}
-.hero p{margin-top:12px;color:#ddd;font-size:18px}
+.hero h1{font-size:clamp(35px,7vw,65px)}
+.hero p{margin-top:12px;color:#ddd}
 .hero button{
-  margin-top:25px;padding:14px 22px;
-  border-radius:30px;background:#fff;color:#111;
-  font-weight:bold;
+ margin-top:22px;padding:13px 22px;border-radius:30px;
+ font-weight:bold
 }
 
 .categories{
-  display:flex;gap:10px;overflow-x:auto;
-  padding:18px 5%;
-  background:white;
+ display:flex;gap:9px;overflow:auto;padding:17px 5%;
+ background:#fff
 }
 .categories button{
-  padding:10px 17px;border-radius:22px;
-  background:#eee;white-space:nowrap;
+ padding:10px 17px;background:#eee;border-radius:22px;
+ white-space:nowrap
 }
-.categories button.active{
-  background:#111;color:white;
-}
+.categories button.active{background:#111;color:#fff}
 
-.container{padding:25px 5%}
-.sectionTitle{
-  display:flex;justify-content:space-between;
-  align-items:center;margin-bottom:18px;
-}
+.container{padding:28px 5%}
 .grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-  gap:18px;
+ display:grid;
+ grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+ gap:18px
 }
 .card{
-  background:#fff;border-radius:18px;
-  overflow:hidden;border:1px solid #eee;
-  box-shadow:0 5px 20px #00000009;
+ background:#fff;border:1px solid #eee;border-radius:18px;
+ overflow:hidden;box-shadow:0 5px 20px #0000000b
 }
-.foodImg{
-  width:100%;height:170px;
-  object-fit:cover;background:#eee;
-}
+.foodImg{width:100%;height:175px;object-fit:cover;background:#eee}
 .cardBody{padding:15px}
 .cardBody h3{font-size:18px}
-.meta{font-size:13px;color:#777;margin:6px 0}
-.price{font-weight:bold;font-size:20px}
-.old{text-decoration:line-through;color:#999;font-size:13px;margin-left:5px}
+.meta{color:#777;font-size:13px;margin:6px 0}
 .discount{
-  display:inline-block;
-  background:#e9f8ed;color:#16853a;
-  padding:4px 7px;border-radius:6px;
-  font-size:12px;margin:7px 0;
+ display:inline-block;background:#e8f7ec;color:#16833a;
+ padding:4px 7px;border-radius:6px;font-size:12px;margin:5px 0
 }
-.cardButtons{
-  display:flex;gap:8px;margin-top:12px;
-}
+.price{font-size:20px;font-weight:bold}
+.old{text-decoration:line-through;color:#999;font-size:13px;margin-left:5px}
+.cardButtons{display:flex;gap:8px;margin-top:12px}
 .cardButtons button{
-  flex:1;padding:11px;border-radius:10px;
-  font-weight:bold;
+ flex:1;padding:11px;border-radius:10px;font-weight:bold
 }
-.addBtn{background:#eee}
-.orderBtn{background:#111;color:white}
+.add{background:#eee}.order{background:#111;color:#fff}
 
 .overlay{
-  display:none;position:fixed;inset:0;
-  background:#0008;z-index:100;
-  align-items:center;justify-content:center;
-  padding:15px;
+ display:none;position:fixed;inset:0;background:#0008;
+ z-index:100;align-items:center;justify-content:center;padding:15px
 }
 .modal{
-  background:white;width:100%;max-width:600px;
-  max-height:90vh;overflow:auto;
-  border-radius:22px;padding:25px;
+ background:#fff;width:100%;max-width:600px;max-height:92vh;
+ overflow:auto;border-radius:22px;padding:25px
 }
 .close{
-  float:right;background:#eee;
-  width:35px;height:35px;border-radius:50%;
+ float:right;width:35px;height:35px;border-radius:50%;
+ background:#eee;font-size:20px
 }
-.modal h2{margin-bottom:20px}
-.field{margin-bottom:13px}
-.field label{
-  display:block;font-size:13px;
-  font-weight:bold;margin-bottom:5px;
-}
+.field{margin:12px 0}
+.field label{display:block;font-size:13px;font-weight:bold;margin-bottom:5px}
 .field input,.field select{
-  width:100%;padding:12px;
-  border:1px solid #ddd;border-radius:10px;
-  outline:none;
+ width:100%;padding:12px;border:1px solid #ddd;
+ border-radius:10px;outline:0
 }
-.formGrid{
-  display:grid;grid-template-columns:1fr 1fr;gap:12px;
-}
+.formGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .full{grid-column:1/-1}
-
 .primary{
-  width:100%;padding:14px;
-  border-radius:12px;background:#111;color:white;
-  font-weight:bold;margin-top:10px;
+ width:100%;padding:14px;border-radius:12px;
+ background:#111;color:#fff;font-weight:bold;margin-top:8px
 }
 
 .cartItem{
-  display:flex;align-items:center;
-  justify-content:space-between;
-  padding:12px 0;border-bottom:1px solid #eee;
-  gap:10px;
+ display:flex;align-items:center;gap:10px;
+ padding:12px 0;border-bottom:1px solid #eee
 }
-.cartItem img{
-  width:60px;height:60px;
-  object-fit:cover;border-radius:10px;
-}
+.cartItem img{width:60px;height:60px;object-fit:cover;border-radius:10px}
 .cartInfo{flex:1}
-.qty{
-  display:flex;align-items:center;gap:8px;
-}
-.qty button{
-  width:28px;height:28px;
-  border-radius:50%;background:#eee;
-}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{width:28px;height:28px;border-radius:50%;background:#eee}
 .total{
-  display:flex;justify-content:space-between;
-  margin-top:18px;font-size:20px;font-weight:bold;
+ display:flex;justify-content:space-between;
+ margin-top:18px;font-size:20px;font-weight:bold
 }
 
-.ownerLogin{
-  background:linear-gradient(135deg,#0d0d0d,#252525);
-  color:white;
-  max-width:850px;
-  display:grid;grid-template-columns:1fr 1fr;
-  padding:0;overflow:hidden;
+.ownerBox{
+ max-width:850px;padding:0;overflow:hidden;
+ display:grid;grid-template-columns:1fr 1fr
 }
-.ownerVisual{
-  padding:40px;
-  min-height:420px;
-  background:
-  linear-gradient(#0008,#0008),
-  url("https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=900&q=80")
-  center/cover;
-  display:flex;flex-direction:column;
-  justify-content:flex-end;
+.ownerImage{
+ min-height:430px;padding:35px;color:#fff;
+ display:flex;flex-direction:column;justify-content:flex-end;
+ background:
+ linear-gradient(#0007,#0007),
+ url("https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=900&q=80")
+ center/cover
 }
-.ownerVisual h2{font-size:34px}
-.ownerForm{padding:35px;background:white;color:#111}
+.ownerImage h2{font-size:34px}
+.ownerForm{padding:35px;background:#fff}
 
-.success{
-  text-align:center;padding:25px;
+.preview{
+ width:100%;height:180px;object-fit:cover;
+ border-radius:12px;margin-top:8px;display:none
 }
+
+.success{text-align:center;padding:25px}
 .successIcon{
-  width:75px;height:75px;
-  border-radius:50%;background:#e8f8ed;
-  display:flex;align-items:center;
-  justify-content:center;
-  font-size:40px;margin:0 auto 15px;
+ width:75px;height:75px;border-radius:50%;
+ background:#e8f8ed;display:flex;align-items:center;
+ justify-content:center;font-size:40px;margin:0 auto 15px
 }
 
 footer{
-  margin-top:40px;background:#111;color:#ddd;
-  text-align:center;padding:35px 15px;
+ margin-top:40px;background:#111;color:#ddd;
+ text-align:center;padding:35px
 }
-footer strong{color:white;font-size:20px}
+footer strong{font-size:20px;color:#fff}
 footer p{margin-top:8px;font-size:13px}
 
 @media(max-width:700px){
-  header{flex-wrap:wrap}
-  .search{order:3;max-width:none;flex-basis:100%}
-  .actions{margin-left:auto}
-  .ownerLogin{grid-template-columns:1fr}
-  .ownerVisual{min-height:220px}
-  .formGrid{grid-template-columns:1fr}
-  .full{grid-column:auto}
+ header{flex-wrap:wrap}
+ .search{order:3;flex-basis:100%}
+ .ownerBox{grid-template-columns:1fr}
+ .ownerImage{min-height:220px}
+ .formGrid{grid-template-columns:1fr}
+ .full{grid-column:auto}
 }
 </style>
 </head>
@@ -230,593 +159,231 @@ footer p{margin-top:8px;font-size:13px}
 <body>
 
 <header>
-  <div class="logo">
-    🍴 BiteMitra
-    <span class="badge">🇮🇳 MADE IN INDIA</span>
-  </div>
+ <div class="logo">
+   🍴 BiteMitra
+   <span class="badge">🇮🇳 MADE IN INDIA</span>
+ </div>
 
-  <div class="search">
-    <input id="searchBox" placeholder="Search food, pizza, biryani..." oninput="renderFoods()">
-  </div>
+ <div class="search">
+   <input id="search" placeholder="Search food, pizza, biryani..."
+          oninput="renderFoods()">
+ </div>
 
-  <div class="actions">
-    <button class="action" onclick="openCart()">
-      🛒 Cart <span id="cartCount" class="cartCount">0</span>
-    </button>
-    <button class="action" onclick="openOwner()">👤 Owner</button>
-  </div>
+ <button class="action" onclick="openCart()">
+   🛒 Cart <span id="cartCount" class="count">0</span>
+ </button>
+
+ <button class="action" onclick="openOwner()">👤 Owner</button>
 </header>
 
 <section class="hero">
-  <h1>Delicious Food,<br>Your Local Mitra ❤️</h1>
-  <p>Discover food from local restaurants and order easily.</p>
-  <button onclick="document.getElementById('foods').scrollIntoView({behavior:'smooth'})">
-    Explore Food →
-  </button>
+ <h1>Delicious Food,<br>Your Local Mitra ❤️</h1>
+ <p>Discover food from local restaurants and order easily.</p>
+ <button onclick="document.getElementById('foods').scrollIntoView()">
+   Explore Food →
+ </button>
 </section>
 
-<div class="categories" id="categories">
-  <button class="active" onclick="setCategory('All',this)">All</button>
-  <button onclick="setCategory('Pizza',this)">🍕 Pizza</button>
-  <button onclick="setCategory('Biryani',this)">🍗 Biryani</button>
-  <button onclick="setCategory('Chicken',this)">🍗 Chicken</button>
-  <button onclick="setCategory('Burger',this)">🍔 Burger</button>
-  <button onclick="setCategory('Sweets',this)">🍬 Sweets</button>
-  <button onclick="setCategory('Drinks',this)">🥤 Drinks</button>
-  <button onclick="setCategory('Rice',this)">🍚 Rice</button>
-  <button onclick="setCategory('Other',this)">🍴 Other</button>
+<div class="categories">
+ <button class="active" onclick="category('All',this)">All</button>
+ <button onclick="category('Pizza',this)">🍕 Pizza</button>
+ <button onclick="category('Biryani',this)">🍗 Biryani</button>
+ <button onclick="category('Chicken',this)">🍗 Chicken</button>
+ <button onclick="category('Burger',this)">🍔 Burger</button>
+ <button onclick="category('Sweets',this)">🍬 Sweets</button>
+ <button onclick="category('Drinks',this)">🥤 Drinks</button>
+ <button onclick="category('Rice',this)">🍚 Rice</button>
+ <button onclick="category('Other',this)">🍴 Other</button>
 </div>
 
 <section class="container" id="foods">
-  <div class="sectionTitle">
-    <h2>Popular Food</h2>
-    <span id="foodStatus"></span>
-  </div>
-  <div class="grid" id="foodGrid"></div>
+ <h2 style="margin-bottom:18px">Popular Food</h2>
+ <div class="grid" id="foodGrid"></div>
 </section>
 
 <footer>
-  <strong>🍴 BiteMitra</strong>
-  <p>Your Local Food Delivery Partner ❤️</p>
-  <p>🇮🇳 MADE IN INDIA</p>
+ <strong>🍴 BiteMitra</strong>
+ <p>Your Local Food Delivery Partner ❤️</p>
+ <p>🇮🇳 MADE IN INDIA</p>
 </footer>
 
+
 <!-- CART -->
-<div class="overlay" id="cartOverlay">
-  <div class="modal">
-    <button class="close" onclick="closeModal('cartOverlay')">×</button>
-    <h2>🛒 Your Cart</h2>
-    <div id="cartItems"></div>
-    <div class="total">
-      <span>Total</span>
-      <span id="cartTotal">₹0</span>
-    </div>
-    <button class="primary" onclick="openCheckout()">Order Now</button>
+<div class="overlay" id="cartModal">
+ <div class="modal">
+  <button class="close" onclick="closeBox('cartModal')">×</button>
+  <h2>🛒 Your Cart</h2>
+  <div id="cartItems" style="margin-top:15px"></div>
+
+  <div class="total">
+   <span>Total</span>
+   <span id="total">₹0</span>
   </div>
+
+  <button class="primary" onclick="checkout()">Order Now</button>
+ </div>
 </div>
+
 
 <!-- CHECKOUT -->
-<div class="overlay" id="checkoutOverlay">
-  <div class="modal">
-    <button class="close" onclick="closeModal('checkoutOverlay')">×</button>
-    <h2>📦 Delivery Details</h2>
+<div class="overlay" id="checkoutModal">
+ <div class="modal">
+  <button class="close" onclick="closeBox('checkoutModal')">×</button>
+  <h2>📦 Delivery Details</h2>
 
-    <div class="formGrid">
+  <div class="formGrid">
 
-      <div class="field">
-        <label>Full Name *</label>
-        <input id="customerName" placeholder="Your name">
-      </div>
+   <div class="field">
+    <label>Full Name *</label>
+    <input id="name" placeholder="Your name">
+   </div>
 
-      <div class="field">
-        <label>Mobile Number *</label>
-        <input id="customerPhone" type="tel" maxlength="10" placeholder="10 digit mobile">
-      </div>
+   <div class="field">
+    <label>Mobile Number *</label>
+    <input id="phone" maxlength="10" type="tel"
+           placeholder="10 digit mobile">
+   </div>
 
-      <div class="field full">
-        <label>House / Street / Address *</label>
-        <input id="houseAddress" placeholder="House no., street, etc.">
-      </div>
+   <div class="field full">
+    <label>House / Street / Complete Address *</label>
+    <input id="address" placeholder="House no., street, etc.">
+   </div>
 
-      <div class="field">
-        <label>Ward Number</label>
-        <input id="ward" placeholder="Ward No.">
-      </div>
+   <div class="field">
+    <label>Ward Number</label>
+    <input id="ward" placeholder="Ward No.">
+   </div>
 
-      <div class="field">
-        <label>Village / Town *</label>
-        <input id="village" placeholder="Village / Town">
-      </div>
+   <div class="field">
+    <label>Village / Town *</label>
+    <input id="village" placeholder="Village / Town">
+   </div>
 
-      <div class="field">
-        <label>District *</label>
-        <input id="district" placeholder="District">
-      </div>
+   <div class="field">
+    <label>District *</label>
+    <input id="district" placeholder="District">
+   </div>
 
-      <div class="field">
-        <label>PIN Code *</label>
-        <input id="pin" maxlength="6" placeholder="6 digit PIN">
-      </div>
+   <div class="field">
+    <label>PIN Code *</label>
+    <input id="pin" maxlength="6" placeholder="6 digit PIN">
+   </div>
 
-      <div class="field full">
-        <label>Landmark</label>
-        <input id="landmark" placeholder="Nearby landmark">
-      </div>
+   <div class="field full">
+    <label>Landmark</label>
+    <input id="landmark" placeholder="Nearby landmark">
+   </div>
 
-      <div class="field full">
-        <label>Delivery Location</label>
-        <button type="button" class="primary" onclick="getLocation()">
-          📍 Use My Current Location
-        </button>
-        <small id="locationStatus"></small>
-      </div>
-
-    </div>
-
-    <button class="primary" onclick="placeOrder()">Confirm Order</button>
-  </div>
-</div>
-
-<!-- ORDER SUCCESS -->
-<div class="overlay" id="successOverlay">
-  <div class="modal success">
-    <div class="successIcon">✓</div>
-    <h2>Order Placed Successfully!</h2>
-    <p id="successText"></p>
-    <br>
-    <button class="primary" onclick="closeModal('successOverlay')">
-      Continue Shopping
+   <div class="field full">
+    <button class="primary" onclick="getLocation()">
+     📍 Use Current Location
     </button>
+    <small id="locationText"></small>
+   </div>
+
   </div>
+
+  <button class="primary" onclick="placeOrder()">
+   Confirm Order
+  </button>
+ </div>
 </div>
 
-<!-- OWNER -->
-<div class="overlay" id="ownerOverlay">
-  <div class="modal ownerLogin">
 
-    <div class="ownerVisual">
-      <h2>BiteMitra Partner</h2>
-      <p>Manage your restaurant. Add food without coding.</p>
-    </div>
+<!-- SUCCESS -->
+<div class="overlay" id="successModal">
+ <div class="modal success">
+  <div class="successIcon">✓</div>
+  <h2>Order Placed Successfully!</h2>
+  <p id="successText" style="margin-top:12px"></p>
 
-    <div class="ownerForm">
-      <button class="close" onclick="closeModal('ownerOverlay')">×</button>
-
-      <h2>Owner Login</h2>
-
-      <div class="field">
-        <label>Email</label>
-        <input id="ownerEmail" type="email" placeholder="Owner email">
-      </div>
-
-      <div class="field">
-        <label>Password</label>
-        <input id="ownerPassword" type="password" placeholder="Password">
-      </div>
-
-      <button class="primary" onclick="ownerLogin()">
-        Login
-      </button>
-
-      <button class="primary" style="background:#eee;color:#111"
-              onclick="openOwnerSignup()">
-        Create Restaurant Account
-      </button>
-
-      <p id="ownerMessage" style="margin-top:12px;font-size:13px"></p>
-    </div>
-  </div>
+  <button class="primary" onclick="closeBox('successModal')">
+   Continue Shopping
+  </button>
+ </div>
 </div>
+
+
+<!-- OWNER LOGIN -->
+<div class="overlay" id="ownerModal">
+ <div class="modal ownerBox">
+
+  <div class="ownerImage">
+   <h2>BiteMitra Partner</h2>
+   <p>Manage your restaurant without coding.</p>
+  </div>
+
+  <div class="ownerForm">
+   <button class="close" onclick="closeBox('ownerModal')">×</button>
+
+   <h2>Owner Login</h2>
+
+   <div class="field">
+    <label>Email</label>
+    <input id="loginEmail" type="email" placeholder="Owner email">
+   </div>
+
+   <div class="field">
+    <label>Password</label>
+    <input id="loginPassword" type="password" placeholder="Password">
+   </div>
+
+   <button class="primary" onclick="loginOwner()">Login</button>
+
+   <button class="primary"
+           style="background:#eee;color:#111"
+           onclick="openSignup()">
+    Create Restaurant Account
+   </button>
+
+   <p id="loginMessage" style="font-size:13px;margin-top:10px"></p>
+  </div>
+ </div>
+</div>
+
 
 <!-- OWNER SIGNUP -->
-<div class="overlay" id="signupOverlay">
-  <div class="modal">
-    <button class="close" onclick="closeModal('signupOverlay')">×</button>
-    <h2>✨ Restaurant Registration</h2>
+<div class="overlay" id="signupModal">
+ <div class="modal">
+  <button class="close" onclick="closeBox('signupModal')">×</button>
 
-    <div class="field">
-      <label>Restaurant Name *</label>
-      <input id="restaurantName" placeholder="Restaurant name">
-    </div>
+  <h2>✨ Restaurant Registration</h2>
 
-    <div class="field">
-      <label>Owner Name *</label>
-      <input id="signupOwnerName" placeholder="Owner name">
-    </div>
-
-    <div class="field">
-      <label>Email *</label>
-      <input id="signupEmail" type="email">
-    </div>
-
-    <div class="field">
-      <label>Password *</label>
-      <input id="signupPassword" type="password">
-    </div>
-
-    <div class="field">
-      <label>GST Registered?</label>
-      <select id="gstRegistered" onchange="toggleGST()">
-        <option value="no">No</option>
-        <option value="yes">Yes</option>
-      </select>
-    </div>
-
-    <div class="field" id="gstField" style="display:none">
-      <label>GSTIN</label>
-      <input id="gstNumber" placeholder="GSTIN">
-    </div>
-
-    <button class="primary" onclick="ownerSignup()">
-      Create Account
-    </button>
-
-    <p id="signupMessage" style="margin-top:10px;font-size:13px"></p>
+  <div class="field">
+   <label>Restaurant Name *</label>
+   <input id="restaurantName" placeholder="Restaurant name">
   </div>
-</div>
 
-<!-- OWNER DASHBOARD -->
-<div class="overlay" id="dashboardOverlay">
-  <div class="modal">
-    <button class="close" onclick="closeModal('dashboardOverlay')">×</button>
-
-    <h2>👨‍🍳 Restaurant Dashboard</h2>
-
-    <div class="field">
-      <label>Food Name *</label>
-      <input id="newFoodName" placeholder="Paneer Pizza">
-    </div>
-
-    <div class="field">
-      <label>Category *</label>
-      <select id="newFoodCategory">
-        <option>Pizza</option>
-        <option>Biryani</option>
-        <option>Chicken</option>
-        <option>Burger</option>
-        <option>Sweets</option>
-        <option>Drinks</option>
-        <option>Rice</option>
-        <option>Other</option>
-      </select>
-    </div>
-
-    <div class="formGrid">
-      <div class="field">
-        <label>Original Price ₹</label>
-        <input id="newFoodPrice" type="number" placeholder="100">
-      </div>
-
-      <div class="field">
-        <label>Discount %</label>
-        <input id="newFoodDiscount" type="number" min="0" max="100" placeholder="10">
-      </div>
-    </div>
-
-    <div class="field">
-      <label>Food Image URL</label>
-      <input id="newFoodImage"
-             placeholder="Paste image URL">
-    </div>
-
-    <button class="primary" onclick="addFood()">
-      ➕ Add Food
-    </button>
-
-    <hr style="margin:25px 0;border:0;border-top:1px solid #eee">
-
-    <h3>🚚 Delivery Settings</h3>
-
-    <div class="field">
-      <label>Delivery Fee ₹</label>
-      <input id="deliveryFee" type="number" value="0">
-    </div>
-
-    <button class="primary" onclick="saveDeliveryFee()">
-      Save Delivery Fee
-    </button>
-
-    <hr style="margin:25px 0;border:0;border-top:1px solid #eee">
-
-    <h3>📦 Recent Orders</h3>
-    <div id="ownerOrders" style="margin-top:12px"></div>
-
-    <button class="primary"
-            style="background:#eee;color:#111"
-            onclick="ownerLogout()">
-      Logout
-    </button>
+  <div class="field">
+   <label>Owner Name *</label>
+   <input id="ownerName" placeholder="Owner name">
   </div>
-</div>
 
-<script type="module">
+  <div class="field">
+   <label>Email *</label>
+   <input id="signupEmail" type="email">
+  </div>
 
-/* =====================================================
-   FIREBASE CONFIG
-   Firebase Console → Project Settings → Your Apps → Web
-   YAHAN APNA CONFIG PASTE KARNA HAI
-   ===================================================== */
+  <div class="field">
+   <label>Password *</label>
+   <input id="signupPassword" type="password">
+  </div>
 
-const firebaseConfig = {
-  apiKey: "PASTE_YOUR_API_KEY",
-  authDomain: "bitemitra-388fc.firebaseapp.com",
-  projectId: "bitemitra-388fc",
-  storageBucket: "bitemitra-388fc.firebasestorage.app",
-  messagingSenderId: "PASTE_YOUR_SENDER_ID",
-  appId: "PASTE_YOUR_APP_ID"
-};
+  <div class="field">
+   <label>GST Registered?</label>
+   <select id="gst" onchange="gstChange()">
+    <option value="no">No</option>
+    <option value="yes">Yes</option>
+   </select>
+  </div>
 
-import {
-  initializeApp
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+  <div class="field" id="gstBox" style="display:none">
+   <label>GSTIN</label>
+   <input id="gstNumber" placeholder="GSTIN">
+  </div>
 
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  getDocs,
-  doc,
-  setDoc,
-  updateDoc,
-  query,
-  orderBy,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+  <button class="primary" onclick="signupOwner()">
+   Create Account
+  </button>
 
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth(app);
-
-/* =========================
-   LOCAL APP STATE
-   ========================= */
-
-let foods = [];
-let cart = [];
-let currentCategory = "All";
-let currentUser = null;
-let userLocation = null;
-
-const fallbackFoods = [
-  {
-    name:"Paneer Pizza",
-    category:"Pizza",
-    price:299,
-    discount:10,
-    image:"https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=700&q=80"
-  },
-  {
-    name:"Chicken Biryani",
-    category:"Biryani",
-    price:199,
-    discount:10,
-    image:"https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=700&q=80"
-  },
-  {
-    name:"Chicken Burger",
-    category:"Burger",
-    price:149,
-    discount:5,
-    image:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=700&q=80"
-  },
-  {
-    name:"Cold Drink",
-    category:"Drinks",
-    price:50,
-    discount:0,
-    image:"https://images.unsplash.com/photo-1629203851122-3726ecdf080e?auto=format&fit=crop&w=700&q=80"
-  },
-  {
-    name:"Gulab Jamun",
-    category:"Sweets",
-    price:80,
-    discount:5,
-    image:"https://images.unsplash.com/photo-1666190094761-2c2c6e1a6e11?auto=format&fit=crop&w=700&q=80"
-  }
-];
-
-cart = JSON.parse(localStorage.getItem("bitemitra_cart") || "[]");
-
-function saveCart(){
-  localStorage.setItem("bitemitra_cart",JSON.stringify(cart));
-  updateCartCount();
-}
-
-function updateCartCount(){
-  document.getElementById("cartCount").textContent =
-    cart.reduce((sum,item)=>sum+item.qty,0);
-}
-
-function finalPrice(food){
-  return Math.round(
-    Number(food.price) *
-    (1 - Number(food.discount || 0)/100)
-  );
-}
-
-/* =========================
-   LOAD FOOD
-   ========================= */
-
-async function loadFoods(){
-
-  try{
-    const snap = await getDocs(collection(db,"foods"));
-
-    if(snap.empty){
-      foods = fallbackFoods;
-    }else{
-      foods = snap.docs.map(d=>({
-        id:d.id,
-        ...d.data()
-      }));
-    }
-
-  }catch(error){
-    console.log("Firebase food load:",error);
-    foods = fallbackFoods;
-  }
-
-  renderFoods();
-}
-
-window.renderFoods = function(){
-
-  const grid = document.getElementById("foodGrid");
-  const search =
-    document.getElementById("searchBox").value.toLowerCase();
-
-  let result = foods.filter(food=>{
-
-    const categoryOK =
-      currentCategory==="All" ||
-      food.category===currentCategory;
-
-    const searchOK =
-      !search ||
-      String(food.name).toLowerCase().includes(search) ||
-      String(food.category).toLowerCase().includes(search);
-
-    return categoryOK && searchOK;
-  });
-
-  if(!result.length){
-    grid.innerHTML =
-      `<div style="grid-column:1/-1;padding:30px;text-align:center">
-       No food found.
-       </div>`;
-    return;
-  }
-
-  grid.innerHTML = result.map(food=>{
-
-    const price = finalPrice(food);
-
-    return `
-      <article class="card">
-        <img class="foodImg"
-             src="${food.image || fallbackFoods[0].image}"
-             onerror="this.src='${fallbackFoods[0].image}'">
-
-        <div class="cardBody">
-          <h3>${escapeHTML(food.name)}</h3>
-
-          <div class="meta">
-            ${escapeHTML(food.category || "Food")}
-          </div>
-
-          ${
-            Number(food.discount)>0
-            ? `<span class="discount">${food.discount}% OFF</span>`
-            : ""
-          }
-
-          <div class="price">
-            ₹${price}
-            ${
-              Number(food.discount)>0
-              ? `<span class="old">₹${food.price}</span>`
-              : ""
-            }
-          </div>
-
-          <div class="cardButtons">
-            <button class="addBtn"
-              onclick='addToCart(${JSON.stringify(food)})'>
-              + Add
-            </button>
-
-            <button class="orderBtn"
-              onclick='buyNow(${JSON.stringify(food)})'>
-              Order Now
-            </button>
-          </div>
-        </div>
-      </article>
-    `;
-
-  }).join("");
-};
-
-function escapeHTML(text){
-  return String(text)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;");
-}
-
-window.setCategory = function(category,button){
-  currentCategory=category;
-
-  document.querySelectorAll(".categories button")
-    .forEach(b=>b.classList.remove("active"));
-
-  button.classList.add("active");
-  renderFoods();
-};
-
-/* =========================
-   CART
-   ========================= */
-
-window.addToCart = function(food){
-
-  const existing =
-    cart.find(item=>item.name===food.name);
-
-  if(existing){
-    existing.qty++;
-  }else{
-    cart.push({...food,qty:1});
-  }
-
-  saveCart();
-
-  document.getElementById("foodStatus").textContent =
-    "Added to cart ✓";
-
-  setTimeout(()=>{
-    document.getElementById("foodStatus").textContent="";
-  },1500);
-};
-
-window.buyNow = function(food){
-
-  cart=[{...food,qty:1}];
-  saveCart();
-  openCheckout();
-};
-
-window.openCart = function(){
-  renderCart();
-  document.getElementById("cartOverlay").style.display="flex";
-};
-
-function renderCart(){
-
-  const box=document.getElementById("cartItems");
-
-  if(!cart.length){
-    box.innerHTML="<p>Your cart is empty.</p>";
-    document.getElementById("cartTotal").textContent="₹0";
-    return;
-  }
-
-  let total=0;
-
-  box.innerHTML=cart.map((item,index)=>{
-
-    const p=finalPrice(item);
-    total += p*item.qty;
-
-    return `
-      <div class="cart
+  <p id="signupMessage" style="font-size:13px
