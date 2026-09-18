@@ -8,6 +8,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-storage-compat.js"></script>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -847,9 +848,14 @@ image:"https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&
 
 let foods=[...demoFoods];
 
-let cart=JSON.parse(
-localStorage.getItem("bitemitra_cart")||"[]"
-);
+let cart=[];
+try{
+  const savedCart=JSON.parse(localStorage.getItem("bitemitra_cart")||"[]");
+  cart=Array.isArray(savedCart)?savedCart:[];
+}catch(e){
+  cart=[];
+  localStorage.removeItem("bitemitra_cart");
+}
 
 /* ================= HELPERS ================= */
 
@@ -888,22 +894,13 @@ $("status").textContent=t;
 /* ================= SHOW FOOD IMMEDIATELY ================= */
 
 function startBiteMitra(){
+  try{
+    foods=[...demoFoods];
+    renderFoods(foods);
+    saveCart();
+  }catch(e){
+    console.error("BiteMitra UI start error:",e);
+  }
 
-/* सबसे पहले food दिखाओ */
-foods=[...demoFoods];
-renderFoods(foods);
-saveCart();
-
-/* उसके बाद Firebase */
-initFirebase();
-}
-
-/* ================= FIREBASE INIT ================= */
-
-function friendlyError(e){
-  const c=e&&e.code||"";
-  const map={
-    "auth/invalid-email":"Email address sahi nahi hai.",
-    "auth/user-not-found":"Is email ka account nahi mila.",
-    "auth/wrong-password":"Password galat hai.",
-    "auth/invalid-credential":"Email ya pas
+  // Firebase is optional for opening the UI; auth functions will show
+  // a clear
