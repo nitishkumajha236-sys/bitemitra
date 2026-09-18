@@ -3,285 +3,762 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
 <title>BiteMitra | Your Local Food Delivery Partner</title>
 
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-storage-compat.js"></script>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#f7f7f7;color:#222}
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
+*{
+box-sizing:border-box;
+margin:0;
+padding:0
+}
+
+body{
+font-family:Arial,sans-serif;
+background:#f7f7f7;
+color:#222
+}
+
+button,input,select,textarea{
+font:inherit
+}
+
+button{
+cursor:pointer
+}
+
+/* NAVBAR */
 
 .navbar{
-background:#ff6b00;color:#fff;padding:13px 5%;
-display:flex;align-items:center;justify-content:space-between;
-gap:15px;position:sticky;top:0;z-index:1000;
+background:#ff6b00;
+color:#fff;
+padding:13px 5%;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:15px;
+position:sticky;
+top:0;
+z-index:1000;
 box-shadow:0 2px 10px #0002
 }
-.logo{font-size:25px;font-weight:800;cursor:pointer}
+
+.logo{
+font-size:25px;
+font-weight:800;
+cursor:pointer
+}
+
 .badge{
-background:#fff;color:#ff6b00;padding:4px 8px;border-radius:15px;
-font-size:10px;font-weight:bold;margin-left:5px
+background:#fff;
+color:#ff6b00;
+padding:4px 8px;
+border-radius:15px;
+font-size:10px;
+font-weight:bold;
+margin-left:5px
 }
-.navlinks{display:flex;gap:6px;flex-wrap:wrap}
+
+.navlinks{
+display:flex;
+gap:6px;
+flex-wrap:wrap
+}
+
 .navbtn{
-border:0;background:transparent;color:#fff;padding:9px 11px;
-border-radius:8px;font-weight:bold
+border:0;
+background:transparent;
+color:#fff;
+padding:9px 11px;
+border-radius:8px;
+font-weight:bold
 }
-.navbtn:hover{background:#0002}
+
+.navbtn:hover{
+background:#0002
+}
+
+/* HERO */
 
 .hero{
 background:linear-gradient(135deg,#ff6b00,#ff9b42);
-color:#fff;padding:55px 5%;text-align:center
+color:#fff;
+padding:55px 5%;
+text-align:center
 }
-.hero h1{font-size:42px;margin-bottom:10px}
-.hero p{font-size:18px;margin-bottom:24px}
+
+.hero h1{
+font-size:42px;
+margin-bottom:10px
+}
+
+.hero p{
+font-size:18px;
+margin-bottom:24px
+}
 
 .searchbox{
-max-width:650px;margin:auto;background:#fff;border-radius:30px;
-padding:6px;display:flex;box-shadow:0 5px 20px #0003
+max-width:650px;
+margin:auto;
+background:#fff;
+border-radius:30px;
+padding:6px;
+display:flex;
+box-shadow:0 5px 20px #0003
 }
+
 .searchbox input{
-flex:1;border:0;outline:0;padding:13px 18px;border-radius:25px
+flex:1;
+border:0;
+outline:0;
+padding:13px 18px;
+border-radius:25px
 }
+
 .searchbox button{
-border:0;background:#ff6b00;color:#fff;padding:12px 22px;
-border-radius:25px;font-weight:bold
+border:0;
+background:#ff6b00;
+color:#fff;
+padding:12px 22px;
+border-radius:25px;
+font-weight:bold
 }
 
 .suggestions{
-max-width:650px;margin:5px auto;background:#fff;color:#222;
-border-radius:12px;text-align:left;overflow:hidden
+max-width:650px;
+margin:5px auto;
+background:#fff;
+color:#222;
+border-radius:12px;
+text-align:left;
+overflow:hidden
 }
-.suggestion{
-padding:10px 16px;border-bottom:1px solid #eee;cursor:pointer
-}
-.suggestion:hover{background:#fff1e8}
 
-.container{width:90%;max-width:1250px;margin:30px auto}
-.status{text-align:center;padding:10px;color:#666}
+.suggestion{
+padding:10px 16px;
+border-bottom:1px solid #eee;
+cursor:pointer
+}
+
+.suggestion:hover{
+background:#fff1e8
+}
+
+/* MAIN */
+
+.container{
+width:90%;
+max-width:1250px;
+margin:30px auto
+}
+
+.status{
+text-align:center;
+padding:10px;
+color:#666
+}
 
 .categories{
-display:flex;gap:10px;overflow-x:auto;padding:5px 0 15px
+display:flex;
+gap:10px;
+overflow-x:auto;
+padding:5px 0 15px
 }
+
 .category{
-border:1px solid #ddd;background:#fff;padding:10px 18px;
-border-radius:25px;white-space:nowrap
+border:1px solid #ddd;
+background:#fff;
+padding:10px 18px;
+border-radius:25px;
+white-space:nowrap
 }
-.category.active,.category:hover{
-background:#ff6b00;color:#fff;border-color:#ff6b00
+
+.category.active,
+.category:hover{
+background:#ff6b00;
+color:#fff;
+border-color:#ff6b00
 }
 
 .layout{
-display:grid;grid-template-columns:1fr 300px;gap:25px
+display:grid;
+grid-template-columns:1fr 300px;
+gap:25px
 }
-.foodgrid{
-display:grid;grid-template-columns:repeat(3,1fr);gap:18px
-}
-.foodcard{
-background:#fff;border-radius:15px;overflow:hidden;
-box-shadow:0 3px 12px #0001
-}
-.foodimg{
-width:100%;height:190px;object-fit:cover;background:#eee
-}
-.foodbody{padding:15px}
-.foodbody h3{margin-bottom:6px}
-.restaurant{color:#777;font-size:13px;margin-bottom:10px}
-.price{font-size:19px;font-weight:bold;color:#ff6b00}
-.oldprice{
-color:#999;text-decoration:line-through;font-size:13px;margin-left:5px
-}
-.discount{
-display:inline-block;background:#e8f8ed;color:#15803d;
-padding:4px 7px;border-radius:5px;font-size:11px;
-font-weight:bold;margin-left:5px
-}
-.cardbuttons{display:flex;gap:8px;margin-top:13px}
-.addbtn,.orderbtn{
-flex:1;border:0;padding:10px 7px;border-radius:8px;font-weight:bold
-}
-.addbtn{background:#fff1e8;color:#ff6b00}
-.orderbtn{background:#ff6b00;color:#fff}
 
-.sidebar{display:flex;flex-direction:column;gap:15px}
-.sidebox{
-background:#fff;padding:18px;border-radius:14px;
+.foodgrid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px
+}
+
+/* FOOD CARD */
+
+.foodcard{
+background:#fff;
+border-radius:15px;
+overflow:hidden;
 box-shadow:0 3px 12px #0001
 }
-.sidebox h3{margin-bottom:10px}
-.sidebox p{font-size:14px;color:#666;line-height:1.6}
-.sidebtn{
-width:100%;border:0;background:#ff6b00;color:#fff;
-padding:11px;border-radius:8px;font-weight:bold;margin-top:10px
+
+.foodimg{
+width:100%;
+height:190px;
+object-fit:cover;
+background:#eee
 }
+
+.foodbody{
+padding:15px
+}
+
+.foodbody h3{
+margin-bottom:6px
+}
+
+.restaurant{
+color:#777;
+font-size:13px;
+margin-bottom:10px
+}
+
+.price{
+font-size:19px;
+font-weight:bold;
+color:#ff6b00
+}
+
+.oldprice{
+color:#999;
+text-decoration:line-through;
+font-size:13px;
+margin-left:5px
+}
+
+.discount{
+display:inline-block;
+background:#e8f8ed;
+color:#15803d;
+padding:4px 7px;
+border-radius:5px;
+font-size:11px;
+font-weight:bold;
+margin-left:5px
+}
+
+.cardbuttons{
+display:flex;
+gap:8px;
+margin-top:13px
+}
+
+.addbtn,
+.orderbtn{
+flex:1;
+border:0;
+padding:10px 7px;
+border-radius:8px;
+font-weight:bold
+}
+
+.addbtn{
+background:#fff1e8;
+color:#ff6b00
+}
+
+.orderbtn{
+background:#ff6b00;
+color:#fff
+}
+
+/* SIDEBAR */
+
+.sidebar{
+display:flex;
+flex-direction:column;
+gap:15px
+}
+
+.sidebox{
+background:#fff;
+padding:18px;
+border-radius:14px;
+box-shadow:0 3px 12px #0001
+}
+
+.sidebox h3{
+margin-bottom:10px
+}
+
+.sidebox p{
+font-size:14px;
+color:#666;
+line-height:1.6
+}
+
+.sidebtn{
+width:100%;
+border:0;
+background:#ff6b00;
+color:#fff;
+padding:11px;
+border-radius:8px;
+font-weight:bold;
+margin-top:10px
+}
+
+/* FOOTER */
 
 .footer{
-margin-top:50px;background:#111;color:#fff;padding:40px 5%
+margin-top:50px;
+background:#111;
+color:#fff;
+padding:40px 5%
 }
+
 .footergrid{
-display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px
+display:grid;
+grid-template-columns:2fr 1fr 1fr;
+gap:30px
 }
-.footer h2{margin-bottom:10px}
-.footer p{color:#bbb;line-height:1.7}
-.footer a{color:#bbb;display:block;margin:7px 0;cursor:pointer}
+
+.footer h2{
+margin-bottom:10px
+}
+
+.footer p{
+color:#bbb;
+line-height:1.7
+}
+
+.footer a{
+color:#bbb;
+display:block;
+margin:7px 0;
+cursor:pointer
+}
+
 .copyright{
-border-top:1px solid #333;margin-top:25px;padding-top:20px;
-color:#888;text-align:center
+border-top:1px solid #333;
+margin-top:25px;
+padding-top:20px;
+color:#888;
+text-align:center
 }
+
+/* MODAL */
 
 .modal{
-display:none;position:fixed;inset:0;background:#0008;z-index:3000;
-align-items:center;justify-content:center;padding:15px
+display:none;
+position:fixed;
+inset:0;
+background:#0008;
+z-index:3000;
+align-items:center;
+justify-content:center;
+padding:15px
 }
-.modal.show{display:flex}
-.modalbox{
-width:100%;max-width:520px;max-height:92vh;overflow:auto;
-background:#fff;border-radius:18px;padding:25px;position:relative
-}
-.close{
-position:absolute;right:15px;top:10px;border:0;
-background:none;font-size:25px
-}
-.modal h2{margin-bottom:18px;color:#ff6b00}
 
-.formgroup{margin-bottom:12px}
-.formgroup label{
-display:block;font-size:13px;font-weight:bold;margin-bottom:5px
+.modal.show{
+display:flex
 }
-.formgroup input,.formgroup select,.formgroup textarea{
-width:100%;padding:11px;border:1px solid #ddd;
-border-radius:8px;outline:0
+
+.modalbox{
+width:100%;
+max-width:520px;
+max-height:92vh;
+overflow:auto;
+background:#fff;
+border-radius:18px;
+padding:25px;
+position:relative
+}
+
+.close{
+position:absolute;
+right:15px;
+top:10px;
+border:0;
+background:none;
+font-size:25px
+}
+
+.modal h2{
+margin-bottom:18px;
+color:#ff6b00
+}
+
+.formgroup{
+margin-bottom:12px
+}
+
+.formgroup label{
+display:block;
+font-size:13px;
+font-weight:bold;
+margin-bottom:5px
+}
+
+.formgroup input,
+.formgroup select,
+.formgroup textarea{
+width:100%;
+padding:11px;
+border:1px solid #ddd;
+border-radius:8px;
+outline:0
+}
+
+.formgroup textarea{
+min-height:80px;
+resize:vertical
 }
 
 .primary{
-width:100%;background:#ff6b00;color:#fff;border:0;
-padding:12px;border-radius:9px;font-weight:bold
+width:100%;
+background:#ff6b00;
+color:#fff;
+border:0;
+padding:12px;
+border-radius:9px;
+font-weight:bold
 }
+
 .secondary{
-width:100%;background:#f1f1f1;color:#222;border:0;
-padding:11px;border-radius:9px;font-weight:bold;margin-top:8px
+width:100%;
+background:#f1f1f1;
+color:#222;
+border:0;
+padding:11px;
+border-radius:9px;
+font-weight:bold;
+margin-top:8px
 }
+
 .gold{
-background:linear-gradient(135deg,#b8860b,#f5c542);color:#fff
+background:linear-gradient(135deg,#b8860b,#f5c542);
+color:#fff
 }
-.switch{text-align:center;margin-top:14px;font-size:14px}
-.switch span{color:#ff6b00;font-weight:bold;cursor:pointer}
+
+.switch{
+text-align:center;
+margin-top:14px;
+font-size:14px
+}
+
+.switch span{
+color:#ff6b00;
+font-weight:bold;
+cursor:pointer
+}
+
+/* CART */
 
 .cartitem{
-display:flex;justify-content:space-between;gap:10px;
-padding:12px 0;border-bottom:1px solid #eee
+display:flex;
+justify-content:space-between;
+gap:10px;
+padding:12px 0;
+border-bottom:1px solid #eee
 }
-.qty{display:flex;align-items:center;gap:8px}
+
+.qty{
+display:flex;
+align-items:center;
+gap:8px
+}
+
 .qty button{
-width:27px;height:27px;border:0;border-radius:50%;
-background:#ff6b00;color:#fff
+width:27px;
+height:27px;
+border:0;
+border-radius:50%;
+background:#ff6b00;
+color:#fff
 }
+
 .total{
-display:flex;justify-content:space-between;
-font-size:20px;font-weight:bold;margin:20px 0
+display:flex;
+justify-content:space-between;
+font-size:20px;
+font-weight:bold;
+margin:20px 0
 }
+
+/* PANELS */
 
 .panel{
-background:#fff;border-radius:15px;padding:20px;
+background:#fff;
+border-radius:15px;
+padding:20px;
 box-shadow:0 3px 12px #0001
 }
-.panel h2{color:#ff6b00;margin-bottom:8px}
+
+.panel h2{
+color:#ff6b00;
+margin-bottom:8px
+}
 
 .owneritems{
-display:grid;grid-template-columns:repeat(3,1fr);
-gap:15px;margin-top:20px
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+margin-top:20px
 }
+
 .owneritem{
-border:1px solid #eee;border-radius:10px;padding:10px
+border:1px solid #eee;
+border-radius:10px;
+padding:10px
 }
+
 .owneritem img{
-width:100%;height:120px;object-fit:cover;border-radius:8px
+width:100%;
+height:120px;
+object-fit:cover;
+border-radius:8px
 }
 
 .orderbox{
-border:1px solid #eee;border-radius:12px;
-padding:14px;margin:10px 0
+border:1px solid #eee;
+border-radius:12px;
+padding:14px;
+margin:10px 0
 }
-.orderbox h4{color:#ff6b00;margin-bottom:7px}
-.orderbox small{color:#777;line-height:1.6}
+
+.orderbox h4{
+color:#ff6b00;
+margin-bottom:7px
+}
+
+.orderbox small{
+color:#777;
+line-height:1.6
+}
 
 .badge2{
-display:inline-block;padding:5px 9px;border-radius:15px;
-background:#fff1e8;color:#ff6b00;font-size:12px;font-weight:bold
+display:inline-block;
+padding:5px 9px;
+border-radius:15px;
+background:#fff1e8;
+color:#ff6b00;
+font-size:12px;
+font-weight:bold
 }
 
-.hidden{display:none!important}
+.hidden{
+display:none!important
+}
 
 .preview{
-width:100%;max-height:220px;object-fit:cover;
-border-radius:10px;margin:8px 0
+width:100%;
+max-height:220px;
+object-fit:cover;
+border-radius:10px;
+margin:8px 0
 }
 
 .locbtn{
-background:#111;color:#fff;border:0;padding:10px;
-border-radius:8px;width:100%;margin-top:7px
+background:#111;
+color:#fff;
+border:0;
+padding:10px;
+border-radius:8px;
+width:100%;
+margin-top:7px
 }
 
+.successIcon{
+font-size:50px;
+margin-bottom:10px
+}
+
+.notice{
+padding:10px;
+background:#fff8ef;
+border-radius:8px;
+font-size:13px;
+color:#666;
+margin:10px 0
+}
+
+/* RESPONSIVE */
+
 @media(max-width:1000px){
-.foodgrid{grid-template-columns:repeat(2,1fr)}
+
+.foodgrid{
+grid-template-columns:repeat(2,1fr)
+}
+
 }
 
 @media(max-width:800px){
-.navbar{align-items:flex-start;flex-direction:column}
-.navlinks{width:100%;justify-content:flex-start}
-.layout{grid-template-columns:1fr}
-.sidebar{display:grid;grid-template-columns:1fr 1fr}
-.footergrid{grid-template-columns:1fr 1fr}
+
+.navbar{
+align-items:flex-start;
+flex-direction:column
+}
+
+.navlinks{
+width:100%;
+justify-content:flex-start
+}
+
+.layout{
+grid-template-columns:1fr
+}
+
+.sidebar{
+display:grid;
+grid-template-columns:1fr 1fr
+}
+
+.footergrid{
+grid-template-columns:1fr 1fr
+}
+
 }
 
 @media(max-width:600px){
-.hero{padding:40px 5%}
-.hero h1{font-size:30px}
-.hero p{font-size:15px}
-.foodgrid{grid-template-columns:1fr}
-.sidebar{display:flex}
-.footergrid{grid-template-columns:1fr}
-.owneritems{grid-template-columns:1fr}
-.navbtn{font-size:12px;padding:7px 8px}
+
+.hero{
+padding:40px 5%
+}
+
+.hero h1{
+font-size:30px
+}
+
+.hero p{
+font-size:15px
+}
+
+.foodgrid{
+grid-template-columns:1fr
+}
+
+.sidebar{
+display:flex
+}
+
+.footergrid{
+grid-template-columns:1fr
+}
+
+.owneritems{
+grid-template-columns:1fr
+}
+
+.navbtn{
+font-size:12px;
+padding:7px 8px
+}
+
+.searchbox{
+padding:5px
+}
+
+.searchbox button{
+padding:10px 14px
+}
+
+}
+
+/* LOADING */
+
+.loading{
+padding:30px;
+text-align:center;
+color:#777
+}
+
+.empty{
+padding:30px;
+text-align:center;
+background:#fff;
+border-radius:12px;
+color:#777
 }
 </style>
 </head>
 
 <body>
 
+<!-- ================= NAVBAR ================= -->
+
 <nav class="navbar">
+
 <div class="logo" onclick="goHome()">
 🍴 BiteMitra
 <span class="badge">🇮🇳 MADE IN INDIA</span>
 </div>
 
 <div class="navlinks">
-<button class="navbtn" onclick="goHome()">Home</button>
-<button class="navbtn" onclick="showCart()">🛒 Cart <span id="cartCount">0</span></button>
-<button class="navbtn" onclick="openLogin()">👤 Login</button>
-<button class="navbtn" onclick="openPartnerLogin('owner')">🏪 Owner</button>
-<button class="navbtn" onclick="openPartnerLogin('student')">🎓 Partner</button>
-<button class="navbtn" onclick="openPartnerLogin('delivery')">🚴 Delivery</button>
+
+<button class="navbtn" onclick="goHome()">
+Home
+</button>
+
+<button class="navbtn" onclick="showCart()">
+🛒 Cart <span id="cartCount">0</span>
+</button>
+
+<button class="navbtn" onclick="openLogin()">
+👤 Login
+</button>
+
+<button class="navbtn" onclick="openPartnerLogin('owner')">
+🏪 Owner
+</button>
+
+<button class="navbtn" onclick="openPartnerLogin('student')">
+🎓 Partner
+</button>
+
+<button class="navbtn" onclick="openPartnerLogin('delivery')">
+🚴 Delivery
+</button>
+
 </div>
 </nav>
 
+
+<!-- ================= HERO ================= -->
+
 <section class="hero">
-<h1>Delicious Food, Your Local Mitra ❤️</h1>
-<p>Order your favourite food from local restaurants.</p>
+
+<h1>
+Delicious Food, Your Local Mitra ❤️
+</h1>
+
+<p>
+Order your favourite food from local restaurants.
+</p>
 
 <div class="searchbox">
-<input id="searchInput"
+
+<input
+id="searchInput"
 placeholder="Search pizza, biryani, burger..."
 oninput="searchFood()">
-<button onclick="searchFood()">Search</button>
+
+<button onclick="searchFood()">
+Search
+</button>
+
 </div>
 
 <div id="suggestions" class="suggestions hidden"></div>
+
 </section>
+
+
+<!-- ================= MAIN ================= -->
 
 <div class="container">
 
@@ -289,92 +766,217 @@ oninput="searchFood()">
 BiteMitra food menu
 </div>
 
+
+<!-- CATEGORIES -->
+
 <div class="categories">
-<button class="category active" onclick="filterFood('All',this)">All</button>
-<button class="category" onclick="filterFood('Pizza',this)">🍕 Pizza</button>
-<button class="category" onclick="filterFood('Biryani',this)">🍛 Biryani</button>
-<button class="category" onclick="filterFood('Chicken',this)">🍗 Chicken</button>
-<button class="category" onclick="filterFood('Burger',this)">🍔 Burger</button>
-<button class="category" onclick="filterFood('Sweets',this)">🍬 Sweets</button>
-<button class="category" onclick="filterFood('Drinks',this)">🥤 Drinks</button>
-<button class="category" onclick="filterFood('Rice',this)">🍚 Rice</button>
-<button class="category" onclick="filterFood('Other',this)">🍽️ Other</button>
+
+<button class="category active"
+onclick="filterFood('All',this)">
+All
+</button>
+
+<button class="category"
+onclick="filterFood('Pizza',this)">
+🍕 Pizza
+</button>
+
+<button class="category"
+onclick="filterFood('Biryani',this)">
+🍛 Biryani
+</button>
+
+<button class="category"
+onclick="filterFood('Chicken',this)">
+🍗 Chicken
+</button>
+
+<button class="category"
+onclick="filterFood('Burger',this)">
+🍔 Burger
+</button>
+
+<button class="category"
+onclick="filterFood('Sweets',this)">
+🍬 Sweets
+</button>
+
+<button class="category"
+onclick="filterFood('Drinks',this)">
+🥤 Drinks
+</button>
+
+<button class="category"
+onclick="filterFood('Rice',this)">
+🍚 Rice
+</button>
+
+<button class="category"
+onclick="filterFood('Other',this)">
+🍽️ Other
+</button>
+
 </div>
+
 
 <div class="layout">
 
 <main>
+
 <div id="foodGrid" class="foodgrid"></div>
+
 </main>
+
+
+<!-- SIDEBAR -->
 
 <aside class="sidebar">
 
 <div class="sidebox">
-<h3>🚴 Fast Delivery</h3>
-<p>Fresh food delivered to your doorstep.</p>
+
+<h3>
+🚴 Fast Delivery
+</h3>
+
+<p>
+Fresh food delivered to your doorstep.
+</p>
+
 </div>
 
-<div class="sidebox">
-<h3>👤 Your Account</h3>
-<p id="userStatus">Login to place and track your orders.</p>
 
-<button id="loginSide"
+<div class="sidebox">
+
+<h3>
+👤 Your Account
+</h3>
+
+<p id="userStatus">
+Login to place and track your orders.
+</p>
+
+<button
+id="loginSide"
 class="sidebtn"
 onclick="openLogin()">
+
 Login / Create Account
+
 </button>
 
-<button id="logoutBtn"
+<button
+id="logoutBtn"
 class="secondary hidden"
 onclick="logoutUser()">
+
 Logout
+
 </button>
+
 </div>
 
-<div class="sidebox">
-<h3>🏪 Popular Restaurants</h3>
-<p>🍛 Mithila Food Corner</p>
-<p>🍔 Bite House</p>
-<p>🍗 Desi Rasoi</p>
-</div>
 
 <div class="sidebox">
-<h3>📍 Location</h3>
+
+<h3>
+🏪 Popular Restaurants
+</h3>
+
+<p>
+🍛 Mithila Food Corner
+</p>
+
+<p>
+🍔 Bite House
+</p>
+
+<p>
+🍗 Desi Rasoi
+</p>
+
+</div>
+
+
+<div class="sidebox">
+
+<h3>
+📍 Location
+</h3>
+
 <p id="locationText">
 Delivery location will be used at checkout.
 </p>
-<button class="sidebtn" onclick="getLocation()">
+
+<button
+class="sidebtn"
+onclick="getLocation()">
+
 Use My Location
+
 </button>
+
 </div>
 
 </aside>
+
 </div>
 </div>
 
-<!-- OWNER DASHBOARD -->
+
+<!-- ================= OWNER DASHBOARD ================= -->
 
 <section id="ownerSection" class="container hidden">
 
 <div class="panel">
 
-<h2>🏪 Restaurant Owner Dashboard</h2>
+<h2>
+🏪 Restaurant Owner Dashboard
+</h2>
 
-<p id="ownerEmail" style="color:#777;margin-bottom:18px"></p>
+<p id="ownerEmail"
+style="color:#777;margin-bottom:18px">
+</p>
 
-<div class="formgroup">
-<label>Restaurant Name</label>
-<input id="foodRestaurant" placeholder="Your restaurant name">
+
+<div class="notice">
+Owner can add food, price, discount and photo without changing website code.
 </div>
 
-<div class="formgroup">
-<label>Food Name</label>
-<input id="foodName" placeholder="Example: Paneer Pizza">
-</div>
 
 <div class="formgroup">
-<label>Category</label>
+
+<label>
+Restaurant Name
+</label>
+
+<input
+id="foodRestaurant"
+placeholder="Your restaurant name">
+
+</div>
+
+
+<div class="formgroup">
+
+<label>
+Food Name
+</label>
+
+<input
+id="foodName"
+placeholder="Example: Paneer Pizza">
+
+</div>
+
+
+<div class="formgroup">
+
+<label>
+Category
+</label>
+
 <select id="foodCategory">
+
 <option>Pizza</option>
 <option>Biryani</option>
 <option>Chicken</option>
@@ -383,72 +985,161 @@ Use My Location
 <option>Drinks</option>
 <option>Rice</option>
 <option>Other</option>
+
 </select>
+
 </div>
 
-<div class="formgroup">
-<label>Original Price ₹</label>
-<input id="foodPrice" type="number">
-</div>
 
 <div class="formgroup">
-<label>Discount %</label>
-<input id="foodDiscount" type="number" value="0">
+
+<label>
+Original Price ₹
+</label>
+
+<input
+id="foodPrice"
+type="number"
+min="1">
+
 </div>
 
+
 <div class="formgroup">
-<label>Food Photo</label>
-<input id="foodImage" type="file" accept="image/*"
+
+<label>
+Discount %
+</label>
+
+<input
+id="foodDiscount"
+type="number"
+min="0"
+max="100"
+value="0">
+
+</div>
+
+
+<div class="formgroup">
+
+<label>
+Food Photo
+</label>
+
+<input
+id="foodImage"
+type="file"
+accept="image/*"
 onchange="previewImage(this)">
+
 </div>
 
-<img id="imagePreview" class="preview hidden">
 
-<button class="primary gold" onclick="addFood()">
+<img
+id="imagePreview"
+class="preview hidden">
+
+
+<button
+class="primary gold"
+onclick="addFood()">
+
 ➕ Add Food
+
 </button>
 
-<button class="secondary" onclick="closePanels()">
+
+<button
+class="secondary"
+onclick="closePanels()">
+
 Close Dashboard
+
 </button>
+
 
 <h3 style="margin-top:25px">
 📦 My Orders
 </h3>
 
-<div id="ownerOrders"></div>
+<div id="ownerOrders">
+</div>
+
 
 <h3 style="margin-top:25px">
 🍴 My Foods
 </h3>
 
-<div id="ownerFoodList" class="owneritems"></div>
+<div
+id="ownerFoodList"
+class="owneritems">
+</div>
 
 </div>
+
 </section>
 
-<!-- STUDENT -->
 
-<section id="studentSection" class="container hidden">
+<!-- ================= STUDENT PARTNER ================= -->
+
+<section
+id="studentSection"
+class="container hidden">
 
 <div class="panel">
 
-<h2>🎓 Partner Dashboard</h2>
+<h2>
+🎓 Partner Dashboard
+</h2>
 
-<p id="studentEmail" style="color:#777"></p>
-
-<p style="margin:12px 0;color:#666">
-Add and manage your own food items.
+<p
+id="studentEmail"
+style="color:#777">
 </p>
 
-<div class="formgroup">
-<label>Food Name</label>
-<input id="studentFoodName">
-</div>
+<p
+style="margin:12px 0;color:#666">
+
+Add and manage your own food items.
+
+</p>
+
 
 <div class="formgroup">
-<label>Category</label>
+
+<label>
+Restaurant Name
+</label>
+
+<input
+id="studentRestaurant"
+placeholder="Restaurant / food partner name">
+
+</div>
+
+
+<div class="formgroup">
+
+<label>
+Food Name
+</label>
+
+<input
+id="studentFoodName"
+placeholder="Food name">
+
+</div>
+
+
+<div class="formgroup">
+
+<label>
+Category
+</label>
+
 <select id="studentCategory">
+
 <option>Pizza</option>
 <option>Biryani</option>
 <option>Chicken</option>
@@ -457,470 +1148,678 @@ Add and manage your own food items.
 <option>Drinks</option>
 <option>Rice</option>
 <option>Other</option>
+
 </select>
+
 </div>
+
 
 <div class="formgroup">
-<label>Price ₹</label>
-<input id="studentPrice" type="number">
+
+<label>
+Price ₹
+</label>
+
+<input
+id="studentPrice"
+type="number"
+min="1">
+
 </div>
+
 
 <div class="formgroup">
-<label>Discount %</label>
-<input id="studentDiscount" type="number" value="0">
+
+<label>
+Discount %
+</label>
+
+<input
+id="studentDiscount"
+type="number"
+min="0"
+max="100"
+value="0">
+
 </div>
+
 
 <div class="formgroup">
-<label>Food Photo</label>
-<input id="studentImage" type="file" accept="image/*">
+
+<label>
+Food Photo
+</label>
+
+<input
+id="studentImage"
+type="file"
+accept="image/*">
+
 </div>
 
-<button class="primary" onclick="addStudentFood()">
+
+<button
+class="primary"
+onclick="addStudentFood()">
+
 ➕ Add My Food
+
 </button>
 
-<button class="secondary" onclick="closePanels()">
+
+<button
+class="secondary"
+onclick="closePanels()">
+
 Close Partner Dashboard
+
 </button>
 
-<div id="studentFoodList" class="owneritems"></div>
+
+<div
+id="studentFoodList"
+class="owneritems">
+</div>
 
 </div>
+
 </section>
 
-<!-- DELIVERY -->
 
-<section id="deliverySection" class="container hidden">
+<!-- ================= DELIVERY ================= -->
+
+<section
+id="deliverySection"
+class="container hidden">
 
 <div class="panel">
 
-<h2>🚴 Delivery Dashboard</h2>
+<h2>
+🚴 Delivery Dashboard
+</h2>
 
-<p id="deliveryEmail" style="color:#777"></p>
-
-<p style="color:#666;margin:10px 0">
-Only assigned orders are shown here.
+<p
+id="deliveryEmail"
+style="color:#777">
 </p>
 
-<div id="deliveryOrders"></div>
+<p
+style="color:#666;margin:10px 0">
 
-<button class="secondary" onclick="closePanels()">
+Assigned orders will appear here.
+
+</p>
+
+<div id="deliveryOrders">
+</div>
+
+<button
+class="secondary"
+onclick="closePanels()">
+
 Close Delivery Dashboard
+
 </button>
 
 </div>
+
 </section>
+
+
+<!-- ================= FOOTER ================= -->
 
 <footer class="footer">
 
 <div class="footergrid">
 
 <div>
-<h2>🍴 BiteMitra</h2>
-<p>Delicious Food, Your Local Mitra ❤️</p>
-<p>🇮🇳 MADE IN INDIA</p>
+
+<h2>
+🍴 BiteMitra
+</h2>
+
+<p>
+Delicious Food, Your Local Mitra ❤️
+</p>
+
+<p>
+🇮🇳 MADE IN INDIA
+</p>
+
 </div>
+
 
 <div>
-<h3>Quick Links</h3>
-<a onclick="goHome()">Home</a>
-<a onclick="showCart()">Cart</a>
-<a onclick="openLogin()">Login</a>
+
+<h3>
+Quick Links
+</h3>
+
+<a onclick="goHome()">
+Home
+</a>
+
+<a onclick="showCart()">
+Cart
+</a>
+
+<a onclick="openLogin()">
+Login
+</a>
+
 </div>
+
 
 <div>
-<h3>For Partners</h3>
-<a onclick="openPartnerLogin('owner')">Restaurant Owner</a>
-<a onclick="openPartnerLogin('student')">Student Partner</a>
-<a onclick="openPartnerLogin('delivery')">Delivery Partner</a>
+
+<h3>
+For Partners
+</h3>
+
+<a onclick="openPartnerLogin('owner')">
+Restaurant Owner
+</a>
+
+<a onclick="openPartnerLogin('student')">
+Student Partner
+</a>
+
+<a onclick="openPartnerLogin('delivery')">
+Delivery Partner
+</a>
+
 </div>
 
 </div>
+
 
 <div class="copyright">
+
 © 2026 BiteMitra — Your Local Food Delivery Partner
+
 </div>
 
 </footer>
 
-<!-- CUSTOMER LOGIN -->
 
-<div id="loginModal" class="modal">
+<!-- ================= CUSTOMER LOGIN ================= -->
+
+<div
+id="loginModal"
+class="modal">
 
 <div class="modalbox">
 
-<button class="close" onclick="closeModal('loginModal')">×</button>
+<button
+class="close"
+onclick="closeModal('loginModal')">
+×
+</button>
+
 
 <div id="loginFormBox">
 
-<h2>👤 BiteMitra Login</h2>
+<h2>
+👤 BiteMitra Login
+</h2>
+
 
 <div class="formgroup">
-<label>Email</label>
-<input id="loginEmail" type="email">
+
+<label>
+Email
+</label>
+
+<input
+id="loginEmail"
+type="email"
+autocomplete="email">
+
 </div>
+
 
 <div class="formgroup">
-<label>Password</label>
-<input id="loginPassword" type="password">
+
+<label>
+Password
+</label>
+
+<input
+id="loginPassword"
+type="password"
+autocomplete="current-password">
+
 </div>
 
-<button class="primary" onclick="loginUser()">
+
+<button
+class="primary"
+onclick="loginUser()">
+
 Login
+
 </button>
 
+
 <div class="switch">
+
 Don't have an account?
-<span onclick="showSignup()">Create Account</span>
-</div>
 
-</div>
-
-<div id="signupFormBox" class="hidden">
-
-<h2>📝 Create Account</h2>
-
-<div class="formgroup">
-<label>Full Name</label>
-<input id="signupName">
-</div>
-
-<div class="formgroup">
-<label>Mobile Number</label>
-<input id="signupMobile">
-</div>
-
-<div class="formgroup">
-<label>Email</label>
-<input id="signupEmail" type="email">
-</div>
-
-<div class="formgroup">
-<label>Password</label>
-<input id="signupPassword" type="password">
-</div>
-
-<button class="primary" onclick="signupUser()">
+<span onclick="showSignup()">
 Create Account
+</span>
+
+</div>
+
+</div>
+
+
+<div
+id="signupFormBox"
+class="hidden">
+
+<h2>
+📝 Create Account
+</h2>
+
+
+<div class="formgroup">
+
+<label>
+Full Name
+</label>
+
+<input id="signupName">
+
+</div>
+
+
+<div class="formgroup">
+
+<label>
+Mobile Number
+</label>
+
+<input
+id="signupMobile"
+type="tel">
+
+</div>
+
+
+<div class="formgroup">
+
+<label>
+Email
+</label>
+
+<input
+id="signupEmail"
+type="email">
+
+</div>
+
+
+<div class="formgroup">
+
+<label>
+Password
+</label>
+
+<input
+id="signupPassword"
+type="password">
+
+</div>
+
+
+<button
+class="primary"
+onclick="signupUser()">
+
+Create Account
+
 </button>
 
+
 <div class="switch">
+
 Already have an account?
-<span onclick="showLogin()">Login</span>
-</div>
+
+<span onclick="showLogin()">
+Login
+</span>
 
 </div>
 
 </div>
+
+</div>
 </div>
 
-<!-- PARTNER LOGIN -->
 
-<div id="partnerModal" class="modal">
+<!-- ================= PARTNER LOGIN ================= -->
+
+<div
+id="partnerModal"
+class="modal">
 
 <div class="modalbox">
 
-<button class="close" onclick="closeModal('partnerModal')">×</button>
+<button
+class="close"
+onclick="closeModal('partnerModal')">
+×
+</button>
+
 
 <h2 id="partnerTitle">
 Partner Login
 </h2>
 
-<p id="partnerInfo"
+<p
+id="partnerInfo"
 style="color:#777;margin-bottom:15px">
 </p>
 
-<div class="formgroup">
-<label>Email</label>
-<input id="partnerEmail" type="email">
-</div>
 
 <div class="formgroup">
-<label>Password</label>
-<input id="partnerPassword" type="password">
+
+<label>
+Email
+</label>
+
+<input
+id="partnerEmail"
+type="email">
+
 </div>
 
-<button class="primary gold" onclick="partnerLogin()">
+
+<div class="formgroup">
+
+<label>
+Password
+</label>
+
+<input
+id="partnerPassword"
+type="password">
+
+</div>
+
+
+<button
+class="primary gold"
+onclick="partnerLogin()">
+
 Secure Login
+
 </button>
 
+
+<div class="notice">
+
+Owner / Partner / Delivery access depends on the account role saved in Firebase.
+
+</div>
+
 </div>
 </div>
 
-<!-- CART -->
 
-<div id="cartModal" class="modal">
+<!-- ================= CART ================= -->
+
+<div
+id="cartModal"
+class="modal">
 
 <div class="modalbox">
 
-<button class="close" onclick="closeModal('cartModal')">×</button>
+<button
+class="close"
+onclick="closeModal('cartModal')">
+×
+</button>
 
-<h2>🛒 Your Cart</h2>
 
-<div id="cartItems"></div>
+<h2>
+🛒 Your Cart
+</h2>
+
+<div id="cartItems">
+</div>
+
 
 <div class="total">
-<span>Total</span>
-<span id="cartTotal">₹0</span>
+
+<span>
+Total
+</span>
+
+<span id="cartTotal">
+₹0
+</span>
+
 </div>
 
-<button class="primary" onclick="checkout()">
+
+<button
+class="primary"
+onclick="checkout()">
+
 Order Now
+
 </button>
 
 </div>
 </div>
 
-<!-- CHECKOUT -->
 
-<div id="checkoutModal" class="modal">
+<!-- ================= CHECKOUT ================= -->
+
+<div
+id="checkoutModal"
+class="modal">
 
 <div class="modalbox">
 
-<button class="close" onclick="closeModal('checkoutModal')">×</button>
+<button
+class="close"
+onclick="closeModal('checkoutModal')">
+×
+</button>
 
-<h2>📍 Delivery Address</h2>
+
+<h2>
+📍 Delivery Address
+</h2>
+
 
 <div class="formgroup">
-<label>Full Name</label>
+
+<label>
+Full Name
+</label>
+
 <input id="addressName">
+
 </div>
 
-<div class="formgroup">
-<label>Mobile Number</label>
-<input id="addressMobile">
-</div>
 
 <div class="formgroup">
-<label>House / Street / Address</label>
+
+<label>
+Mobile Number
+</label>
+
+<input
+id="addressMobile"
+type="tel">
+
+</div>
+
+
+<div class="formgroup">
+
+<label>
+House / Street / Address
+</label>
+
 <textarea id="addressLine"></textarea>
+
 </div>
 
+
 <div class="formgroup">
-<label>Ward Number</label>
+
+<label>
+Ward Number
+</label>
+
 <input id="wardNumber">
+
 </div>
 
+
 <div class="formgroup">
-<label>Village / Town</label>
+
+<label>
+Village / Town
+</label>
+
 <input id="villageTown">
+
 </div>
 
-<div class="formgroup">
-<label>District</label>
-<input id="district">
-</div>
 
 <div class="formgroup">
-<label>PIN Code</label>
-<input id="pinCode" maxlength="6">
+
+<label>
+District
+</label>
+
+<input
+id="district"
+placeholder="Example: Madhubani">
+
 </div>
 
+
 <div class="formgroup">
-<label>Nearby Location / Landmark</label>
+
+<label>
+PIN Code
+</label>
+
+<input
+id="pinCode"
+maxlength="6"
+inputmode="numeric">
+
+</div>
+
+
+<div class="formgroup">
+
+<label>
+Nearby Location / Landmark
+</label>
+
 <input id="landmark">
+
 </div>
 
-<button class="locbtn" onclick="getLocation()">
+
+<button
+class="locbtn"
+onclick="getLocation()">
+
 📍 Use Current Location
+
 </button>
 
-<div style="margin:15px 0;padding:12px;background:#fff8ef;border-radius:10px">
-<b>Payment:</b> Cash on Delivery / Payment Later
+
+<div
+style="margin:15px 0;padding:12px;background:#fff8ef;border-radius:10px">
+
+<b>
+Payment:
+</b>
+
+Cash on Delivery / Payment Later
+
 </div>
 
-<button class="primary" onclick="placeOrder()">
+
+<button
+class="primary"
+onclick="placeOrder()">
+
 ✅ Confirm Order
+
 </button>
 
 </div>
 </div>
 
-<!-- SUCCESS -->
 
-<div id="successModal" class="modal">
+<!-- ================= SUCCESS ================= -->
 
-<div class="modalbox" style="text-align:center">
+<div
+id="successModal"
+class="modal">
 
-<h2>🎉 Order Placed!</h2>
+<div
+class="modalbox"
+style="text-align:center">
 
-<p id="successText"
+<div class="successIcon">
+🎉
+</div>
+
+<h2>
+Order Placed!
+</h2>
+
+<p
+id="successText"
 style="line-height:1.7;margin:15px 0">
 </p>
 
-<button class="primary"
+<button
+class="primary"
 onclick="closeModal('successModal')">
+
 Done
+
 </button>
 
 </div>
 </div>
 
+
 <script>
 
-/* ================= FIREBASE ================= */
+/* =====================================================
+   FIREBASE CONFIG
+===================================================== */
 
 const firebaseConfig={
+
 apiKey:"AIzaSyBlNJPH4sJCmR5jUJ1txjiC92aKfp9Ou8Y",
-authDomain:"bitemitra-388fc.firebaseapp.com",
-projectId:"bitemitra-388fc",
-storageBucket:"bitemitra-388fc.firebasestorage.app",
-messagingSenderId:"581936609316",
-appId:"1:581936609316:web:48c2b2198e39bf27d200b1",
-measurementId:"G-XBYN8F9WXK"
-};
 
-let auth=null;
-let db=null;
-let firebaseReady=false;
-let currentUser=null;
-let currentRole="customer";
-let partnerType="owner";
-let currentCategory="All";
-let gps=null;
+authDomain:
+"bitemitra-388fc.firebaseapp.com",
 
-/* ================= DEMO FOODS ================= */
+projectId:
+"bitemitra-388fc",
 
-const demoFoods=[
+storageBucket:
+"bitemitra-388fc.firebasestorage.app",
 
-{
-id:"demo1",
-name:"Paneer Pizza",
-category:"Pizza",
-restaurant:"Mithila Food Corner",
-price:249,
-discount:10,
-image:"https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=900&q=80"
-},
+messagingSenderId:
+"581936609316",
 
-{
-id:"demo2",
-name:"Chicken Biryani",
-category:"Biryani",
-restaurant:"Desi Rasoi",
-price:199,
-discount:10,
-image:"https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=900&q=80"
-},
-
-{
-id:"demo3",
-name:"Chicken Burger",
-category:"Burger",
-restaurant:"Bite House",
-price:149,
-discount:5,
-image:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80"
-},
-
-{
-id:"demo4",
-name:"Gulab Jamun",
-category:"Sweets",
-restaurant:"Mithila Food Corner",
-price:99,
-discount:5,
-image:"https://images.unsplash.com/photo-1666190094765-5c6c9f0b1f42?auto=format&fit=crop&w=900&q=80"
-},
-
-{
-id:"demo5",
-name:"Cold Drink",
-category:"Drinks",
-restaurant:"Bite House",
-price:50,
-discount:0,
-image:"https://images.unsplash.com/photo-1629203849820-fdd70d49c38e?auto=format&fit=crop&w=900&q=80"
-},
-
-{
-id:"demo6",
-name:"Chicken Rice",
-category:"Rice",
-restaurant:"Desi Rasoi",
-price:169,
-discount:10,
-image:"https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=80"
-}
-
-];
-
-let foods=[...demoFoods];
-
-let cart=JSON.parse(
-localStorage.getItem("bitemitra_cart")||"[]"
-);
-
-/* ================= HELPERS ================= */
-
-function $(id){
-return document.getElementById(id);
-}
-
-function money(n){
-return "₹"+Number(n||0).toLocaleString("en-IN");
-}
-
-function esc(v){
-return String(v??"").replace(/[&<>"']/g,function(m){
-return {
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-'"':"&quot;",
-"'":"&#39;"
-}[m];
-});
-}
-
-function openModal(id){
-$(id).classList.add("show");
-}
-
-function closeModal(id){
-$(id).classList.remove("show");
-}
-
-function setStatus(t){
-$("status").textContent=t;
-}
-
-/* ================= SHOW FOOD IMMEDIATELY ================= */
-
-function startBiteMitra(){
-
-/* सबसे पहले food दिखाओ */
-foods=[...demoFoods];
-renderFoods(foods);
-saveCart();
-
-/* उसके बाद Firebase */
-initFirebase();
-}
-
-/* ================= FIREBASE INIT ================= */
-
-function initFirebase(){
-
-try{
-
-firebase.initializeApp(firebaseConfig);
-
-auth=firebase.auth();
-db=firebase.firestore();
-
-firebaseReady=true;
-
-auth.onAuthStateChanged(async function(user){
-
-currentUser=user;
-
-updateUserUI(user);
-
-if(user){
-await loadRole(user);
-}
-
-});
-
-loadFi
+appId:
+"1:58193
